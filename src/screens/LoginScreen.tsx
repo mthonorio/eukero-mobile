@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-import { View, Button, TextInput } from 'react-native';
+import { View, Button, TextInput, Image } from 'react-native';
 
 import { Recaptcha } from '../components/Recaptcha';
 
 import { useAuthStore } from '../stores/auth.store';
+import Logo from '../assets/svg/logo-eukero.svg';
 
 export function LoginScreen() {
   const signIn = useAuthStore(state => state.signIn);
@@ -23,10 +24,12 @@ export function LoginScreen() {
       style={{
         flex: 1,
         justifyContent: 'center',
+        backgroundColor: '#fff',
         padding: 20,
         gap: 12,
       }}
     >
+      <Logo width={240} height={240} />
       <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
 
       <TextInput
