@@ -12,13 +12,9 @@ function App() {
         translucent
         backgroundColor="transparent"
       />
-      <AppContent />
+      <AppNavigator />
     </SafeAreaProvider>
   );
-}
-
-function AppContent() {
-  return <AppNavigator />;
 }
 
 export default App;

@@ -1,8 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from '../../screens/HomeScreen';
 import { ProfileScreen } from '../../screens/ProfileScreen';
+import { RootTabParamList } from '../../navigation/types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 export function TabRoutes() {
   return (

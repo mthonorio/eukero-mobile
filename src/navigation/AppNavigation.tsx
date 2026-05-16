@@ -1,19 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { HomeScreen } from '../screens/HomeScreen';
-import { ProfileScreen } from '../screens/ProfileScreen';
-
-const Stack = createNativeStackNavigator();
+import { AppRoutes } from './AppRoutes';
+import { AuthRoutes } from './AuthRoutes';
+import { useAuthStore } from '../stores/auth.store';
 
 export function AppNavigator() {
+  const user = useAuthStore(state => state.user);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-      </Stack.Navigator>
+      {user ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }

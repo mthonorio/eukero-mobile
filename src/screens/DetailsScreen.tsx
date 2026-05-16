@@ -1,10 +1,6 @@
 import { Button, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-
-type RootStackParamList = {
-  Home: undefined;
-  Details: undefined;
-};
+import { RootStackParamList } from '../navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
