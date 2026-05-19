@@ -1,15 +1,22 @@
 import { NavigationContainer } from '@react-navigation/native';
 
-import { AppRoutes } from './AppRoutes';
-import { AuthRoutes } from './AuthRoutes';
 import { useAuthStore } from '../stores/auth.store';
 
+import { AppRoutes } from './AppRoutes';
+import { AuthRoutes } from './AuthRoutes';
+
 export function AppNavigator() {
-  const user = useAuthStore(state => state.user);
+  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+
+  const isHydrated = useAuthStore(state => state.isHydrated);
+
+  if (!isHydrated) {
+    return null;
+  }
 
   return (
     <NavigationContainer>
-      {user ? <AppRoutes /> : <AuthRoutes />}
+      {isAuthenticated ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }
