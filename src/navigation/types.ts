@@ -2,6 +2,11 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootTabParamList = {
   Home: undefined;
+  Suppliers: undefined;
+  Orders: undefined;
+  ProductForm: undefined;
+  Bag: undefined;
+  Notifications: undefined;
   Profile: undefined;
 };
 
