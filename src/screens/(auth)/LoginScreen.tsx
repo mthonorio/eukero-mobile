@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { View, Button, TextInput, Text, TouchableOpacity } from 'react-native';
-import Logo from '../assets/svg/logo-eukero.svg';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RecaptchaV3 } from '../../components/RecaptchaV3';
 import { useAuthStore } from '../../stores/auth.store';
 import Layout from './layout';
+import { AuthStackParamList } from '../../navigation/types';
 
-export function LoginScreen() {
+type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
+
+export function LoginScreen({ navigation }: Props) {
   const signIn = useAuthStore(state => state.signIn);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,7 +19,7 @@ export function LoginScreen() {
   }
 
   function handleForgotPassword() {
-    console.log('Forgot password');
+    navigation.navigate('ForgetPassword');
   }
 
   return (
@@ -30,14 +33,6 @@ export function LoginScreen() {
           gap: 12,
         }}
       >
-        <View
-          style={{
-            alignItems: 'center',
-          }}
-        >
-          <Logo width={240} height={240} />
-        </View>
-
         <TextInput
           placeholder='Login'
           value={email}

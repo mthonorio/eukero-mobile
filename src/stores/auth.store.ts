@@ -1,7 +1,5 @@
 import { create } from 'zustand';
 
-import * as authService from '../services/auth.service';
-
 import { api } from '../api/api';
 
 import {
@@ -9,48 +7,8 @@ import {
   removeAuthStorage,
   saveAuthStorage,
 } from '../storage/auth.storage';
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  avatar: string;
-  phone: string;
-  type: 'USER' | 'STORE';
-  username: string;
-  storeName?: string;
-  plan?: string;
-  planExpiration?: string;
-};
-
-type AuthResponse = {
-  id?: string;
-
-  userUid: string;
-  userUsername: string;
-  userEmail: string;
-  userName: string;
-  userPhone: string;
-  userPhoto: string;
-
-  userType?: 'USER' | 'STORE';
-
-  authToken: string;
-  refreshToken: string;
-  expireTime: number;
-
-  storeName?: string;
-  plan?: string;
-  planExpiration?: string;
-
-  isActive: boolean;
-};
-
-type AuthStorage = {
-  user: User;
-  token: string;
-  refreshToken: string;
-};
+import { AuthService } from '../services/auth.service';
+import { AuthResponse, AuthStorage, User } from '../types/user.type';
 
 type AuthStore = {
   user: User | null;
@@ -88,11 +46,8 @@ export const useAuthStore = create<AuthStore>(set => ({
 
         set({
           user: storage.user,
-
           token: storage.token,
-
           refreshToken: storage.refreshToken,
-
           isAuthenticated: true,
         });
       }
@@ -111,7 +66,7 @@ export const useAuthStore = create<AuthStore>(set => ({
         isLoading: true,
       });
 
-      const response: AuthResponse = await authService.login({
+      const response: AuthResponse = await AuthService.login({
         login,
         password,
         token,
@@ -119,31 +74,20 @@ export const useAuthStore = create<AuthStore>(set => ({
 
       const userLogin: User = {
         id: response.userUid,
-
         name: response.userName,
-
         email: response.userEmail,
-
         avatar: response.userPhoto,
-
         phone: response.userPhone,
-
         type: response.userType ?? 'USER',
-
         username: response.userUsername,
-
         storeName: response.storeName,
-
         plan: response.plan,
-
         planExpiration: response.planExpiration,
       };
 
       const authStorage: AuthStorage = {
         user: userLogin,
-
         token: response.authToken,
-
         refreshToken: response.refreshToken,
       };
 
@@ -153,11 +97,8 @@ export const useAuthStore = create<AuthStore>(set => ({
 
       set({
         user: userLogin,
-
         token: response.authToken,
-
         refreshToken: response.refreshToken,
-
         isAuthenticated: true,
       });
     } finally {
@@ -174,10 +115,8 @@ export const useAuthStore = create<AuthStore>(set => ({
 
     set({
       user: null,
-
       token: null,
       refreshToken: null,
-
       isAuthenticated: false,
     });
   },

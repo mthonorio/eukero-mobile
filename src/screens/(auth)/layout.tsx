@@ -1,10 +1,7 @@
 import { ReactNode } from 'react';
-
 import { Keyboard, Pressable, View } from 'react-native';
-
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
-
-import Logo from '../assets/svg/logo-eukero.svg';
+import Logo from '../../assets/svg/logo-eukero.svg';
 
 interface LayoutProps {
   children: ReactNode;

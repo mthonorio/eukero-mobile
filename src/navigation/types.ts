@@ -14,3 +14,8 @@ export type RootStackParamList = {
   MainTabs: NavigatorScreenParams<RootTabParamList>;
   Details: undefined;
 };
+
+export type AuthStackParamList = {
+  Login: undefined;
+  ForgetPassword: undefined;
+};
