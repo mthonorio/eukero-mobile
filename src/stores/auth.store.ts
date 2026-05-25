@@ -22,7 +22,7 @@ type AuthStore = {
 
   hydrate: () => Promise<void>;
 
-  signIn: (login: string, password: string, token: string) => Promise<void>;
+  signIn: (login: string, password: string) => Promise<void>;
 
   signOut: () => Promise<void>;
 };
@@ -60,7 +60,7 @@ export const useAuthStore = create<AuthStore>(set => ({
     }
   },
 
-  signIn: async (login, password, token) => {
+  signIn: async (login, password) => {
     try {
       set({
         isLoading: true,
@@ -69,7 +69,6 @@ export const useAuthStore = create<AuthStore>(set => ({
       const response: AuthResponse = await AuthService.login({
         login,
         password,
-        token,
       });
 
       const userLogin: User = {

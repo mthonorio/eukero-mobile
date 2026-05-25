@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { View, Button, TextInput, Text, TouchableOpacity } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RecaptchaV3 } from '../../components/RecaptchaV3';
 import { useAuthStore } from '../../stores/auth.store';
 import Layout from './layout';
 import { AuthStackParamList } from '../../navigation/types';
@@ -12,10 +11,9 @@ export function LoginScreen({ navigation }: Props) {
   const signIn = useAuthStore(state => state.signIn);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showCaptcha, setShowCaptcha] = useState(false);
 
-  async function handleCaptcha(token: string) {
-    await signIn(email, password, token);
+  async function handleLogin() {
+    await signIn(email, password);
   }
 
   function handleForgotPassword() {
@@ -85,13 +83,7 @@ export function LoginScreen({ navigation }: Props) {
         <Button
           title='Entrar'
           color='#640000ff'
-          onPress={() => setShowCaptcha(true)}
-        />
-
-        <RecaptchaV3
-          visible={showCaptcha}
-          onClose={() => setShowCaptcha(false)}
-          onVerify={handleCaptcha}
+          onPress={() => handleLogin()}
         />
       </View>
     </Layout>

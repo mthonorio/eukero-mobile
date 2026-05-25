@@ -3,12 +3,11 @@ import { api } from '../api/api';
 type LoginDTO = {
   login: string;
   password: string;
-  token: string;
 };
 
 export class AuthService {
   static async login(data: LoginDTO) {
-    const response = await api.post('/auth/login', data);
+    const response = await api.post('/auth/login-mobile', data);
     return response.data;
   }
 
@@ -38,7 +37,7 @@ export class AuthService {
       '/auth/check-email-exists',
       {
         email,
-      }
+      },
     );
     return response.data.exists;
   }
@@ -48,7 +47,7 @@ export class AuthService {
       '/auth/check-username-exists',
       {
         username,
-      }
+      },
     );
     return response.data.exists;
   }
@@ -58,7 +57,7 @@ export class AuthService {
       '/auth/check-document-exists',
       {
         document,
-      }
+      },
     );
     return response.data.exists;
   }
