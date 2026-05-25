@@ -1,8 +1,15 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
-import { Svg, Path, Line, Circle } from 'react-native-svg';
 
+import {
+  HomeIcon,
+  TruckIcon,
+  BellIcon,
+  ShirtIcon,
+  PlusIcon,
+  ShoppingBagIcon,
+} from 'lucide-react-native';
 import { useAuthStore } from '../../stores/auth.store';
 import { FeaturePlaceholderScreen } from '../../screens/FeaturePlaceholderScreen';
 import { HomeScreen } from '../../screens/HomeScreen';
@@ -10,11 +17,6 @@ import { ProfileScreen } from '../../screens/ProfileScreen';
 import { RootTabParamList } from '../../navigation/types';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
-
-type IconProps = {
-  color: string;
-  size?: number;
-};
 
 const colors = {
   active: '#0F7A4F',
@@ -24,117 +26,6 @@ const colors = {
   accent: '#F97316',
   activeSurface: 'rgba(15, 122, 79, 0.08)',
 };
-
-function HomeIcon({ color, size = 24 }: IconProps) {
-  return (
-    <Svg width={size} height={size} viewBox='0 0 24 24' fill='none'>
-      <Path
-        d='M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4H10v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9.5Z'
-        stroke={color}
-        strokeWidth={2}
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-    </Svg>
-  );
-}
-
-function TruckIcon({ color, size = 24 }: IconProps) {
-  return (
-    <Svg width={size} height={size} viewBox='0 0 24 24' fill='none'>
-      <Path
-        d='M3 7h11v10H3z'
-        stroke={color}
-        strokeWidth={2}
-        strokeLinejoin='round'
-      />
-      <Path
-        d='M14 10h4l3 3v4h-7z'
-        stroke={color}
-        strokeWidth={2}
-        strokeLinejoin='round'
-      />
-      <Circle cx='8' cy='18' r='1.5' stroke={color} strokeWidth={2} />
-      <Circle cx='18' cy='18' r='1.5' stroke={color} strokeWidth={2} />
-    </Svg>
-  );
-}
-
-function PlusIcon({ color, size = 28 }: IconProps) {
-  return (
-    <Svg width={size} height={size} viewBox='0 0 24 24' fill='none'>
-      <Line
-        x1='12'
-        y1='5'
-        x2='12'
-        y2='19'
-        stroke={color}
-        strokeWidth={3}
-        strokeLinecap='round'
-      />
-      <Line
-        x1='5'
-        y1='12'
-        x2='19'
-        y2='12'
-        stroke={color}
-        strokeWidth={3}
-        strokeLinecap='round'
-      />
-    </Svg>
-  );
-}
-
-function BagIcon({ color, size = 24 }: IconProps) {
-  return (
-    <Svg width={size} height={size} viewBox='0 0 24 24' fill='none'>
-      <Path
-        d='M6 8h12l-1 12H7L6 8Z'
-        stroke={color}
-        strokeWidth={2}
-        strokeLinejoin='round'
-      />
-      <Path
-        d='M9 8a3 3 0 0 1 6 0'
-        stroke={color}
-        strokeWidth={2}
-        strokeLinecap='round'
-      />
-    </Svg>
-  );
-}
-
-function BellIcon({ color, size = 24 }: IconProps) {
-  return (
-    <Svg width={size} height={size} viewBox='0 0 24 24' fill='none'>
-      <Path
-        d='M12 4a5 5 0 0 0-5 5v3.3c0 .8-.3 1.6-.8 2.2L5 16h14l-1.2-1.5c-.5-.6-.8-1.4-.8-2.2V9a5 5 0 0 0-5-5Z'
-        stroke={color}
-        strokeWidth={2}
-        strokeLinejoin='round'
-      />
-      <Path
-        d='M10 19a2 2 0 0 0 4 0'
-        stroke={color}
-        strokeWidth={2}
-        strokeLinecap='round'
-      />
-    </Svg>
-  );
-}
-
-function ShirtIcon({ color, size = 24 }: IconProps) {
-  return (
-    <Svg width={size} height={size} viewBox='0 0 24 24' fill='none'>
-      <Path
-        d='M9 4.5 12 7l3-2.5 3 2-2 3v9H8v-9L6 6.5l3-2Z'
-        stroke={color}
-        strokeWidth={2}
-        strokeLinejoin='round'
-      />
-    </Svg>
-  );
-}
 
 function UserAvatar({
   focused,
@@ -255,7 +146,7 @@ export function TabRoutes() {
           name='Bag'
           component={FeaturePlaceholderScreen}
           options={{
-            tabBarIcon: () => <BagIcon color='#FFFFFF' />,
+            tabBarIcon: () => <ShoppingBagIcon color='#FFFFFF' />,
           }}
         />
       )}
@@ -284,10 +175,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 12,
     right: 12,
-    bottom: 12,
+    bottom: 0,
     height: 72,
     borderTopWidth: 0,
-    borderRadius: 24,
+    // borderRadius: 24,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
     paddingHorizontal: 10,
     backgroundColor: colors.background,
     borderColor: colors.border,
@@ -299,16 +192,23 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   tabBarItem: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 0,
   },
   tabBarIcon: {
-    marginTop: 2,
+    flex: 1,
+    marginTop: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   centerButton: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    height: '100%',
   },
   centerButtonInactive: {
     opacity: 1,

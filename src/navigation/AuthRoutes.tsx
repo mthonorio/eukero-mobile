@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 /** Authentication routes for the app. (Non-authenticated) */
 export function AuthRoutes() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Login' component={LoginScreen} />
       <Stack.Screen name='ForgetPassword' component={ForgetPasswordScreen} />
     </Stack.Navigator>
