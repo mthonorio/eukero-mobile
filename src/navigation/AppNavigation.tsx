@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 
 import { useAuthStore } from '../stores/auth.store';
+import { navigationRef } from './navigationRef';
 
 import { AppRoutes } from './AppRoutes';
 import { AuthRoutes } from './AuthRoutes';
@@ -15,7 +16,7 @@ export function AppNavigator() {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       {isAuthenticated ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );

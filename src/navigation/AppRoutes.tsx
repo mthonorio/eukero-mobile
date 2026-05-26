@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Header from '../components/Header';
 import { DetailsScreen } from '../screens/DetailsScreen';
+import { CheckoutScreen } from '../screens/CheckoutScreen';
 import { TabRoutes } from '../components/BottomNavbar';
 import { RootStackParamList } from './types';
 
@@ -17,6 +18,7 @@ export function AppRoutes() {
       <Stack.Screen name='MainTabs' component={TabRoutes} />
 
       <Stack.Screen name='Details' component={DetailsScreen} />
+      <Stack.Screen name='Checkout' component={CheckoutScreen} />
     </Stack.Navigator>
   );
 }

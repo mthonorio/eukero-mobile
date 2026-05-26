@@ -17,6 +17,7 @@ import { ChevronRight, Heart, MapPin, Search, Star } from 'lucide-react-native';
 
 import ProductService from '../services/product.service';
 import { RootStackParamList, RootTabParamList } from '../navigation/types';
+import { useCheckoutStore } from '../stores/checkout.store';
 import type { Product } from '../types/product.type';
 
 type Props = CompositeScreenProps<
@@ -69,9 +70,11 @@ function isRenderableProduct(product: Product) {
 function ProductFeedCard({
   product,
   onPress,
+  onCheckoutPress,
 }: {
   product: Product;
   onPress: () => void;
+  onCheckoutPress: () => void;
 }) {
   const imageUrl = getProductImage(product);
   const hasDiscount =
@@ -80,11 +83,14 @@ function ProductFeedCard({
   const price = hasDiscount ? product.promotionalPrice : product.salePrice;
 
   return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
-    >
-      <View style={styles.cardImageWrap}>
+    <View style={styles.card}>
+      <Pressable
+        onPress={onPress}
+        style={({ pressed }) => [
+          styles.cardImageWrap,
+          pressed && styles.cardPressed,
+        ]}
+      >
         {imageUrl ? (
           <Image
             source={{ uri: imageUrl }}
@@ -100,7 +106,7 @@ function ProductFeedCard({
         <View style={styles.favoriteBadge}>
           <Heart color={colors.accent} size={14} fill={colors.accent} />
         </View>
-      </View>
+      </Pressable>
 
       <View style={styles.cardBody}>
         <View style={styles.storeRow}>
@@ -143,12 +149,17 @@ function ProductFeedCard({
             </Text>
           </View>
         </View>
+
+        <Pressable style={styles.checkoutButton} onPress={onCheckoutPress}>
+          <Text style={styles.checkoutButtonText}>EUKERO</Text>
+        </Pressable>
       </View>
-    </Pressable>
+    </View>
   );
 }
 
 export function HomeScreen({ navigation }: Props) {
+  const selectProduct = useCheckoutStore(state => state.selectProduct);
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState<FeedTab>('all');
   const [products, setProducts] = useState<Product[]>([]);
@@ -402,6 +413,10 @@ export function HomeScreen({ navigation }: Props) {
           <ProductFeedCard
             product={item}
             onPress={() => navigation.navigate('Details')}
+            onCheckoutPress={async () => {
+              await selectProduct(item);
+              navigation.navigate('Checkout');
+            }}
           />
         </View>
       )}
@@ -567,6 +582,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   toggleRow: {
+    flex: 1,
+    justifyContent: 'center',
     flexDirection: 'row',
     gap: 10,
   },
@@ -599,6 +616,7 @@ const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
     marginTop: 12,
+    marginBottom: 36,
   },
   card: {
     flex: 1,
@@ -612,6 +630,20 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowRadius: 16,
     elevation: 3,
+  },
+  checkoutButton: {
+    height: 42,
+    marginTop: 4,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.primary,
+  },
+  checkoutButtonText: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    fontWeight: '800',
+    letterSpacing: 0.4,
   },
   cardPressed: {
     transform: [{ scale: 0.99 }],
