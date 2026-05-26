@@ -1,5 +1,17 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 
+import type { Product } from '../types/product.type';
+
+export type StoreRouteParams = {
+  storeUsername: string;
+  storeName: string;
+  storeImageUrl?: string;
+};
+
+export type ProductDetailsRouteParams = {
+  product: Product;
+};
+
 export type RootTabParamList = {
   Home: undefined;
   Suppliers: undefined;
@@ -12,7 +24,8 @@ export type RootTabParamList = {
 
 export type RootStackParamList = {
   MainTabs: NavigatorScreenParams<RootTabParamList>;
-  Details: undefined;
+  Details: ProductDetailsRouteParams;
+  Store: StoreRouteParams;
   Checkout: undefined;
 };
 

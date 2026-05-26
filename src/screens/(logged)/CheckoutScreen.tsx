@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { RootStackParamList } from '../navigation/types';
-import { useCheckoutStore } from '../stores/checkout.store';
+import { RootStackParamList } from '../../navigation/types';
+import { useCheckoutStore } from '../../stores/checkout.store';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Checkout'>;
 

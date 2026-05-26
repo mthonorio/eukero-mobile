@@ -12,7 +12,7 @@ import {
 } from 'lucide-react-native';
 import { useAuthStore } from '../../stores/auth.store';
 import { FeaturePlaceholderScreen } from '../../screens/FeaturePlaceholderScreen';
-import { HomeScreen } from '../../screens/HomeScreen';
+import { HomeScreen } from '../../screens/(logged)/HomeScreen';
 import { ProfileScreen } from '../../screens/ProfileScreen';
 import { RootTabParamList } from '../../navigation/types';
 
