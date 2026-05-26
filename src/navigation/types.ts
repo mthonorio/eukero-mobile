@@ -12,6 +12,16 @@ export type ProductDetailsRouteParams = {
   product: Product;
 };
 
+export type ProfileCollectionRouteParams = {
+  title: string;
+  source: 'liked' | 'mine';
+};
+
+export type ProfileFeatureRouteParams = {
+  title: string;
+  description: string;
+};
+
 export type RootTabParamList = {
   Home: undefined;
   Suppliers: undefined;
@@ -27,6 +37,9 @@ export type RootStackParamList = {
   Details: ProductDetailsRouteParams;
   Store: StoreRouteParams;
   Checkout: undefined;
+  ProfileCollection: ProfileCollectionRouteParams;
+  ProfileFeature: ProfileFeatureRouteParams;
+  ProfileSettings: undefined;
 };
 
 export type AuthStackParamList = {

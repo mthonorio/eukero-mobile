@@ -13,7 +13,13 @@ import {
 import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ChevronRight, Search, Star } from 'lucide-react-native';
+import {
+  ChevronRight,
+  Grid2x2,
+  Rows2,
+  Search,
+  Star,
+} from 'lucide-react-native';
 
 import { ProductFeedCard } from '../../components/ProductFeedCard';
 import ProductService from '../../services/product.service';
@@ -61,6 +67,7 @@ export function HomeScreen({ navigation }: Props) {
   const selectProduct = useCheckoutStore(state => state.selectProduct);
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState<FeedTab>('all');
+  const [columnCount, setColumnCount] = useState<1 | 2>(2);
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -288,8 +295,21 @@ export function HomeScreen({ navigation }: Props) {
 
       <View style={styles.sectionHeadingRow}>
         <Text style={styles.sectionTitle}>Produtos</Text>
-        <View style={styles.countBadge}>
-          <Text style={styles.countBadgeText}>{visibleProducts.length}</Text>
+        <View style={styles.headerActions}>
+          <Pressable
+            onPress={() => setColumnCount(count => (count === 2 ? 1 : 2))}
+            style={styles.layoutToggleButton}
+          >
+            {columnCount === 2 ? (
+              <Rows2 color={colors.text} />
+            ) : (
+              <Grid2x2 color={colors.text} />
+            )}
+          </Pressable>
+
+          <View style={styles.countBadge}>
+            <Text style={styles.countBadgeText}>{visibleProducts.length}</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -297,10 +317,11 @@ export function HomeScreen({ navigation }: Props) {
 
   return (
     <FlatList
+      key={String(columnCount)}
       data={visibleProducts}
       keyExtractor={item => item.uid || item.id}
-      numColumns={2}
-      columnWrapperStyle={styles.gridRow}
+      numColumns={columnCount}
+      columnWrapperStyle={columnCount > 1 ? styles.gridRow : undefined}
       contentContainerStyle={styles.listContent}
       ListHeaderComponent={header}
       onEndReachedThreshold={0.4}
@@ -360,6 +381,7 @@ export function HomeScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 24,
+    paddingHorizontal: 16,
     backgroundColor: colors.background,
   },
   headerContainer: {
@@ -426,6 +448,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 12,
   },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '800',
@@ -449,6 +476,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '800',
     color: colors.primary,
+  },
+  layoutToggleButton: {
+    height: 28,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  layoutToggleButtonText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: colors.text,
   },
   storesList: {
     gap: 12,
@@ -516,7 +558,9 @@ const styles = StyleSheet.create({
   },
   gridRow: {
     gap: 12,
-    paddingHorizontal: 16,
+  },
+  gridColumn: {
+    gap: 8,
   },
   gridItem: {
     flex: 1,

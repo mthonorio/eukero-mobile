@@ -13,7 +13,7 @@ import {
 import { useAuthStore } from '../../stores/auth.store';
 import { FeaturePlaceholderScreen } from '../../screens/FeaturePlaceholderScreen';
 import { HomeScreen } from '../../screens/(logged)/HomeScreen';
-import { ProfileScreen } from '../../screens/ProfileScreen';
+import { ProfileScreen } from '../../screens/(logged)/(profile)/ProfileScreen';
 import { RootTabParamList } from '../../navigation/types';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();

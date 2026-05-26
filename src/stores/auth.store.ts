@@ -24,6 +24,8 @@ type AuthStore = {
 
   signIn: (login: string, password: string) => Promise<void>;
 
+  updateProfile: (data: Partial<User>) => Promise<void>;
+
   signOut: () => Promise<void>;
 };
 
@@ -105,6 +107,29 @@ export const useAuthStore = create<AuthStore>(set => ({
         isLoading: false,
       });
     }
+  },
+
+  updateProfile: async data => {
+    const state = useAuthStore.getState();
+
+    if (!state.user || !state.token || !state.refreshToken) {
+      return;
+    }
+
+    const updatedUser = {
+      ...state.user,
+      ...data,
+    };
+
+    await saveAuthStorage({
+      user: updatedUser,
+      token: state.token,
+      refreshToken: state.refreshToken,
+    });
+
+    set({
+      user: updatedUser,
+    });
   },
 
   signOut: async () => {
