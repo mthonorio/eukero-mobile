@@ -24,6 +24,8 @@ type AuthStore = {
 
   signIn: (login: string, password: string) => Promise<void>;
 
+  signInWithBiometrics: () => Promise<void>;
+
   updateProfile: (data: Partial<User>) => Promise<void>;
 
   signOut: () => Promise<void>;
@@ -41,7 +43,9 @@ export const useAuthStore = create<AuthStore>(set => ({
 
   hydrate: async () => {
     try {
-      const storage = await getAuthStorage();
+      const storage = await getAuthStorage({
+        promptMessage: 'Autentique-se para entrar no aplicativo',
+      });
 
       if (storage) {
         api.defaults.headers.common.Authorization = `Bearer ${storage.token}`;
@@ -100,6 +104,37 @@ export const useAuthStore = create<AuthStore>(set => ({
         user: userLogin,
         token: response.authToken,
         refreshToken: response.refreshToken,
+        isAuthenticated: true,
+      });
+    } finally {
+      set({
+        isLoading: false,
+      });
+    }
+  },
+
+  signInWithBiometrics: async () => {
+    try {
+      set({
+        isLoading: true,
+      });
+
+      const storage = await getAuthStorage({
+        promptMessage: 'Autentique-se para recuperar sua sessão',
+      });
+
+      if (!storage) {
+        throw new Error(
+          'Nenhuma sessão biométrica cadastrada neste dispositivo.',
+        );
+      }
+
+      api.defaults.headers.common.Authorization = `Bearer ${storage.token}`;
+
+      set({
+        user: storage.user,
+        token: storage.token,
+        refreshToken: storage.refreshToken,
         isAuthenticated: true,
       });
     } finally {
