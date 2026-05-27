@@ -45,6 +45,7 @@ export type RootStackParamList = {
 export type AuthStackParamList = {
   Login: undefined;
   ForgetPassword: undefined;
+  Register: undefined;
 };
 
 export type AppNavigatorParamList = RootStackParamList & AuthStackParamList;

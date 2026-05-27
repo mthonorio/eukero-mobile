@@ -177,6 +177,26 @@ export function LoginScreen({ navigation }: Props) {
           )}
         </TouchableOpacity>
 
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Register')}
+          activeOpacity={0.8}
+          style={{
+            alignSelf: 'center',
+            paddingVertical: 8,
+            paddingHorizontal: 12,
+          }}
+        >
+          <Text
+            style={{
+              color: '#640000ff',
+              fontSize: 15,
+              fontWeight: '700',
+            }}
+          >
+            Criar conta
+          </Text>
+        </TouchableOpacity>
+
         {biometricAvailable ? (
           <TouchableOpacity
             disabled={isLoading || isBiometricChecking}
