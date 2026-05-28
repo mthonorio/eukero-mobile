@@ -57,8 +57,11 @@ export function RegisterScreen({ navigation }: Props) {
       'Sua conta foi criada com sucesso. Você pode entrar agora.',
       [
         {
-          text: 'Ir para o login',
-          onPress: () => navigation.navigate('Login'),
+          text: 'Ativar conta',
+          onPress: () =>
+            navigation.navigate('ActivateAccount', {
+              email: values.email,
+            }),
         },
       ],
     );
@@ -76,8 +79,11 @@ export function RegisterScreen({ navigation }: Props) {
       'Agora você pode acessar o login e continuar o fluxo normalmente.',
       [
         {
-          text: 'Ir para o login',
-          onPress: () => navigation.navigate('Login'),
+          text: 'Ativar conta',
+          onPress: () =>
+            navigation.navigate('ActivateAccount', {
+              email: values.email,
+            }),
         },
       ],
     );

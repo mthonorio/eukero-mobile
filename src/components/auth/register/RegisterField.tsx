@@ -6,16 +6,11 @@ import {
   type TextInputProps,
   View,
 } from 'react-native';
-import {
-  Controller,
-  type Control,
-  type FieldValues,
-  type Path,
-} from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
-type RegisterFieldProps<T extends FieldValues> = {
-  control: Control<T>;
-  name: Path<T>;
+type RegisterFieldProps = {
+  control: any;
+  name: string;
   label: string;
   error?: string;
   helperText?: string;
@@ -29,7 +24,7 @@ type RegisterFieldProps<T extends FieldValues> = {
   'value' | 'onBlur' | 'onChangeText' | 'ref' | 'placeholder'
 >;
 
-function RegisterFieldBase<T extends FieldValues>(
+function RegisterFieldBase(
   {
     control,
     name,
@@ -43,7 +38,7 @@ function RegisterFieldBase<T extends FieldValues>(
     containerStyle,
     style,
     ...inputProps
-  }: RegisterFieldProps<T>,
+  }: RegisterFieldProps,
   ref: ForwardedRef<TextInput>,
 ) {
   const resolvedRef = ref ?? inputRef;
@@ -51,7 +46,7 @@ function RegisterFieldBase<T extends FieldValues>(
   return (
     <Controller
       control={control}
-      name={name}
+      name={name as any}
       render={({ field: { onChange, onBlur, value } }) => (
         <View style={[styles.fieldWrap, containerStyle]}>
           <Text style={styles.label}>
@@ -81,10 +76,8 @@ function RegisterFieldBase<T extends FieldValues>(
   );
 }
 
-const ForwardedRegisterField = forwardRef(RegisterFieldBase) as <
-  T extends FieldValues,
->(
-  props: RegisterFieldProps<T> & { ref?: React.Ref<TextInput> },
+const ForwardedRegisterField = forwardRef(RegisterFieldBase) as (
+  props: RegisterFieldProps & { ref?: React.Ref<TextInput> },
 ) => React.ReactElement;
 
 export { ForwardedRegisterField as RegisterField };

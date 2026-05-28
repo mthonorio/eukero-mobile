@@ -46,6 +46,9 @@ export type AuthStackParamList = {
   Login: undefined;
   ForgetPassword: undefined;
   Register: undefined;
+  ActivateAccount: {
+    email?: string;
+  };
 };
 
 export type AppNavigatorParamList = RootStackParamList & AuthStackParamList;

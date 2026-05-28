@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import axios from 'axios';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAuthStore } from '../../stores/auth.store';
 import Layout from './layout';
@@ -23,13 +24,31 @@ export function LoginScreen({ navigation }: Props) {
   const isLoading = useAuthStore(state => state.isLoading);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState<string | null>(null);
   const [biometricAvailable, setBiometricAvailable] = useState(false);
   const [biometricLabel, setBiometricLabel] = useState('biometria');
   const [isBiometricChecking, setIsBiometricChecking] = useState(true);
   const [biometricError, setBiometricError] = useState<string | null>(null);
 
   async function handleLogin() {
-    await signIn(email, password);
+    try {
+      setLoginError(null);
+
+      const response = await signIn(email, password);
+
+      if (!response.isActive) {
+        navigation.navigate('ActivateAccount', {
+          email: response.userEmail ?? email,
+        });
+      }
+    } catch (error) {
+      const message =
+        axios.isAxiosError(error) && error.response?.status === 401
+          ? 'Usuário ou senha incorretos'
+          : 'Não foi possível entrar. Tente novamente.';
+
+      setLoginError(message);
+    }
   }
 
   async function handleBiometricLogin() {
@@ -107,7 +126,10 @@ export function LoginScreen({ navigation }: Props) {
           autoCapitalize='none'
           autoCorrect={false}
           returnKeyType='next'
-          onChangeText={setEmail}
+          onChangeText={text => {
+            setEmail(text);
+            setLoginError(null);
+          }}
           style={{
             borderWidth: 1,
             borderColor: '#ccc',
@@ -121,7 +143,10 @@ export function LoginScreen({ navigation }: Props) {
           placeholder='Senha'
           secureTextEntry
           value={password}
-          onChangeText={setPassword}
+          onChangeText={text => {
+            setPassword(text);
+            setLoginError(null);
+          }}
           returnKeyType='done'
           style={{
             borderWidth: 1,
@@ -176,6 +201,19 @@ export function LoginScreen({ navigation }: Props) {
             </Text>
           )}
         </TouchableOpacity>
+
+        {loginError ? (
+          <Text
+            style={{
+              color: '#b00020',
+              fontSize: 13,
+              textAlign: 'center',
+              marginTop: -2,
+            }}
+          >
+            {loginError}
+          </Text>
+        ) : null}
 
         <TouchableOpacity
           onPress={() => navigation.navigate('Register')}

@@ -22,7 +22,7 @@ type AuthStore = {
 
   hydrate: () => Promise<void>;
 
-  signIn: (login: string, password: string) => Promise<void>;
+  signIn: (login: string, password: string) => Promise<AuthResponse>;
 
   signInWithBiometrics: () => Promise<void>;
 
@@ -77,6 +77,19 @@ export const useAuthStore = create<AuthStore>(set => ({
         password,
       });
 
+      api.defaults.headers.common.Authorization = `Bearer ${response.authToken}`;
+
+      if (!response.isActive) {
+        set({
+          user: null,
+          token: response.authToken,
+          refreshToken: response.refreshToken,
+          isAuthenticated: false,
+        });
+
+        return response;
+      }
+
       const userLogin: User = {
         id: response.userUid,
         name: response.userName,
@@ -98,14 +111,14 @@ export const useAuthStore = create<AuthStore>(set => ({
 
       await saveAuthStorage(authStorage);
 
-      api.defaults.headers.common.Authorization = `Bearer ${response.authToken}`;
-
       set({
         user: userLogin,
         token: response.authToken,
         refreshToken: response.refreshToken,
         isAuthenticated: true,
       });
+
+      return response;
     } finally {
       set({
         isLoading: false,

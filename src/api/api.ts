@@ -14,6 +14,7 @@ const authRouteNames = new Set([
   'Login',
   'ForgetPassword',
   'Register',
+  'ActivateAccount',
   'Signup',
 ]);
 
