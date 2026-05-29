@@ -3,16 +3,14 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
-  Pressable,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ChevronLeft, MapPin } from 'lucide-react-native';
+import { MapPin } from 'lucide-react-native';
 
 import { ProductFeedCard } from '../../components/ProductFeedCard';
-import ProductService from '../../services/product.service';
 import { RootStackParamList } from '../../navigation/types';
 import { useCheckoutStore } from '../../stores/checkout.store';
 import type { Product } from '../../types/product.type';

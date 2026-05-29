@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, View, Text } from 'react-native';
-import { Heart, MapPin, Star } from 'lucide-react-native';
+import { Heart, Star } from 'lucide-react-native';
 
 import { Product } from '../../types/product.type';
 import { getProductImage } from '../../utils/get.utils';
@@ -66,7 +66,10 @@ export function ProductFeedCard({
 
       <View style={styles.cardBody}>
         <View style={styles.storeRow}>
-          <MapPin color={colors.muted} size={12} />
+          <Image
+            source={{ uri: product.storeImageUrl }}
+            style={styles.storeAvatar}
+          />
           <Text style={styles.storeText} numberOfLines={1}>
             {product.storeName}
           </Text>
@@ -162,6 +165,11 @@ const styles = StyleSheet.create({
     padding: 14,
     gap: 8,
   },
+  storeAvatar: {
+    width: 24,
+    height: 24,
+    borderRadius: 999,
+  },
   storeRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -169,7 +177,7 @@ const styles = StyleSheet.create({
   },
   storeText: {
     flex: 1,
-    fontSize: 11,
+    fontSize: 12,
     color: colors.muted,
     fontWeight: '600',
   },
