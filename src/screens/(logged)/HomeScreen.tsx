@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -13,6 +13,7 @@ import {
 import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import {
   ChevronRight,
   Grid2x2,
@@ -38,6 +39,11 @@ type FeaturedStore = {
   name: string;
   username: string;
   imageUrl?: string;
+};
+
+type PaginatedProductsResponse = {
+  items: Product[];
+  count: number;
 };
 
 const PAGE_SIZE = 20;
@@ -68,61 +74,53 @@ export function HomeScreen({ navigation }: Props) {
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState<FeedTab>('all');
   const [columnCount, setColumnCount] = useState<1 | 2>(2);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const fetchProducts = useCallback(
-    async (page: number = 1, append: boolean = false) => {
-      try {
-        setIsLoading(true);
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isRefetching,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ['home-products', activeTab],
+    initialPageParam: 1,
+    queryFn: async ({ pageParam = 1 }: { pageParam?: number }) => {
+      const response =
+        activeTab === 'all'
+          ? await ProductService.fetchExplorerProductsPaginated({
+              page: pageParam,
+              limit: PAGE_SIZE,
+            })
+          : await ProductService.fetchFollowingProductsPaginated({
+              page: pageParam,
+              limit: PAGE_SIZE,
+            });
 
-        const response =
-          activeTab === 'all'
-            ? await ProductService.fetchExplorerProductsPaginated({
-                page,
-                limit: PAGE_SIZE,
-              })
-            : await ProductService.fetchFollowingProductsPaginated({
-                page,
-                limit: PAGE_SIZE,
-              });
-
-        const validProducts = response.items?.filter(isRenderableProduct) || [];
-        const calculatedTotalPages = Math.max(
-          1,
-          Math.ceil((response.count || 0) / PAGE_SIZE),
-        );
-
-        setProducts(prev =>
-          append ? [...prev, ...validProducts] : validProducts,
-        );
-        setHasMore(page < calculatedTotalPages);
-        setError(null);
-      } catch (fetchError) {
-        console.error('Erro ao buscar produtos:', fetchError);
-        setError('Não foi possível carregar os produtos agora.');
-        if (!append) {
-          setProducts([]);
-        }
-        setHasMore(false);
-      } finally {
-        setIsLoading(false);
-        setIsRefreshing(false);
-      }
+      return response as PaginatedProductsResponse;
     },
-    [activeTab],
+    getNextPageParam: (lastPage, allPages) => {
+      const totalPages = Math.max(
+        1,
+        Math.ceil(lastPage.count / PAGE_SIZE),
+      );
+      const nextPage = allPages.length + 1;
+
+      return nextPage <= totalPages ? nextPage : undefined;
+    },
+  });
+
+  const products = useMemo(
+    () =>
+      data?.pages.flatMap(page => page.items.filter(isRenderableProduct)) ?? [],
+    [data],
   );
 
-  useEffect(() => {
-    setCurrentPage(1);
-    setHasMore(true);
-    setProducts([]);
-    fetchProducts(1, false);
-  }, [activeTab, fetchProducts]);
+  const errorMessage = error
+    ? 'Não foi possível carregar os produtos agora.'
+    : null;
 
   const featuredStores = useMemo(() => {
     const storesMap = new Map<string, FeaturedStore>();
@@ -166,21 +164,16 @@ export function HomeScreen({ navigation }: Props) {
   }, [products, query]);
 
   const handleRefresh = useCallback(() => {
-    setIsRefreshing(true);
-    setCurrentPage(1);
-    setHasMore(true);
-    fetchProducts(1, false);
-  }, [fetchProducts]);
+    refetch();
+  }, [refetch]);
 
   const loadMoreProducts = useCallback(() => {
-    if (isLoading || !hasMore) {
+    if (!hasNextPage || isFetchingNextPage) {
       return;
     }
 
-    const nextPage = currentPage + 1;
-    setCurrentPage(nextPage);
-    fetchProducts(nextPage, true);
-  }, [currentPage, fetchProducts, hasMore, isLoading]);
+    fetchNextPage();
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   const header = (
     <View style={styles.headerContainer}>
@@ -328,7 +321,7 @@ export function HomeScreen({ navigation }: Props) {
       onEndReached={loadMoreProducts}
       refreshControl={
         <RefreshControl
-          refreshing={isRefreshing}
+          refreshing={isRefetching}
           onRefresh={handleRefresh}
           tintColor={colors.primary}
           colors={[colors.primary]}
@@ -355,7 +348,7 @@ export function HomeScreen({ navigation }: Props) {
         ) : (
           <View style={styles.emptyState}>
             <Text style={styles.emptyTitle}>
-              {error || 'Nenhum produto encontrado.'}
+              {errorMessage || 'Nenhum produto encontrado.'}
             </Text>
             <Text style={styles.emptyDescription}>
               Ajuste a busca ou troque a aba para ver outros itens.
@@ -364,9 +357,11 @@ export function HomeScreen({ navigation }: Props) {
         )
       }
       ListFooterComponent={
-        hasMore && visibleProducts.length > 0 ? (
+        hasNextPage && visibleProducts.length > 0 ? (
           <View style={styles.footerLoading}>
-            {isLoading ? <ActivityIndicator color={colors.primary} /> : null}
+            {isFetchingNextPage ? (
+              <ActivityIndicator color={colors.primary} />
+            ) : null}
             <Text style={styles.footerText}>
               Puxe para atualizar ou role para mais itens
             </Text>
