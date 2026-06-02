@@ -9,10 +9,12 @@ import {
   ShirtIcon,
   PlusIcon,
   ShoppingBagIcon,
+  MenuIcon,
 } from 'lucide-react-native';
 import { useAuthStore } from '../../stores/auth.store';
 import { FeaturePlaceholderScreen } from '../../screens/FeaturePlaceholderScreen';
 import { HomeScreen } from '../../screens/(logged)/HomeScreen';
+import { MenuScreen } from '../../screens/(logged)/MenuScreen';
 import { ProfileScreen } from '../../screens/(logged)/(profile)/ProfileScreen';
 import { RootTabParamList } from '../../navigation/types';
 
@@ -89,13 +91,13 @@ function HomeTabIcon({ color, focused }: { color: string; focused: boolean }) {
   return <HomeIcon color={color} size={focused ? 25 : 24} />;
 }
 
-function TruckTabIcon({ color }: { color: string }) {
-  return <TruckIcon color={color} />;
-}
+// function TruckTabIcon({ color }: { color: string }) {
+//   return <TruckIcon color={color} />;
+// }
 
-function ShirtTabIcon({ color }: { color: string }) {
-  return <ShirtIcon color={color} />;
-}
+// function ShirtTabIcon({ color }: { color: string }) {
+//   return <ShirtIcon color={color} />;
+// }
 
 function ProductFormTabIcon() {
   return <PlusIcon color='#FFFFFF' size={28} />;
@@ -107,6 +109,10 @@ function BagTabIcon() {
 
 function NotificationsTabIcon({ color }: { color: string }) {
   return <BellIcon color={color} />;
+}
+
+function MenuTabIcon({ color }: { color: string }) {
+  return <MenuIcon color={color} />;
 }
 
 function ProfileTabIcon({ focused }: { focused: boolean }) {
@@ -127,7 +133,7 @@ export function TabRoutes() {
         options={{ tabBarIcon: HomeTabIcon }}
       />
 
-      {isStoreUser ? (
+      {/* {isStoreUser ? (
         <Tab.Screen
           name='Suppliers'
           component={FeaturePlaceholderScreen}
@@ -139,7 +145,13 @@ export function TabRoutes() {
           component={FeaturePlaceholderScreen}
           options={{ tabBarIcon: ShirtTabIcon }}
         />
-      )}
+      )} */}
+
+      <Tab.Screen
+        name='Notifications'
+        component={FeaturePlaceholderScreen}
+        options={{ tabBarIcon: NotificationsTabIcon }}
+      />
 
       {isStoreUser ? (
         <Tab.Screen
@@ -162,15 +174,15 @@ export function TabRoutes() {
       )}
 
       <Tab.Screen
-        name='Notifications'
-        component={FeaturePlaceholderScreen}
-        options={{ tabBarIcon: NotificationsTabIcon }}
-      />
-
-      <Tab.Screen
         name='Profile'
         component={ProfileScreen}
         options={{ tabBarIcon: ProfileTabIcon }}
+      />
+
+      <Tab.Screen
+        name='Menu'
+        component={MenuScreen}
+        options={{ tabBarIcon: MenuTabIcon }}
       />
     </Tab.Navigator>
   );

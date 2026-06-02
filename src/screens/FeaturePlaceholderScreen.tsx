@@ -37,6 +37,10 @@ const screenContent: Record<
     title: 'Perfil',
     description: 'Dados e preferências da conta.',
   },
+  Menu: {
+    title: 'Menu',
+    description: 'Opções de navegação do aplicativo.',
+  },
 };
 
 export function FeaturePlaceholderScreen({ route, navigation }: Props) {

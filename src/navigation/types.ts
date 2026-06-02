@@ -30,6 +30,7 @@ export type RootTabParamList = {
   Bag: undefined;
   Notifications: undefined;
   Profile: undefined;
+  Menu: undefined;
 };
 
 export type RootStackParamList = {
