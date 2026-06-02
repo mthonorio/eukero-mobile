@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  Image,
   Pressable,
   RefreshControl,
   StyleSheet,
@@ -47,7 +46,7 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const loadProducts = async () => {
+  const loadProducts = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -66,11 +65,11 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
       setIsLoading(false);
       setIsRefreshing(false);
     }
-  };
+  }, [source]);
 
   useEffect(() => {
     loadProducts();
-  }, [source]);
+  }, [loadProducts]);
 
   const header = useMemo(
     () => (

@@ -116,7 +116,7 @@ export function StoreScreen({ navigation, route }: Props) {
         </View>
       </View>
     ),
-    [navigation, products.length, storeImageUrl, storeName, storeUsername],
+    [products.length, storeImageUrl, storeName, storeUsername],
   );
 
   return (

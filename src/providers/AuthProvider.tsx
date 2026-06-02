@@ -23,7 +23,7 @@ export function AuthProvider({ children }: Props) {
     }
 
     load();
-  }, []);
+  }, [hydrate]);
 
   return children;
 }

@@ -56,39 +56,63 @@ function UserAvatar({
   );
 }
 
-function getTabButton(routeName: string) {
-  if (routeName !== 'ProductForm' && routeName !== 'Bag') {
-    return undefined;
-  }
+function CenterTabButton({
+  children,
+  onPress,
+  accessibilityState,
+}: BottomTabBarButtonProps) {
+  const isFocused = Boolean(accessibilityState?.selected);
 
-  return function TabButton({
-    children,
-    onPress,
-    accessibilityState,
-  }: BottomTabBarButtonProps) {
-    const isFocused = Boolean(accessibilityState?.selected);
-
-    return (
-      <Pressable
-        onPress={onPress}
+  return (
+    <Pressable
+      onPress={onPress}
+      style={[
+        styles.centerButton,
+        isFocused ? styles.centerButtonActive : styles.centerButtonInactive,
+      ]}
+    >
+      <View
         style={[
-          styles.centerButton,
-          isFocused ? styles.centerButtonActive : styles.centerButtonInactive,
+          styles.centerButtonInner,
+          isFocused
+            ? styles.centerButtonInnerActive
+            : styles.centerButtonInnerInactive,
         ]}
       >
-        <View
-          style={[
-            styles.centerButtonInner,
-            isFocused
-              ? styles.centerButtonInnerActive
-              : styles.centerButtonInnerInactive,
-          ]}
-        >
-          {children}
-        </View>
-      </Pressable>
-    );
-  };
+        {children}
+      </View>
+    </Pressable>
+  );
+}
+
+function HomeTabIcon({ color, focused }: { color: string; focused: boolean }) {
+  return <HomeIcon color={color} size={focused ? 25 : 24} />;
+}
+
+function TruckTabIcon({ color }: { color: string }) {
+  return <TruckIcon color={color} />;
+}
+
+function ShirtTabIcon({ color }: { color: string }) {
+  return <ShirtIcon color={color} />;
+}
+
+function ProductFormTabIcon() {
+  return <PlusIcon color='#FFFFFF' size={28} />;
+}
+
+function BagTabIcon() {
+  return <ShoppingBagIcon color='#FFFFFF' />;
+}
+
+function NotificationsTabIcon({ color }: { color: string }) {
+  return <BellIcon color={color} />;
+}
+
+function ProfileTabIcon({ focused }: { focused: boolean }) {
+  const user = useAuthStore(state => state.user);
+
+  return <UserAvatar focused={focused} user={user} />;
 }
 
 export function TabRoutes() {
@@ -96,40 +120,24 @@ export function TabRoutes() {
   const isStoreUser = user?.type === 'STORE';
 
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: colors.active,
-        tabBarInactiveTintColor: colors.inactive,
-        tabBarHideOnKeyboard: true,
-        tabBarStyle: styles.tabBar,
-        tabBarItemStyle: styles.tabBarItem,
-        tabBarIconStyle: styles.tabBarIcon,
-        tabBarButton: getTabButton(route.name),
-      })}
-    >
+    <Tab.Navigator screenOptions={tabScreenOptions}>
       <Tab.Screen
         name='Home'
         component={HomeScreen}
-        options={{
-          tabBarIcon: ({ color, focused }) => (
-            <HomeIcon color={color} size={focused ? 25 : 24} />
-          ),
-        }}
+        options={{ tabBarIcon: HomeTabIcon }}
       />
 
       {isStoreUser ? (
         <Tab.Screen
           name='Suppliers'
           component={FeaturePlaceholderScreen}
-          options={{ tabBarIcon: ({ color }) => <TruckIcon color={color} /> }}
+          options={{ tabBarIcon: TruckTabIcon }}
         />
       ) : (
         <Tab.Screen
           name='Orders'
           component={FeaturePlaceholderScreen}
-          options={{ tabBarIcon: ({ color }) => <ShirtIcon color={color} /> }}
+          options={{ tabBarIcon: ShirtTabIcon }}
         />
       )}
 
@@ -138,7 +146,8 @@ export function TabRoutes() {
           name='ProductForm'
           component={FeaturePlaceholderScreen}
           options={{
-            tabBarIcon: () => <PlusIcon color='#FFFFFF' size={28} />,
+            tabBarButton: CenterTabButton,
+            tabBarIcon: ProductFormTabIcon,
           }}
         />
       ) : (
@@ -146,7 +155,8 @@ export function TabRoutes() {
           name='Bag'
           component={FeaturePlaceholderScreen}
           options={{
-            tabBarIcon: () => <ShoppingBagIcon color='#FFFFFF' />,
+            tabBarButton: CenterTabButton,
+            tabBarIcon: BagTabIcon,
           }}
         />
       )}
@@ -154,17 +164,13 @@ export function TabRoutes() {
       <Tab.Screen
         name='Notifications'
         component={FeaturePlaceholderScreen}
-        options={{ tabBarIcon: ({ color }) => <BellIcon color={color} /> }}
+        options={{ tabBarIcon: NotificationsTabIcon }}
       />
 
       <Tab.Screen
         name='Profile'
         component={ProfileScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <UserAvatar focused={focused} user={user} />
-          ),
-        }}
+        options={{ tabBarIcon: ProfileTabIcon }}
       />
     </Tab.Navigator>
   );
@@ -262,3 +268,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
+
+const tabScreenOptions = {
+  headerShown: false,
+  tabBarShowLabel: false,
+  tabBarActiveTintColor: colors.active,
+  tabBarInactiveTintColor: colors.inactive,
+  tabBarHideOnKeyboard: true,
+  tabBarStyle: styles.tabBar,
+  tabBarItemStyle: styles.tabBarItem,
+  tabBarIconStyle: styles.tabBarIcon,
+};
