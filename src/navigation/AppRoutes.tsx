@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Header from '../components/Header';
+import Header from '../components/atoms/Header';
 import { CheckoutScreen } from '../screens/(logged)/CheckoutScreen';
 import { DetailsScreen } from '../screens/(logged)/DetailsScreen';
+import { MyProductsScreen } from '../screens/(logged)/(products)/MyProducts';
 import { ProfileCollectionScreen } from '../screens/(logged)/(profile)/ProfileCollectionScreen';
 import { ProfileFeatureScreen } from '../screens/(logged)/(profile)/ProfileFeatureScreen';
 import { ProfileSettingsScreen } from '../screens/(logged)/(profile)/ProfileSettingsScreen';
@@ -24,6 +25,7 @@ export function AppRoutes() {
       <Stack.Screen name='Details' component={DetailsScreen} />
       <Stack.Screen name='Store' component={StoreScreen} />
       <Stack.Screen name='Checkout' component={CheckoutScreen} />
+      <Stack.Screen name='MyProducts' component={MyProductsScreen} />
       <Stack.Screen
         name='ProfileCollection'
         component={ProfileCollectionScreen}

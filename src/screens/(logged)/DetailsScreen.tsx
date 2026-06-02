@@ -16,7 +16,7 @@ import Video from 'react-native-video';
 
 import { RootStackParamList } from '../../navigation/types';
 import { useCheckoutStore } from '../../stores/checkout.store';
-import Avatar from '../../components/Avatar';
+import Avatar from '../../components/atoms/Avatar';
 import { formatPrice } from '../../utils/formatter.utils';
 import { getDiscounted } from '../../utils/get.utils';
 

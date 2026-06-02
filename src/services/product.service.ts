@@ -92,10 +92,38 @@ export default class ProductService {
     }
   }
 
-  static async fetchMyProducts(): Promise<Product[]> {
+  static async fetchMyProducts(
+    options: Props,
+  ): Promise<PaginatedProductsResponse>;
+  static async fetchMyProducts(
+    options?: Props,
+  ): Promise<Product[] | PaginatedProductsResponse> {
     try {
-      const response = await api.get(`/my-products`);
-      return response.data;
+      const response = await api.get(`/my-products`, {
+        params: options
+          ? { page: options.page, page_size: options.limit }
+          : undefined,
+      });
+
+      if (!options) {
+        return Array.isArray(response.data)
+          ? response.data
+          : response.data?.items || [];
+      }
+
+      const items = Array.isArray(response.data)
+        ? response.data.slice(
+            ((options.page ?? 1) - 1) * (options.limit ?? 20),
+            (options.page ?? 1) * (options.limit ?? 20),
+          )
+        : response.data?.items || [];
+
+      return {
+        items,
+        count: Array.isArray(response.data)
+          ? response.data.length
+          : response.data?.count || items.length,
+      };
     } catch (error) {
       console.error('Erro ao buscar produtos:', error);
       throw error;

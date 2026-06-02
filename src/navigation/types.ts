@@ -41,6 +41,7 @@ export type RootStackParamList = {
   ProfileCollection: ProfileCollectionRouteParams;
   ProfileFeature: ProfileFeatureRouteParams;
   ProfileSettings: undefined;
+  MyProducts: undefined;
 };
 
 export type AuthStackParamList = {
