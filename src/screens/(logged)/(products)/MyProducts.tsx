@@ -150,7 +150,13 @@ export function MyProductsScreen({ navigation }: Props) {
             product={item}
             onPress={() => navigation.navigate('Details', { product: item })}
             onEditPress={() =>
-              navigation.navigate('MainTabs', { screen: 'ProductForm' })
+              navigation.navigate('MainTabs', {
+                screen: 'ProductForm',
+                params: {
+                  mode: 'edit',
+                  productId: item.id,
+                },
+              })
             }
           />
         </View>

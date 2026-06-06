@@ -142,11 +142,7 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
     {
       key: 'products',
       label: 'Meus produtos',
-      onPress: () =>
-        navigation.navigate('ProfileCollection', {
-          title: 'Meus produtos',
-          source: 'mine',
-        }),
+      onPress: () => navigation.navigate('MyProducts'),
     },
     {
       key: 'finance',

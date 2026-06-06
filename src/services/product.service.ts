@@ -16,6 +16,15 @@ type PaginatedProductsResponse = {
   count: number;
 };
 
+type UploadableFile =
+  | File
+  | Blob
+  | {
+      uri: string;
+      name: string;
+      type?: string;
+    };
+
 export default class ProductService {
   static async fetchExplorerProductsPaginated(
     { page, limit }: Props = {
@@ -235,7 +244,7 @@ export default class ProductService {
 
   static async addImageToProduct(
     productUid: string,
-    file: File,
+    file: UploadableFile,
     description?: string,
   ): Promise<{
     imageUid: string;
@@ -243,7 +252,7 @@ export default class ProductService {
   } | void> {
     try {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('file', file as any);
       formData.append('productUid', productUid);
       if (description) {
         formData.append('description', description);

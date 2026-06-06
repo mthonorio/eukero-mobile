@@ -3,24 +3,10 @@ import { Heart, PencilLine, Star } from 'lucide-react-native';
 
 import { Product } from '../../types/product.type';
 import { getProductImage } from '../../utils/get.utils';
-import noImage from '../../assets/images/no-image-available.png';
 import { ProductBadge } from '../molecules/ProductBadge';
+import { colors } from '../../styles/colors';
 
-const colors = {
-  surface: '#FFFFFF',
-  surfaceSoft: '#F3F4F6',
-  text: '#101828',
-  muted: '#667085',
-  border: '#E4E7EC',
-  primary: '#0F7A4F',
-  primarySoft: 'rgba(15, 122, 79, 0.10)',
-  accent: '#F97316',
-  accentSoft: 'rgba(249, 115, 22, 0.10)',
-  success: '#12B76A',
-  successSoft: 'rgba(18, 183, 106, 0.10)',
-  danger: '#F04438',
-  dangerSoft: 'rgba(240, 68, 56, 0.10)',
-};
+const noImage = require('../../assets/images/no-image-available.png');
 
 function formatPrice(value: number) {
   return new Intl.NumberFormat('pt-BR', {
@@ -74,7 +60,11 @@ export function MyProductCard({
             style={styles.favoriteButton}
             hitSlop={8}
           >
-            <Heart color={colors.accent} size={14} fill={colors.accent} />
+            <Heart
+              color={colors.zen.accent}
+              size={14}
+              fill={colors.zen.accent}
+            />
           </Pressable>
         </View>
       </Pressable>
@@ -140,7 +130,7 @@ export function MyProductCard({
               pressed && styles.buttonPressed,
             ]}
           >
-            <PencilLine color={colors.primary} size={16} />
+            <PencilLine color={colors.zen.primary} size={16} />
             <Text style={styles.editButtonText}>Editar</Text>
           </Pressable>
 
@@ -171,9 +161,9 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 24,
     overflow: 'hidden',
-    backgroundColor: colors.surface,
+    backgroundColor: colors.zen.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.zen.border,
     shadowColor: '#000000',
     shadowOpacity: 0.05,
     shadowOffset: { width: 0, height: 8 },
@@ -187,7 +177,7 @@ const styles = StyleSheet.create({
   imageWrap: {
     position: 'relative',
     aspectRatio: 0.92,
-    backgroundColor: colors.surfaceSoft,
+    backgroundColor: colors.zen.surfaceSoft,
   },
   image: {
     width: '100%',
@@ -197,7 +187,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.accentSoft,
+    backgroundColor: colors.zen.accentSoft,
   },
   imageOverlay: {
     position: 'absolute',
@@ -227,10 +217,10 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   statusTextSuccess: {
-    color: colors.success,
+    color: colors.zen.success,
   },
   statusTextDanger: {
-    color: colors.danger,
+    color: colors.zen.danger,
   },
   favoriteButton: {
     width: 30,
@@ -253,24 +243,24 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.zen.primary,
   },
   storeText: {
     flex: 1,
     fontSize: 12,
-    color: colors.muted,
+    color: colors.zen.muted,
     fontWeight: '600',
   },
   productName: {
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '800',
-    color: colors.text,
+    color: colors.zen.text,
   },
   productDescription: {
     fontSize: 12,
     lineHeight: 16,
-    color: colors.muted,
+    color: colors.zen.muted,
   },
   priceRow: {
     flexDirection: 'row',
@@ -280,7 +270,7 @@ const styles = StyleSheet.create({
   },
   priceLabel: {
     fontSize: 10,
-    color: colors.muted,
+    color: colors.zen.muted,
     textTransform: 'uppercase',
     letterSpacing: 0.6,
     marginBottom: 3,
@@ -289,11 +279,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     lineHeight: 22,
     fontWeight: '800',
-    color: colors.primary,
+    color: colors.zen.primary,
   },
   originalPrice: {
     fontSize: 12,
-    color: colors.muted,
+    color: colors.zen.muted,
     textDecorationLine: 'line-through',
     marginBottom: 1,
   },
@@ -308,12 +298,12 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.primarySoft,
+    backgroundColor: colors.zen.primarySoft,
   },
   metaBadgePrimaryText: {
     fontSize: 11,
     fontWeight: '700',
-    color: colors.primary,
+    color: colors.zen.primary,
   },
   metaBadgeSoft: {
     paddingHorizontal: 10,
@@ -321,12 +311,12 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.surfaceSoft,
+    backgroundColor: colors.zen.surfaceSoft,
   },
   metaBadgeSoftText: {
     fontSize: 11,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.zen.text,
   },
   actionsRow: {
     flexDirection: 'row',
@@ -342,11 +332,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 6,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: colors.zen.primarySoft,
     flexDirection: 'row',
   },
   editButtonText: {
-    color: colors.primary,
+    color: colors.zen.primary,
     fontSize: 13,
     fontWeight: '800',
   },
@@ -359,20 +349,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   stockBadgeOn: {
-    backgroundColor: colors.successSoft,
+    backgroundColor: colors.zen.successSoft,
   },
   stockBadgeOff: {
-    backgroundColor: colors.dangerSoft,
+    backgroundColor: colors.zen.dangerSoft,
   },
   stockBadgeText: {
     fontSize: 12,
     fontWeight: '800',
   },
   stockBadgeTextOn: {
-    color: colors.success,
+    color: colors.zen.success,
   },
   stockBadgeTextOff: {
-    color: colors.danger,
+    color: colors.zen.danger,
   },
   buttonPressed: {
     transform: [{ scale: 0.99 }],

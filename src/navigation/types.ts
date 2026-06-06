@@ -26,7 +26,12 @@ export type RootTabParamList = {
   Home: undefined;
   Suppliers: undefined;
   Orders: undefined;
-  ProductForm: undefined;
+  ProductForm:
+    | undefined
+    | {
+        mode?: 'create' | 'edit';
+        productId?: string;
+      };
   Bag: undefined;
   Notifications: undefined;
   Profile: undefined;

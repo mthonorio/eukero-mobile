@@ -8,8 +8,8 @@ import {
   ShoppingBagIcon,
 } from 'lucide-react-native';
 
-import Logo from '../../assets/svg/logo-eukero.svg';
-import { useAuthStore } from '../../stores/auth.store';
+import Logo from '../../../assets/svg/logo-eukero.svg';
+import { useAuthStore } from '../../../stores/auth.store';
 
 const colors = {
   background: '#FFFFFF',

@@ -4,9 +4,7 @@ import type { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 
 import {
   HomeIcon,
-  TruckIcon,
   BellIcon,
-  ShirtIcon,
   PlusIcon,
   ShoppingBagIcon,
   MenuIcon,
@@ -15,6 +13,7 @@ import { useAuthStore } from '../../stores/auth.store';
 import { FeaturePlaceholderScreen } from '../../screens/FeaturePlaceholderScreen';
 import { HomeScreen } from '../../screens/(logged)/HomeScreen';
 import { MenuScreen } from '../../screens/(logged)/MenuScreen';
+import { ProductFormScreen } from '../../screens/(logged)/(products)/ProductFormScreen';
 import { ProfileScreen } from '../../screens/(logged)/(profile)/ProfileScreen';
 import { RootTabParamList } from '../../navigation/types';
 
@@ -156,7 +155,7 @@ export function TabRoutes() {
       {isStoreUser ? (
         <Tab.Screen
           name='ProductForm'
-          component={FeaturePlaceholderScreen}
+          component={ProductFormScreen}
           options={{
             tabBarButton: CenterTabButton,
             tabBarIcon: ProductFormTabIcon,
