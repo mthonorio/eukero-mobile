@@ -46,7 +46,10 @@ export function DetailsScreen({ navigation, route }: Props) {
   const { width: screenWidth } = useWindowDimensions();
   const carouselRef = useRef<FlatList<MediaItem>>(null);
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
-  const discount = getDiscounted(product.salePrice, product.promotionalPrice);
+  const discount = getDiscounted(
+    product.salePrice,
+    product.promotionalPrice || 0,
+  );
 
   const imageUrl = product.images?.[0]?.url || product.storeImageUrl;
   const mediaItems = useMemo<MediaItem[]>(() => {
@@ -75,6 +78,7 @@ export function DetailsScreen({ navigation, route }: Props) {
   }, [imageUrl, product.images, product.videoUrl]);
 
   const hasDiscount =
+    product.promotionalPrice != null &&
     product.promotionalPrice > 0 &&
     product.promotionalPrice < product.salePrice;
   const price = hasDiscount ? product.promotionalPrice : product.salePrice;
@@ -215,7 +219,9 @@ export function DetailsScreen({ navigation, route }: Props) {
                 </Text>
               </View>
             ) : null}
-            <Text style={styles.priceValue}>{formatPrice(price)}</Text>
+            {price && (
+              <Text style={styles.priceValue}>{formatPrice(price)}</Text>
+            )}
           </View>
         </View>
 

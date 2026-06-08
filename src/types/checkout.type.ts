@@ -1,3 +1,5 @@
+import { Product } from './product.type';
+
 export type ShippingCostRequest = {
   SellerCEP: string;
   RecipientCEP: string;
@@ -46,7 +48,7 @@ export interface ShippingInfo {
   serviceDescription?: string;
 }
 
-export interface CheckoutProduct {
+export interface CheckoutProduct extends Product {
   id: string;
   name: string;
   salePrice: number;
@@ -54,14 +56,13 @@ export interface CheckoutProduct {
   quantity: number;
   image?: string;
   seller: string;
-  storeUsername?: string;
   sku?: string;
   category?: string;
   weight?: number;
   height?: number;
   width?: number;
   length?: number;
-  shipping: ShippingInfo;
+  shipping?: ShippingInfo;
 }
 
 export interface DeliveryAddress {

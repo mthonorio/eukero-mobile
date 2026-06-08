@@ -8,32 +8,20 @@ import {
   saveCheckoutSelection,
 } from '../storage/checkout.storage';
 
-function mapProductToCheckoutProduct(product: Product): CheckoutProduct {
-  return {
-    id: product.id,
-    name: product.name,
-    salePrice: product.salePrice,
-    promotionalPrice: product.promotionalPrice,
-    quantity: product.quantity || 1,
-    image: product.images?.[0]?.url || product.storeImageUrl || undefined,
-    seller: product.storeName,
-    storeUsername: product.storeUsername,
-    sku: product.sku,
-    category: product.category ?? product.department ?? undefined,
-    weight: product.weight,
-    height: product.height,
-    width: product.width,
-    length: product.length,
-    shipping: {
-      type: 'standard',
-      date: '',
-      price: 0,
-      carrier: undefined,
-      serviceDescription: undefined,
-      estimatedDays: undefined,
-    },
-  };
-}
+// function mapProductToCheckoutProduct(product: Product): CheckoutProduct {
+//   return {
+//     ...product,
+//     seller: product.storeName,
+//     shipping: {
+//       type: 'standard',
+//       date: '',
+//       price: 0,
+//       carrier: undefined,
+//       serviceDescription: undefined,
+//       estimatedDays: undefined,
+//     },
+//   };
+// }
 
 type CheckoutStore = {
   selectedProduct: CheckoutProduct | null;
@@ -62,7 +50,7 @@ export const useCheckoutStore = create<CheckoutStore>(set => ({
   },
 
   selectProduct: async product => {
-    const selectedProduct = mapProductToCheckoutProduct(product);
+    const selectedProduct = product as CheckoutProduct;
 
     await saveCheckoutSelection({ selectedProduct });
 

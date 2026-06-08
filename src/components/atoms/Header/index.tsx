@@ -66,10 +66,10 @@ export default function Header({ navigation, back }: NativeStackHeaderProps) {
           <Logo width={112} height={52} />
         </Pressable>
 
-        <View style={styles.languageSelector}>
+        {/* <View style={styles.languageSelector}>
           <Text style={styles.languageText}>PT</Text>
           <ChevronDown color={colors.muted} size={14} strokeWidth={2.5} />
-        </View>
+        </View> */}
       </View>
 
       <View style={styles.rightGroup}>

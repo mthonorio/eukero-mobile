@@ -35,9 +35,14 @@ export class UserService {
     return response.data;
   }
 
-  static async changeUserAvatar(photoFile: File): Promise<UserMeResponse> {
+  static async changeUserAvatar(
+    photoFile:
+      | File
+      | Blob
+      | { uri: string; name: string; type?: string },
+  ): Promise<UserMeResponse> {
     const formData = new FormData();
-    formData.append('file', photoFile);
+    formData.append('file', photoFile as any);
 
     const response = await api.post<UserMeResponse>(
       '/users/change-avatar',

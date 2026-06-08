@@ -10,7 +10,7 @@ export interface Product {
   description: string;
   sku?: string;
   salePrice: number;
-  promotionalPrice: number;
+  promotionalPrice?: number;
   classificationId?: number | null;
   classification?: string | null;
   departmentId?: number | null;

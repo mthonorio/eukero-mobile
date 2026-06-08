@@ -46,6 +46,8 @@ export function ProfileScreen({ navigation }: Props) {
   const user = useAuthStore(state => state.user);
   const signOut = useAuthStore(state => state.signOut);
 
+  console.log('User data in ProfileScreen:', user);
+
   const displayName =
     user?.type === 'STORE'
       ? user.storeName || user.name

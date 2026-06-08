@@ -45,7 +45,8 @@ export function CheckoutScreen({ navigation }: Props) {
   }, [hydrate, isHydrated]);
 
   const handleContinue = () => {
-    navigation.navigate('Details');
+    if (!selectedProduct) return;
+    navigation.navigate('Details', { product: selectedProduct });
   };
 
   if (!isHydrated) {
