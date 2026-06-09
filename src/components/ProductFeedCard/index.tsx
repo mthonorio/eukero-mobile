@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Image, Pressable, StyleSheet, View, Text } from 'react-native';
 import { Heart, Star } from 'lucide-react-native';
 
@@ -16,14 +17,16 @@ const colors = {
   accentSoft: 'rgba(249, 115, 22, 0.10)',
 };
 
+const priceFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
 function formatPrice(value: number) {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(value || 0);
+  return priceFormatter.format(value || 0);
 }
 
-export function ProductFeedCard({
+function ProductFeedCardBase({
   product,
   onPress,
   onCheckoutPress,
@@ -116,6 +119,8 @@ export function ProductFeedCard({
     </View>
   );
 }
+
+export const ProductFeedCard = memo(ProductFeedCardBase);
 
 const styles = StyleSheet.create({
   card: {

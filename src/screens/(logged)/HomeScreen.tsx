@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -69,6 +69,37 @@ function isRenderableProduct(product: Product) {
   );
 }
 
+type FeedItemProps = {
+  item: Product;
+  navigation: Props['navigation'];
+  selectProduct: (product: Product) => Promise<void>;
+};
+
+const FeedItem = memo(function FeedItem({
+  item,
+  navigation,
+  selectProduct,
+}: FeedItemProps) {
+  const handlePress = useCallback(() => {
+    navigation.navigate('Details', { product: item });
+  }, [navigation, item]);
+
+  const handleCheckoutPress = useCallback(async () => {
+    await selectProduct(item);
+    navigation.navigate('Checkout');
+  }, [navigation, item, selectProduct]);
+
+  return (
+    <View style={styles.gridItem}>
+      <ProductFeedCard
+        product={item}
+        onPress={handlePress}
+        onCheckoutPress={handleCheckoutPress}
+      />
+    </View>
+  );
+});
+
 export function HomeScreen({ navigation }: Props) {
   const selectProduct = useCheckoutStore(state => state.selectProduct);
   const [query, setQuery] = useState('');
@@ -102,10 +133,7 @@ export function HomeScreen({ navigation }: Props) {
       return response as PaginatedProductsResponse;
     },
     getNextPageParam: (lastPage, allPages) => {
-      const totalPages = Math.max(
-        1,
-        Math.ceil(lastPage.count / PAGE_SIZE),
-      );
+      const totalPages = Math.max(1, Math.ceil(lastPage.count / PAGE_SIZE));
       const nextPage = allPages.length + 1;
 
       return nextPage <= totalPages ? nextPage : undefined;
@@ -175,137 +203,160 @@ export function HomeScreen({ navigation }: Props) {
     fetchNextPage();
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  const header = (
-    <View style={styles.headerContainer}>
-      <View style={styles.heroCard}>
-        <Text style={styles.heroEyebrow}>Descubra agora</Text>
-        <Text style={styles.heroTitle}>
-          Feed com itens em destaque para o mobile.
-        </Text>
-        <Text style={styles.heroDescription}>
-          Explore novidades, acompanhe lojas e encontre produtos com uma
-          navegação pensada para a tela pequena.
-        </Text>
-      </View>
+  const renderItem = useCallback(
+    ({ item }: { item: Product }) => (
+      <FeedItem
+        item={item}
+        navigation={navigation}
+        selectProduct={selectProduct}
+      />
+    ),
+    [navigation, selectProduct],
+  );
 
-      <View style={styles.searchCard}>
-        <View style={styles.searchInputWrap}>
-          <Search color={colors.muted} size={18} />
-          <TextInput
-            value={query}
-            onChangeText={setQuery}
-            placeholder='Pesquisar produtos ou lojas'
-            placeholderTextColor={colors.muted}
-            style={styles.searchInput}
-            returnKeyType='search'
+  const header = useMemo(
+    () => (
+      <View style={styles.headerContainer}>
+        <View style={styles.heroCard}>
+          <Text style={styles.heroEyebrow}>Descubra agora</Text>
+          <Text style={styles.heroTitle}>
+            Feed com itens em destaque para o mobile.
+          </Text>
+          <Text style={styles.heroDescription}>
+            Explore novidades, acompanhe lojas e encontre produtos com uma
+            navegação pensada para a tela pequena.
+          </Text>
+        </View>
+
+        <View style={styles.searchCard}>
+          <View style={styles.searchInputWrap}>
+            <Search color={colors.muted} size={18} />
+            <TextInput
+              value={query}
+              onChangeText={setQuery}
+              placeholder='Pesquisar produtos ou lojas'
+              placeholderTextColor={colors.muted}
+              style={styles.searchInput}
+              returnKeyType='search'
+            />
+          </View>
+        </View>
+
+        <View style={styles.sectionBlock}>
+          <View style={styles.sectionHeadingRow}>
+            <View>
+              <Text style={styles.sectionTitle}>Lojas em destaque</Text>
+              <Text style={styles.sectionSubtitle}>
+                Atalhos para os perfis mais recentes do feed.
+              </Text>
+            </View>
+            <Star color={colors.accent} size={18} fill={colors.accent} />
+          </View>
+
+          <FlatList
+            data={featuredStores}
+            keyExtractor={item => item.username}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.storesList}
+            renderItem={({ item }) => (
+              <Pressable
+                style={styles.storeChip}
+                onPress={() =>
+                  navigation.navigate('Store', {
+                    storeUsername: item.username,
+                    storeName: item.name,
+                    storeImageUrl: item.imageUrl,
+                  })
+                }
+              >
+                <View style={styles.storeAvatar}>
+                  {item.imageUrl ? (
+                    <Image
+                      source={{ uri: item.imageUrl }}
+                      style={styles.storeAvatarImage}
+                    />
+                  ) : (
+                    <Text style={styles.storeAvatarFallback}>
+                      {item.name.charAt(0).toUpperCase()}
+                    </Text>
+                  )}
+                </View>
+                <Text style={styles.storeChipText} numberOfLines={2}>
+                  {item.name}
+                </Text>
+              </Pressable>
+            )}
           />
         </View>
-      </View>
 
-      <View style={styles.sectionBlock}>
-        <View style={styles.sectionHeadingRow}>
-          <View>
-            <Text style={styles.sectionTitle}>Lojas em destaque</Text>
-            <Text style={styles.sectionSubtitle}>
-              Atalhos para os perfis mais recentes do feed.
-            </Text>
-          </View>
-          <Star color={colors.accent} size={18} fill={colors.accent} />
-        </View>
-
-        <FlatList
-          data={featuredStores}
-          keyExtractor={item => item.username}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.storesList}
-          renderItem={({ item }) => (
-            <Pressable
-              style={styles.storeChip}
-              onPress={() =>
-                navigation.navigate('Store', {
-                  storeUsername: item.username,
-                  storeName: item.name,
-                  storeImageUrl: item.imageUrl,
-                })
-              }
-            >
-              <View style={styles.storeAvatar}>
-                {item.imageUrl ? (
-                  <Image
-                    source={{ uri: item.imageUrl }}
-                    style={styles.storeAvatarImage}
-                  />
-                ) : (
-                  <Text style={styles.storeAvatarFallback}>
-                    {item.name.charAt(0).toUpperCase()}
-                  </Text>
-                )}
-              </View>
-              <Text style={styles.storeChipText} numberOfLines={2}>
-                {item.name}
-              </Text>
-            </Pressable>
-          )}
-        />
-      </View>
-
-      <View style={styles.toggleRow}>
-        <Pressable
-          onPress={() => setActiveTab('all')}
-          style={[
-            styles.toggleChip,
-            activeTab === 'all' && styles.toggleChipActive,
-          ]}
-        >
-          <Text
-            style={[
-              styles.toggleChipText,
-              activeTab === 'all' && styles.toggleChipTextActive,
-            ]}
-          >
-            Explorar
-          </Text>
-        </Pressable>
-
-        <Pressable
-          onPress={() => setActiveTab('following')}
-          style={[
-            styles.toggleChip,
-            activeTab === 'following' && styles.toggleChipActive,
-          ]}
-        >
-          <Text
-            style={[
-              styles.toggleChipText,
-              activeTab === 'following' && styles.toggleChipTextActive,
-            ]}
-          >
-            Seguindo
-          </Text>
-        </Pressable>
-      </View>
-
-      <View style={styles.sectionHeadingRow}>
-        <Text style={styles.sectionTitle}>Produtos</Text>
-        <View style={styles.headerActions}>
+        <View style={styles.toggleRow}>
           <Pressable
-            onPress={() => setColumnCount(count => (count === 2 ? 1 : 2))}
-            style={styles.layoutToggleButton}
+            onPress={() => setActiveTab('all')}
+            style={[
+              styles.toggleChip,
+              activeTab === 'all' && styles.toggleChipActive,
+            ]}
           >
-            {columnCount === 2 ? (
-              <Rows2 color={colors.text} />
-            ) : (
-              <Grid2x2 color={colors.text} />
-            )}
+            <Text
+              style={[
+                styles.toggleChipText,
+                activeTab === 'all' && styles.toggleChipTextActive,
+              ]}
+            >
+              Explorar
+            </Text>
           </Pressable>
 
-          <View style={styles.countBadge}>
-            <Text style={styles.countBadgeText}>{visibleProducts.length}</Text>
+          <Pressable
+            onPress={() => setActiveTab('following')}
+            style={[
+              styles.toggleChip,
+              activeTab === 'following' && styles.toggleChipActive,
+            ]}
+          >
+            <Text
+              style={[
+                styles.toggleChipText,
+                activeTab === 'following' && styles.toggleChipTextActive,
+              ]}
+            >
+              Seguindo
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.sectionHeadingRow}>
+          <Text style={styles.sectionTitle}>Produtos</Text>
+          <View style={styles.headerActions}>
+            <Pressable
+              onPress={() => setColumnCount(count => (count === 2 ? 1 : 2))}
+              style={styles.layoutToggleButton}
+            >
+              {columnCount === 2 ? (
+                <Rows2 color={colors.text} />
+              ) : (
+                <Grid2x2 color={colors.text} />
+              )}
+            </Pressable>
+
+            <View style={styles.countBadge}>
+              <Text style={styles.countBadgeText}>
+                {visibleProducts.length}
+              </Text>
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    ),
+    [
+      featuredStores,
+      visibleProducts.length,
+      query,
+      activeTab,
+      columnCount,
+      navigation,
+    ],
   );
 
   return (
@@ -319,6 +370,10 @@ export function HomeScreen({ navigation }: Props) {
       ListHeaderComponent={header}
       onEndReachedThreshold={0.4}
       onEndReached={loadMoreProducts}
+      maxToRenderPerBatch={5}
+      windowSize={5}
+      initialNumToRender={4}
+      removeClippedSubviews
       refreshControl={
         <RefreshControl
           refreshing={isRefetching}
@@ -327,18 +382,7 @@ export function HomeScreen({ navigation }: Props) {
           colors={[colors.primary]}
         />
       }
-      renderItem={({ item }) => (
-        <View style={styles.gridItem}>
-          <ProductFeedCard
-            product={item}
-            onPress={() => navigation.navigate('Details', { product: item })}
-            onCheckoutPress={async () => {
-              await selectProduct(item);
-              navigation.navigate('Checkout');
-            }}
-          />
-        </View>
-      )}
+      renderItem={renderItem}
       ListEmptyComponent={
         isLoading ? (
           <View style={styles.loadingState}>
