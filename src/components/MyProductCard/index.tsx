@@ -30,9 +30,10 @@ export function MyProductCard({
 }: Props) {
   const imageUrl = getProductImage(product);
   const hasDiscount =
+    product.promotionalPrice != null &&
     product.promotionalPrice > 0 &&
     product.promotionalPrice < product.salePrice;
-  const price = hasDiscount ? product.promotionalPrice : product.salePrice;
+  const price = hasDiscount ? product.promotionalPrice || 0 : product.salePrice;
   const quantityLabel =
     product.quantity > 0 ? `${product.quantity} un.` : 'Sem estoque';
 

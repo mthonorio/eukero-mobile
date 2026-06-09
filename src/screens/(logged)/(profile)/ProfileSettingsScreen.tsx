@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -9,16 +9,23 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ChevronLeft, Camera } from 'lucide-react-native';
+import { ChevronLeft, Camera, Edit2 } from 'lucide-react-native';
 import { launchImageLibrary, type Asset } from 'react-native-image-picker';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, type Resolver } from 'react-hook-form';
 
 import { RootStackParamList } from '../../../navigation/types';
 import { useAuthStore } from '../../../stores/auth.store';
 import { UserService } from '../../../services/user.service';
+import { RegisterField } from '../../../components/auth/register/RegisterField';
+import { maskPhone } from '../../../validators/register/register.helpers';
+import {
+  profileSettingsSchema,
+  type ProfileSettingsFormValues,
+} from '../../../validators/profile/profile.schemas';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ProfileSettings'>;
 
@@ -30,26 +37,55 @@ const colors = {
   muted: '#667085',
   border: '#E4E7EC',
   primary: '#0F7A4F',
-  primarySoft: 'rgba(15, 122, 79, 0.10)',
   orange: '#ef7000ff',
 };
+
+function maskEmail(email: string): string {
+  if (!email) return '';
+  const [local, domain] = email.split('@');
+  if (!domain) return email;
+  const maskedLocal =
+    local.slice(0, 3) + '•'.repeat(Math.max(0, local.length - 3));
+  const [provider = '', ...tldParts] = domain.split('.');
+  const maskedProvider =
+    provider.slice(0, 2) + '•'.repeat(Math.max(0, provider.length - 2));
+  const tld = tldParts.join('.');
+  return tld
+    ? `${maskedLocal}@${maskedProvider}.${tld}`
+    : `${maskedLocal}@${maskedProvider}`;
+}
 
 export function ProfileSettingsScreen({ navigation }: Props) {
   const user = useAuthStore(state => state.user);
   const updateProfile = useAuthStore(state => state.updateProfile);
 
-  const [name, setName] = useState(user?.name ?? '');
-  const [username, setUsername] = useState(user?.username ?? '');
-  const [storeName, setStoreName] = useState(user?.storeName ?? '');
   const [pendingImage, setPendingImage] = useState<Asset | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isChangingEmail, setIsChangingEmail] = useState(false);
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
 
   const isStoreUser = user?.type === 'STORE';
+  const title = isStoreUser ? 'Editar perfil da loja' : 'Editar perfil';
 
-  const title = useMemo(
-    () => (isStoreUser ? 'Editar perfil da loja' : 'Editar perfil'),
-    [isStoreUser],
-  );
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ProfileSettingsFormValues>({
+    resolver: zodResolver(
+      profileSettingsSchema,
+    ) as unknown as Resolver<ProfileSettingsFormValues>,
+    defaultValues: {
+      name: user?.name ?? '',
+      username: user?.username ?? '',
+      storeName: user?.storeName ?? '',
+      phone: user?.phone ?? '',
+      email: user?.email ?? '',
+      newPassword: '',
+      confirmNewPassword: '',
+    },
+    mode: 'onBlur',
+  });
 
   const avatarUri = pendingImage?.uri ?? user?.avatar ?? undefined;
 
@@ -65,7 +101,7 @@ export function ProfileSettingsScreen({ navigation }: Props) {
     if (asset) setPendingImage(asset);
   }
 
-  const handleSave = async () => {
+  const handleSave = async (values: ProfileSettingsFormValues) => {
     try {
       setIsSaving(true);
 
@@ -81,10 +117,12 @@ export function ProfileSettingsScreen({ navigation }: Props) {
       }
 
       await updateProfile({
-        name,
-        username,
-        storeName: isStoreUser ? storeName : undefined,
+        name: values.name,
+        username: values.username,
+        storeName: isStoreUser ? values.storeName : undefined,
         avatar: updatedAvatar,
+        phone: values.phone,
+        email: values.email,
       });
 
       navigation.goBack();
@@ -135,39 +173,125 @@ export function ProfileSettingsScreen({ navigation }: Props) {
             <Text style={styles.avatarHint}>Toque para alterar a foto</Text>
           </View>
 
-          <View style={styles.field}>
-            <Text style={styles.label}>Nome</Text>
-            <TextInput
-              value={name}
-              onChangeText={setName}
-              style={styles.input}
-            />
-          </View>
+          <RegisterField
+            control={control}
+            name='name'
+            label='Nome'
+            autoCapitalize='words'
+            returnKeyType='next'
+            error={errors.name?.message}
+          />
 
-          <View style={styles.field}>
-            <Text style={styles.label}>Username</Text>
-            <TextInput
-              value={username}
-              onChangeText={setUsername}
-              style={styles.input}
-              autoCapitalize='none'
-            />
-          </View>
+          <RegisterField
+            control={control}
+            name='username'
+            label='Username'
+            autoCapitalize='none'
+            returnKeyType='next'
+            error={errors.username?.message}
+          />
 
           {isStoreUser ? (
-            <View style={styles.field}>
-              <Text style={styles.label}>Nome da loja</Text>
-              <TextInput
-                value={storeName}
-                onChangeText={setStoreName}
-                style={styles.input}
-              />
-            </View>
+            <RegisterField
+              control={control}
+              name='storeName'
+              label='Nome da loja'
+              autoCapitalize='words'
+              returnKeyType='next'
+              error={errors.storeName?.message}
+            />
           ) : null}
+
+          <RegisterField
+            control={control}
+            name='phone'
+            label='Telefone'
+            keyboardType='phone-pad'
+            inputMode='tel'
+            maxLength={15}
+            returnKeyType='next'
+            transform={maskPhone}
+            error={errors.phone?.message}
+          />
+
+          <View style={styles.field}>
+            <Text style={styles.label}>E-mail</Text>
+            {isChangingEmail ? (
+              <RegisterField
+                control={control}
+                name='email'
+                label=''
+                keyboardType='email-address'
+                autoCapitalize='none'
+                autoCorrect={false}
+                autoComplete='email'
+                returnKeyType='next'
+                error={errors.email?.message}
+                containerStyle={styles.noGap}
+              />
+            ) : (
+              <View style={styles.maskedRow}>
+                <View style={styles.maskedValue}>
+                  <Text style={styles.maskedText}>
+                    {maskEmail(user?.email ?? '')}
+                  </Text>
+                </View>
+                <Pressable
+                  onPress={() => setIsChangingEmail(true)}
+                  style={styles.editButton}
+                >
+                  <Edit2 color={colors.primary} size={15} />
+                  <Text style={styles.editButtonText}>Alterar</Text>
+                </Pressable>
+              </View>
+            )}
+          </View>
+
+          <View style={styles.field}>
+            <Text style={styles.label}>Senha</Text>
+            {isChangingPassword ? (
+              <View style={styles.passwordSection}>
+                <RegisterField
+                  control={control}
+                  name='newPassword'
+                  label='Nova senha'
+                  secureTextEntry
+                  autoComplete='password-new'
+                  textContentType='newPassword'
+                  returnKeyType='next'
+                  helperText='Use 8+ caracteres, com maiúscula, minúscula, número e símbolo.'
+                  error={errors.newPassword?.message}
+                />
+                <RegisterField
+                  control={control}
+                  name='confirmNewPassword'
+                  label='Confirmar nova senha'
+                  secureTextEntry
+                  autoComplete='password-new'
+                  textContentType='newPassword'
+                  returnKeyType='done'
+                  error={errors.confirmNewPassword?.message}
+                />
+              </View>
+            ) : (
+              <View style={styles.maskedRow}>
+                <View style={styles.maskedValue}>
+                  <Text style={styles.maskedText}>{'•'.repeat(8)}</Text>
+                </View>
+                <Pressable
+                  onPress={() => setIsChangingPassword(true)}
+                  style={styles.editButton}
+                >
+                  <Edit2 color={colors.primary} size={15} />
+                  <Text style={styles.editButtonText}>Alterar</Text>
+                </Pressable>
+              </View>
+            )}
+          </View>
 
           <Pressable
             style={[styles.primaryButton, isSaving && styles.disabledButton]}
-            onPress={handleSave}
+            onPress={handleSubmit(handleSave)}
             disabled={isSaving}
           >
             {isSaving ? (
@@ -190,11 +314,6 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
   card: {
     padding: 18,
     borderRadius: 28,
@@ -202,6 +321,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     gap: 14,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
   },
   backButton: {
     width: 42,
@@ -265,21 +389,50 @@ const styles = StyleSheet.create({
     color: colors.muted,
   },
   field: {
-    gap: 8,
+    gap: 6,
   },
   label: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: colors.text,
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#202020',
   },
-  input: {
-    minHeight: 48,
+  noGap: {
+    gap: 0,
+  },
+  maskedRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  maskedValue: {
+    flex: 1,
+    minHeight: 52,
     paddingHorizontal: 14,
-    borderRadius: 16,
+    borderRadius: 14,
     backgroundColor: colors.surfaceSoft,
     borderWidth: 1,
     borderColor: colors.border,
-    color: colors.text,
+    justifyContent: 'center',
+  },
+  maskedText: {
+    fontSize: 15,
+    color: colors.muted,
+    letterSpacing: 1,
+  },
+  editButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  editButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.primary,
+  },
+  passwordSection: {
+    gap: 10,
   },
   primaryButton: {
     marginTop: 8,
