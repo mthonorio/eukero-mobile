@@ -45,3 +45,9 @@ export type AuthStorage = {
   token: string;
   refreshToken: string;
 };
+
+export type PixData = {
+  ownerName: string;
+  pixKey: string;
+  document: string;
+};

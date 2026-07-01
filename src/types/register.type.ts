@@ -29,6 +29,12 @@ export type IRegisterStoreForm = {
   address: IAddress;
 } & IRegisterUserForm;
 
+export type IConvertUserToStoreForm = {
+  storeName: string;
+  pixKey: string;
+  address: IAddress;
+};
+
 export type IStep2Form = {
   nomeCompleto: string;
   nomeUsuario: string;

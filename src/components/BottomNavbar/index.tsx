@@ -8,9 +8,13 @@ import {
   PlusIcon,
   ShoppingBagIcon,
   MenuIcon,
+  PackageSearchIcon,
 } from 'lucide-react-native';
 import { useAuthStore } from '../../stores/auth.store';
-import { FeaturePlaceholderScreen } from '../../screens/FeaturePlaceholderScreen';
+import { BagScreen } from '../../screens/(logged)/BagScreen';
+import { NotificationsScreen } from '../../screens/(logged)/NotificationsScreen';
+import { OrdersScreen } from '../../screens/(logged)/OrdersScreen';
+import { SuppliersScreen } from '../../screens/(logged)/(suppliers)/SuppliersScreen';
 import { HomeScreen } from '../../screens/(logged)/HomeScreen';
 import { MenuScreen } from '../../screens/(logged)/MenuScreen';
 import { ProductFormScreen } from '../../screens/(logged)/(products)/ProductFormScreen';
@@ -98,6 +102,14 @@ function HomeTabIcon({ color, focused }: { color: string; focused: boolean }) {
 //   return <ShirtIcon color={color} />;
 // }
 
+function TruckTabIcon({ color }: { color: string }) {
+  return <PackageSearchIcon color={color} />;
+}
+
+function OrdersTabIcon({ color }: { color: string }) {
+  return <PackageSearchIcon color={color} />;
+}
+
 function ProductFormTabIcon() {
   return <PlusIcon color='#FFFFFF' size={28} />;
 }
@@ -135,20 +147,20 @@ export function TabRoutes() {
       {/* {isStoreUser ? (
         <Tab.Screen
           name='Suppliers'
-          component={FeaturePlaceholderScreen}
+          component={SuppliersScreen}
           options={{ tabBarIcon: TruckTabIcon }}
         />
       ) : (
         <Tab.Screen
           name='Orders'
-          component={FeaturePlaceholderScreen}
-          options={{ tabBarIcon: ShirtTabIcon }}
+          component={OrdersScreen}
+          options={{ tabBarIcon: OrdersTabIcon }}
         />
       )} */}
 
       <Tab.Screen
         name='Notifications'
-        component={FeaturePlaceholderScreen}
+        component={NotificationsScreen}
         options={{ tabBarIcon: NotificationsTabIcon }}
       />
 
@@ -164,7 +176,7 @@ export function TabRoutes() {
       ) : (
         <Tab.Screen
           name='Bag'
-          component={FeaturePlaceholderScreen}
+          component={BagScreen}
           options={{
             tabBarButton: CenterTabButton,
             tabBarIcon: BagTabIcon,

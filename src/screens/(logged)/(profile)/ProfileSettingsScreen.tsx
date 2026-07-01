@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -20,8 +20,12 @@ import { useForm, type Resolver } from 'react-hook-form';
 import { RootStackParamList } from '../../../navigation/types';
 import { useAuthStore } from '../../../stores/auth.store';
 import { UserService } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth.service';
 import { RegisterField } from '../../../components/auth/register/RegisterField';
-import { maskPhone } from '../../../validators/register/register.helpers';
+import {
+  maskCpfCnpj,
+  maskPhone,
+} from '../../../validators/register/register.helpers';
 import {
   profileSettingsSchema,
   type ProfileSettingsFormValues,
@@ -70,6 +74,7 @@ export function ProfileSettingsScreen({ navigation }: Props) {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<ProfileSettingsFormValues>({
     resolver: zodResolver(
@@ -83,9 +88,22 @@ export function ProfileSettingsScreen({ navigation }: Props) {
       email: user?.email ?? '',
       newPassword: '',
       confirmNewPassword: '',
+      pixOwnerName: '',
+      pixKey: '',
+      pixDocument: '',
     },
     mode: 'onBlur',
   });
+
+  useEffect(() => {
+    AuthService.getPixData()
+      .then(pixData => {
+        setValue('pixOwnerName', pixData.ownerName ?? '');
+        setValue('pixKey', pixData.pixKey ?? '');
+        setValue('pixDocument', pixData.document ?? '');
+      })
+      .catch(() => {});
+  }, [setValue]);
 
   const avatarUri = pendingImage?.uri ?? user?.avatar ?? undefined;
 
@@ -124,6 +142,18 @@ export function ProfileSettingsScreen({ navigation }: Props) {
         phone: values.phone,
         email: values.email,
       });
+
+      const pixOwnerName = values.pixOwnerName?.trim() ?? '';
+      const pixKey = values.pixKey?.trim() ?? '';
+      const pixDocument = values.pixDocument?.trim() ?? '';
+
+      if (pixOwnerName && pixKey && pixDocument) {
+        await AuthService.postPixData({
+          ownerName: pixOwnerName,
+          pixKey,
+          document: pixDocument,
+        });
+      }
 
       navigation.goBack();
     } catch {
@@ -289,6 +319,42 @@ export function ProfileSettingsScreen({ navigation }: Props) {
             )}
           </View>
 
+          <View style={styles.pixSection}>
+            <Text style={styles.pixTitle}>Dados de recebimento (Pix)</Text>
+
+            <RegisterField
+              control={control}
+              name='pixOwnerName'
+              label='Nome do titular'
+              autoCapitalize='words'
+              returnKeyType='next'
+              helperText='Nome do titular da chave Pix.'
+              error={errors.pixOwnerName?.message}
+            />
+
+            <RegisterField
+              control={control}
+              name='pixKey'
+              label='Chave Pix'
+              autoCapitalize='none'
+              returnKeyType='next'
+              helperText='CPF, CNPJ, e-mail, telefone ou chave aleatória.'
+              error={errors.pixKey?.message}
+            />
+
+            <RegisterField
+              control={control}
+              name='pixDocument'
+              label='CPF ou CNPJ'
+              keyboardType='number-pad'
+              inputMode='numeric'
+              returnKeyType='done'
+              transform={maskCpfCnpj}
+              helperText='Documento do titular do recebimento.'
+              error={errors.pixDocument?.message}
+            />
+          </View>
+
           <Pressable
             style={[styles.primaryButton, isSaving && styles.disabledButton]}
             onPress={handleSubmit(handleSave)}
@@ -433,6 +499,17 @@ const styles = StyleSheet.create({
   },
   passwordSection: {
     gap: 10,
+  },
+  pixSection: {
+    gap: 14,
+    paddingTop: 4,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  pixTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.text,
   },
   primaryButton: {
     marginTop: 8,

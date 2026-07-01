@@ -1,6 +1,10 @@
 import api from '../api';
 import { CreditCard } from '../types/checkout.type';
-import { IRegisterStoreForm, IRegisterUserForm } from '../types/register.type';
+import {
+  IConvertUserToStoreForm,
+  IRegisterStoreForm,
+  IRegisterUserForm,
+} from '../types/register.type';
 
 export class RegisterService {
   static async registerUser(data: IRegisterUserForm) {
@@ -34,6 +38,11 @@ export class RegisterService {
 
   static async deleteStorePaySignature() {
     const response = await api.delete('/store-pay-signature');
+    return response.data;
+  }
+
+  static async convertUserToStore(data: IConvertUserToStoreForm) {
+    const response = await api.post('/auth/convert-user-to-store', data);
     return response.data;
   }
 }

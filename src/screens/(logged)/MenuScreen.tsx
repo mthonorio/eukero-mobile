@@ -69,11 +69,7 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
     {
       key: 'orders',
       label: 'Minhas compras',
-      onPress: () =>
-        navigation.navigate('ProfileFeature', {
-          title: 'Minhas compras',
-          description: 'Histórico de compras em desenvolvimento.',
-        }),
+      onPress: () => navigation.navigate('MainTabs', { screen: 'Orders' }),
     },
     {
       key: 'products',
@@ -92,11 +88,7 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
     {
       key: 'support',
       label: 'Suporte',
-      onPress: () =>
-        navigation.navigate('ProfileFeature', {
-          title: 'Suporte',
-          description: 'Atendimento ao usuário em desenvolvimento.',
-        }),
+      onPress: () => navigation.navigate('Support'),
     },
   ];
 
@@ -110,6 +102,11 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
       key: 'notifications',
       label: 'Notificações',
       onPress: () => navigation.navigate('Notifications'),
+    },
+    {
+      key: 'dashboard',
+      label: 'Dashboard',
+      onPress: () => navigation.navigate('Dashboard'),
     },
     {
       key: 'productForm',
@@ -133,11 +130,7 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
     {
       key: 'sales',
       label: 'Minhas vendas',
-      onPress: () =>
-        navigation.navigate('ProfileFeature', {
-          title: 'Minhas vendas',
-          description: 'Lista de vendas em desenvolvimento.',
-        }),
+      onPress: () => navigation.navigate('Sales'),
     },
     {
       key: 'products',
@@ -147,11 +140,17 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
     {
       key: 'finance',
       label: 'Gestão Financeira',
-      onPress: () =>
-        navigation.navigate('ProfileFeature', {
-          title: 'Gestão Financeira',
-          description: 'Área financeira em desenvolvimento.',
-        }),
+      onPress: () => navigation.navigate('Financial'),
+    },
+    {
+      key: 'pieces',
+      label: 'Peças',
+      onPress: () => navigation.navigate('Pieces'),
+    },
+    {
+      key: 'stock',
+      label: 'Estoque',
+      onPress: () => navigation.navigate('Stock'),
     },
     {
       key: 'orders',
@@ -165,29 +164,12 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
     {
       key: 'plans',
       label: 'Planos',
-      onPress: () =>
-        navigation.navigate('ProfileFeature', {
-          title: 'Planos',
-          description: 'Gerenciamento de planos em desenvolvimento.',
-        }),
-    },
-    {
-      key: 'superFilters',
-      label: 'Super Filtros',
-      onPress: () =>
-        navigation.navigate('ProfileFeature', {
-          title: 'Super Filtros',
-          description: 'Super filtros em desenvolvimento.',
-        }),
+      onPress: () => navigation.navigate('Plans'),
     },
     {
       key: 'support',
       label: 'Suporte',
-      onPress: () =>
-        navigation.navigate('ProfileFeature', {
-          title: 'Suporte',
-          description: 'Atendimento ao usuário em desenvolvimento.',
-        }),
+      onPress: () => navigation.navigate('Support'),
     },
   ];
 
@@ -219,7 +201,7 @@ export function MenuScreen({ navigation }: Props) {
     {
       key: 'settings',
       label: 'Configurações',
-      onPress: () => navigation.navigate('ProfileSettings'),
+      onPress: () => navigation.navigate('Settings'),
     },
     {
       key: 'logout',

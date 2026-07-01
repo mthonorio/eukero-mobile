@@ -32,7 +32,7 @@ const storeDocumentSchema = z
   .trim()
   .refine(isValidCpfOrCnpj, 'Informe um CPF ou CNPJ válido.');
 
-const registerAddressSchema = z.object({
+export const registerAddressSchema = z.object({
   cep: z.string().trim().refine(isValidCep, 'Informe um CEP válido.'),
   address: z.string().trim().min(3, 'Informe o endereço.'),
   number: z.string().trim().min(1, 'Informe o número.'),

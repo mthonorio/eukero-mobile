@@ -183,7 +183,7 @@ export function ProfileScreen({ navigation }: Props) {
     {
       key: 'settings',
       label: 'Configurações',
-      onPress: () => navigation.navigate('ProfileSettings'),
+      onPress: () => navigation.navigate('Settings'),
     },
     {
       key: 'logout',

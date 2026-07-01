@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.92)',
   },
   cardBody: {
+    flex: 1,
     padding: 14,
     gap: 8,
   },
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
   },
   checkoutButton: {
     height: 42,
-    marginTop: 4,
+    marginTop: 'auto',
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',

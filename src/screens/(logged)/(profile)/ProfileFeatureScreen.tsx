@@ -29,8 +29,10 @@ export function ProfileFeatureScreen({ navigation, route }: Props) {
           <ChevronLeft color={colors.text} size={22} />
         </Pressable>
 
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.description}>{description}</Text>
+        <View>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.description}>{description}</Text>
+        </View>
       </View>
     </View>
   );
@@ -43,6 +45,8 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   card: {
+    display: 'flex',
+    flexDirection: 'row',
     padding: 18,
     borderRadius: 28,
     backgroundColor: colors.surface,

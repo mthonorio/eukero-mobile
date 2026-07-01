@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   Pressable,
   StyleSheet,
@@ -9,6 +10,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { OrderService } from '../../services/order.service';
 import { RootStackParamList } from '../../navigation/types';
 import { useCheckoutStore } from '../../stores/checkout.store';
 
@@ -37,6 +39,7 @@ export function CheckoutScreen({ navigation }: Props) {
   const isHydrated = useCheckoutStore(state => state.isHydrated);
   const hydrate = useCheckoutStore(state => state.hydrate);
   const clearSelection = useCheckoutStore(state => state.clearSelection);
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
   useEffect(() => {
     if (!isHydrated) {
@@ -47,6 +50,32 @@ export function CheckoutScreen({ navigation }: Props) {
   const handleContinue = () => {
     if (!selectedProduct) return;
     navigation.navigate('Details', { product: selectedProduct });
+  };
+
+  const handlePlaceOrder = async () => {
+    if (!selectedProduct) return;
+
+    setIsPlacingOrder(true);
+    try {
+      const order = await OrderService.createOrder({
+        buyer: { fulfillment: 'PICKUP' },
+        storeId: selectedProduct.storeId,
+        items: [
+          {
+            productId: selectedProduct.uid || selectedProduct.id,
+            quantity: 1,
+          },
+        ],
+        shippingValue: 0,
+      });
+
+      await clearSelection();
+      navigation.replace('CheckoutCompleted', { orderId: order.orderId });
+    } catch {
+      Alert.alert('Erro', 'Não foi possível finalizar o pedido.');
+    } finally {
+      setIsPlacingOrder(false);
+    }
   };
 
   if (!isHydrated) {
@@ -108,8 +137,20 @@ export function CheckoutScreen({ navigation }: Props) {
       </View>
 
       <View style={styles.actions}>
-        <Pressable style={styles.primaryButton} onPress={handleContinue}>
-          <Text style={styles.primaryButtonText}>Continuar para detalhes</Text>
+        <Pressable
+          style={[styles.primaryButton, isPlacingOrder && styles.disabledButton]}
+          onPress={handlePlaceOrder}
+          disabled={isPlacingOrder}
+        >
+          {isPlacingOrder ? (
+            <ActivityIndicator color='#FFFFFF' />
+          ) : (
+            <Text style={styles.primaryButtonText}>Finalizar pedido</Text>
+          )}
+        </Pressable>
+
+        <Pressable style={styles.secondaryButton} onPress={handleContinue}>
+          <Text style={styles.secondaryButtonText}>Ver detalhes do produto</Text>
         </Pressable>
 
         <Pressable style={styles.secondaryButton} onPress={clearSelection}>
@@ -212,6 +253,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 14,
     fontWeight: '800',
+  },
+  disabledButton: {
+    opacity: 0.65,
   },
   secondaryButton: {
     height: 52,

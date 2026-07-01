@@ -22,6 +22,30 @@ export type ProfileFeatureRouteParams = {
   description: string;
 };
 
+export type OrderDetailsRouteParams = {
+  orderId: string;
+};
+
+export type SaleDetailsRouteParams = {
+  saleId: string;
+};
+
+export type SupplierFormRouteParams = {
+  supplierId?: string;
+};
+
+export type FinancialFormRouteParams = {
+  movementId?: string;
+};
+
+export type CheckoutCompletedRouteParams = {
+  orderId?: string;
+};
+
+export type LegalDocumentRouteParams = {
+  type: 'terms' | 'policy' | 'return';
+};
+
 export type RootTabParamList = {
   Home: undefined;
   Suppliers: undefined;
@@ -43,10 +67,32 @@ export type RootStackParamList = {
   Details: ProductDetailsRouteParams;
   Store: StoreRouteParams;
   Checkout: undefined;
+  CheckoutCompleted: CheckoutCompletedRouteParams;
   ProfileCollection: ProfileCollectionRouteParams;
   ProfileFeature: ProfileFeatureRouteParams;
   ProfileSettings: undefined;
+  Settings: undefined;
+  Addresses: undefined;
+  Language: undefined;
+  Terms: undefined;
+  Connect: undefined;
+  GlobalVariables: undefined;
+  MigrateToStore: undefined;
   MyProducts: undefined;
+  OrderDetails: OrderDetailsRouteParams;
+  Sales: undefined;
+  SaleDetails: SaleDetailsRouteParams;
+  SupplierForm: SupplierFormRouteParams;
+  SupplierConsigned: undefined;
+  Financial: undefined;
+  FinancialForm: FinancialFormRouteParams;
+  Dashboard: undefined;
+  Pieces: undefined;
+  Stock: undefined;
+  Plans: undefined;
+  Search: undefined;
+  Support: undefined;
+  LegalDocument: LegalDocumentRouteParams;
 };
 
 export type AuthStackParamList = {

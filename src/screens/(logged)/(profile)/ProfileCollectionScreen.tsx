@@ -53,9 +53,28 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
       const response =
         source === 'liked'
           ? await ProductService.getProductLikes()
-          : await ProductService.fetchMyProducts();
+          : await ProductService.fetchMyProducts({ page: 1, limit: 100 });
 
-      setProducts(response.filter(isRenderableProduct));
+      if (!response || (Array.isArray(response) && response.length === 0)) {
+        setProducts([]);
+        setError('Nenhum produto encontrado.');
+        return;
+      }
+
+      if (
+        source === 'liked' &&
+        Array.isArray(response) &&
+        response.length > 0
+      ) {
+        const validProducts = response.filter(isRenderableProduct);
+        if (validProducts.length === 0) {
+          setProducts([]);
+          setError('Nenhum produto encontrado.');
+          return;
+        }
+        return setProducts(validProducts);
+      }
+      setProducts(response);
       setError(null);
     } catch (loadError) {
       console.error('Erro ao carregar coleção de produtos:', loadError);
@@ -81,12 +100,14 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
           >
             <ChevronLeft color={colors.text} size={22} />
           </Pressable>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.description}>
-            {source === 'liked'
-              ? 'Itens que você curtiu e pode voltar a navegar.'
-              : 'Produtos cadastrados na sua conta, organizados em cards reutilizáveis.'}
-          </Text>
+          <View>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.description}>
+              {source === 'liked'
+                ? 'Itens que você curtiu e pode voltar a navegar.'
+                : 'Produtos cadastrados na sua conta, organizados em cards reutilizáveis.'}
+            </Text>
+          </View>
         </View>
       </View>
     ),
@@ -153,6 +174,8 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   headerCard: {
+    display: 'flex',
+    flexDirection: 'row',
     padding: 18,
     borderRadius: 28,
     backgroundColor: colors.surface,

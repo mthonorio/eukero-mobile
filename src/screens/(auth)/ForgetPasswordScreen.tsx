@@ -24,6 +24,13 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 	const [error, setError] = useState<string | null>(null);
 	const [finished, setFinished] = useState(false);
 
+	const [token, setToken] = useState('');
+	const [newPassword, setNewPassword] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
+	const [resetError, setResetError] = useState<string | null>(null);
+	const [resetLoading, setResetLoading] = useState(false);
+	const [resetSuccess, setResetSuccess] = useState(false);
+
 	async function handleSubmit() {
 		const trimmedEmail = email.trim();
 
@@ -54,6 +61,36 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 		}
 	}
 
+	async function handleResetPassword() {
+		if (!token.trim()) {
+			setResetError('Informe o código recebido por e-mail.');
+			return;
+		}
+
+		if (newPassword.length < 3) {
+			setResetError('A nova senha deve ter ao menos 3 caracteres.');
+			return;
+		}
+
+		if (newPassword !== confirmPassword) {
+			setResetError('As senhas informadas não coincidem.');
+			return;
+		}
+
+		setResetLoading(true);
+		setResetError(null);
+
+		try {
+			await AuthService.resetPassword({ token: token.trim(), newPassword });
+			setResetSuccess(true);
+		} catch (err) {
+			console.log('RESET PASSWORD ERROR:', err);
+			setResetError('Não foi possível redefinir a senha. Verifique o código informado.');
+		} finally {
+			setResetLoading(false);
+		}
+	}
+
 	function handleSupport() {
 		Alert.alert(
 			'Suporte',
@@ -64,14 +101,18 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 	return (
 		<Layout>
 			<View style={styles.container}>
-				<Text style={styles.title}>Esqueceu sua senha?</Text>
+				<Text style={styles.title}>
+					{resetSuccess ? 'Senha redefinida!' : 'Esqueceu sua senha?'}
+				</Text>
 				<Text style={styles.description}>
-					{finished
-						? 'Enviamos as instruções de recuperação para o e-mail informado.'
-						: 'Informe o e-mail cadastrado para receber o link de redefinição de senha.'}
+					{resetSuccess
+						? 'Sua senha foi atualizada. Você já pode entrar com a nova senha.'
+						: finished
+						? 'Enviamos um código para o e-mail informado. Informe-o abaixo junto com a nova senha.'
+						: 'Informe o e-mail cadastrado para receber o código de redefinição de senha.'}
 				</Text>
 
-				{!finished && (
+				{!finished && !resetSuccess && (
 					<View style={styles.form}>
 						<TextInput
 							placeholder='E-mail'
@@ -99,6 +140,56 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 								</View>
 							) : (
 								<Text style={styles.primaryButtonText}>Enviar instruções</Text>
+							)}
+						</TouchableOpacity>
+					</View>
+				)}
+
+				{finished && !resetSuccess && (
+					<View style={styles.form}>
+						<TextInput
+							placeholder='Código recebido por e-mail'
+							value={token}
+							autoCapitalize='none'
+							autoCorrect={false}
+							placeholderTextColor='#8f8f8f'
+							onChangeText={setToken}
+							style={styles.input}
+						/>
+
+						<TextInput
+							placeholder='Nova senha'
+							value={newPassword}
+							secureTextEntry
+							placeholderTextColor='#8f8f8f'
+							onChangeText={setNewPassword}
+							style={styles.input}
+						/>
+
+						<TextInput
+							placeholder='Confirmar nova senha'
+							value={confirmPassword}
+							secureTextEntry
+							placeholderTextColor='#8f8f8f'
+							onChangeText={setConfirmPassword}
+							style={styles.input}
+						/>
+
+						{resetError && <Text style={styles.error}>{resetError}</Text>}
+
+						<TouchableOpacity
+							activeOpacity={0.85}
+							onPress={handleResetPassword}
+							disabled={resetLoading}
+							style={[styles.primaryButton, resetLoading && styles.buttonDisabled]}
+						>
+							{resetLoading ? (
+								<View style={styles.loadingRow}>
+									<ActivityIndicator color="#fff" />
+									<Text style={styles.primaryButtonText}>Redefinindo...</Text>
+								</View>
+							) : (
+								<Text style={styles.primaryButtonText}>Redefinir senha</Text>
 							)}
 						</TouchableOpacity>
 					</View>

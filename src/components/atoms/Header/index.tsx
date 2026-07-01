@@ -1,12 +1,7 @@
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
-import {
-  ChevronDown,
-  ChevronLeft,
-  SearchIcon,
-  ShoppingBagIcon,
-} from 'lucide-react-native';
+import { ChevronLeft, SearchIcon, ShoppingBagIcon } from 'lucide-react-native';
 
 import Logo from '../../../assets/svg/logo-eukero.svg';
 import { useAuthStore } from '../../../stores/auth.store';
@@ -29,7 +24,7 @@ export default function Header({ navigation, back }: NativeStackHeaderProps) {
   };
 
   const handleSearchPress = () => {
-    Alert.alert('Busca', 'A busca ainda não foi implementada.');
+    navigation.navigate('Search');
   };
 
   const handleBagPress = () => {

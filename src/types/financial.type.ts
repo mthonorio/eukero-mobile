@@ -66,3 +66,10 @@ export interface FinancialMovementsResponse {
   items: FinancialMovementGroup[];
   count: number;
 }
+
+export interface FinancialHeadersResponse {
+  aberto: number;
+  transito: number;
+  agendado: number;
+  quitado: number;
+}

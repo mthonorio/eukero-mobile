@@ -1,4 +1,5 @@
 import { api } from '../api';
+import { PixData } from '../types/user.type';
 
 type LoginDTO = {
   login: string;
@@ -60,5 +61,15 @@ export class AuthService {
       },
     );
     return response.data.exists;
+  }
+
+  static async getPixData(): Promise<PixData> {
+    const response = await api.get<PixData>('/auth/pix-data');
+    return response.data;
+  }
+
+  static async postPixData(data: PixData): Promise<PixData> {
+    const response = await api.post<PixData>('/auth/pix-data', data);
+    return response.data;
   }
 }
