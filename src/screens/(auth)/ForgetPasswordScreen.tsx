@@ -11,6 +11,7 @@ import {
 	View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 
 import { AuthService } from '../../services/auth.service';
 import { AuthStackParamList } from '../../navigation/types';
@@ -19,6 +20,7 @@ import Layout from './layout';
 type Props = NativeStackScreenProps<AuthStackParamList, 'ForgetPassword'>;
 
 export function ForgetPasswordScreen({ navigation }: Props) {
+	const { t } = useTranslation();
 	const [email, setEmail] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -35,7 +37,7 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 		const trimmedEmail = email.trim();
 
 		if (!trimmedEmail) {
-			setError('Informe o e-mail para continuar.');
+			setError(t('ForgotPassword.emailRequired'));
 			return;
 		}
 
@@ -48,14 +50,14 @@ export function ForgetPasswordScreen({ navigation }: Props) {
             console.log('FORGOT PASSWORD RESPONSE:', response);
 
 			if (!response) {
-				setError('Não foi possível enviar o e-mail de recuperação.');
+				setError(t('ForgotPassword.sendError'));
 				return;
 			}
 
 			setFinished(true);
 		} catch (err) {
 			console.log('FORGOT PASSWORD ERROR:', err);
-			setError('Não foi possível enviar o e-mail de recuperação.');
+			setError(t('ForgotPassword.sendError'));
 		} finally {
 			setLoading(false);
 		}
@@ -63,17 +65,17 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 
 	async function handleResetPassword() {
 		if (!token.trim()) {
-			setResetError('Informe o código recebido por e-mail.');
+			setResetError(t('ForgotPassword.tokenRequired'));
 			return;
 		}
 
 		if (newPassword.length < 3) {
-			setResetError('A nova senha deve ter ao menos 3 caracteres.');
+			setResetError(t('ForgotPassword.passwordTooShort'));
 			return;
 		}
 
 		if (newPassword !== confirmPassword) {
-			setResetError('As senhas informadas não coincidem.');
+			setResetError(t('ForgotPassword.passwordMismatch'));
 			return;
 		}
 
@@ -85,7 +87,7 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 			setResetSuccess(true);
 		} catch (err) {
 			console.log('RESET PASSWORD ERROR:', err);
-			setResetError('Não foi possível redefinir a senha. Verifique o código informado.');
+			setResetError(t('ForgotPassword.resetError'));
 		} finally {
 			setResetLoading(false);
 		}
@@ -93,8 +95,8 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 
 	function handleSupport() {
 		Alert.alert(
-			'Suporte',
-			'Se precisar de ajuda, entre em contato com a equipe de suporte do Eukero.'
+			t('ForgotPassword.supportAlertTitle'),
+			t('ForgotPassword.supportAlertMessage')
 		);
 	}
 
@@ -102,20 +104,20 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 		<Layout>
 			<View style={styles.container}>
 				<Text style={styles.title}>
-					{resetSuccess ? 'Senha redefinida!' : 'Esqueceu sua senha?'}
+					{resetSuccess ? t('ForgotPassword.resetSuccessTitle') : t('ForgotPassword.title')}
 				</Text>
 				<Text style={styles.description}>
 					{resetSuccess
-						? 'Sua senha foi atualizada. Você já pode entrar com a nova senha.'
+						? t('ForgotPassword.resetSuccessDescription')
 						: finished
-						? 'Enviamos um código para o e-mail informado. Informe-o abaixo junto com a nova senha.'
-						: 'Informe o e-mail cadastrado para receber o código de redefinição de senha.'}
+						? t('ForgotPassword.codeSentDescription')
+						: t('ForgotPassword.description')}
 				</Text>
 
 				{!finished && !resetSuccess && (
 					<View style={styles.form}>
 						<TextInput
-							placeholder='E-mail'
+							placeholder={t('ForgotPassword.emailPlaceholder')}
 							value={email}
 							keyboardType='email-address'
 							autoCapitalize='none'
@@ -136,10 +138,10 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 							{loading ? (
 								<View style={styles.loadingRow}>
 									<ActivityIndicator color="#fff" />
-									<Text style={styles.primaryButtonText}>Enviando...</Text>
+									<Text style={styles.primaryButtonText}>{t('ForgotPassword.sending')}</Text>
 								</View>
 							) : (
-								<Text style={styles.primaryButtonText}>Enviar instruções</Text>
+								<Text style={styles.primaryButtonText}>{t('ForgotPassword.sendInstructions')}</Text>
 							)}
 						</TouchableOpacity>
 					</View>
@@ -148,7 +150,7 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 				{finished && !resetSuccess && (
 					<View style={styles.form}>
 						<TextInput
-							placeholder='Código recebido por e-mail'
+							placeholder={t('ForgotPassword.tokenPlaceholder')}
 							value={token}
 							autoCapitalize='none'
 							autoCorrect={false}
@@ -158,7 +160,7 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 						/>
 
 						<TextInput
-							placeholder='Nova senha'
+							placeholder={t('ForgotPassword.newPasswordPlaceholder')}
 							value={newPassword}
 							secureTextEntry
 							placeholderTextColor='#8f8f8f'
@@ -167,7 +169,7 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 						/>
 
 						<TextInput
-							placeholder='Confirmar nova senha'
+							placeholder={t('ForgotPassword.confirmNewPasswordPlaceholder')}
 							value={confirmPassword}
 							secureTextEntry
 							placeholderTextColor='#8f8f8f'
@@ -186,10 +188,10 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 							{resetLoading ? (
 								<View style={styles.loadingRow}>
 									<ActivityIndicator color="#fff" />
-									<Text style={styles.primaryButtonText}>Redefinindo...</Text>
+									<Text style={styles.primaryButtonText}>{t('ForgotPassword.resetting')}</Text>
 								</View>
 							) : (
-								<Text style={styles.primaryButtonText}>Redefinir senha</Text>
+								<Text style={styles.primaryButtonText}>{t('ForgotPassword.resetPassword')}</Text>
 							)}
 						</TouchableOpacity>
 					</View>
@@ -201,11 +203,11 @@ export function ForgetPasswordScreen({ navigation }: Props) {
 						onPress={() => navigation.navigate('Login')}
 						style={styles.secondaryButton}
 					>
-						<Text style={styles.secondaryButtonText}>Voltar para o login</Text>
+						<Text style={styles.secondaryButtonText}>{t('ForgotPassword.backToLogin')}</Text>
 					</TouchableOpacity>
 
 					<Pressable onPress={handleSupport} hitSlop={8}>
-						<Text style={styles.supportLink}>Falar com o suporte</Text>
+						<Text style={styles.supportLink}>{t('ForgotPassword.talkToSupport')}</Text>
 					</Pressable>
 				</View>
 			</View>

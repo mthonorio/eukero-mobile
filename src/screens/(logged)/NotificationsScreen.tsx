@@ -13,6 +13,7 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { Bell, BellOff, CheckCheck } from 'lucide-react-native';
 
 import { NotificationService } from '../../services/notification.service';
@@ -36,6 +37,7 @@ const colors = {
 };
 
 export function NotificationsScreen({}: Props) {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const { data, isLoading, isRefetching, refetch, error } = useQuery({
@@ -88,8 +90,8 @@ export function NotificationsScreen({}: Props) {
     <View style={styles.headerCard}>
       <View style={styles.headerTop}>
         <View>
-          <Text style={styles.heroEyebrow}>Notificações</Text>
-          <Text style={styles.title}>Fique por dentro das novidades.</Text>
+          <Text style={styles.heroEyebrow}>{t('Notifications.eyebrow')}</Text>
+          <Text style={styles.title}>{t('Notifications.title')}</Text>
         </View>
 
         {(data?.unreadCount ?? 0) > 0 ? (
@@ -98,7 +100,9 @@ export function NotificationsScreen({}: Props) {
             onPress={() => markAllAsReadMutation.mutate()}
           >
             <CheckCheck color={colors.primary} size={16} />
-            <Text style={styles.markAllButtonText}>Marcar todas</Text>
+            <Text style={styles.markAllButtonText}>
+              {t('Notifications.markAll')}
+            </Text>
           </Pressable>
         ) : null}
       </View>
@@ -163,8 +167,8 @@ export function NotificationsScreen({}: Props) {
             <BellOff color={colors.muted} size={32} />
             <Text style={styles.emptyTitle}>
               {error
-                ? 'Não foi possível carregar suas notificações.'
-                : 'Você ainda não tem notificações.'}
+                ? t('Notifications.errorLoading')
+                : t('Notifications.empty')}
             </Text>
           </View>
         )

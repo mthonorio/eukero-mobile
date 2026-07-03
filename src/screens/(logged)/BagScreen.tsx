@@ -13,6 +13,7 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import {
   CheckSquare,
   Minus,
@@ -55,6 +56,7 @@ function productPrice(product: Product) {
 }
 
 export function BagScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const selectProduct = useCheckoutStore(state => state.selectProduct);
 
@@ -157,11 +159,9 @@ export function BagScreen({ navigation }: Props) {
       }
     >
       <View style={styles.headerCard}>
-        <Text style={styles.heroEyebrow}>Sacola</Text>
-        <Text style={styles.title}>Seus itens selecionados</Text>
-        <Text style={styles.description}>
-          Selecione os produtos que deseja levar e finalize a compra.
-        </Text>
+        <Text style={styles.heroEyebrow}>{t('Bag.eyebrow')}</Text>
+        <Text style={styles.title}>{t('Bag.title')}</Text>
+        <Text style={styles.description}>{t('Bag.description')}</Text>
       </View>
 
       {isLoading ? (
@@ -171,16 +171,12 @@ export function BagScreen({ navigation }: Props) {
       ) : isEmpty ? (
         <View style={styles.centerState}>
           <ShoppingBag color={colors.muted} size={32} />
-          <Text style={styles.emptyTitle}>Sua sacola está vazia.</Text>
-          <Text style={styles.description}>
-            Explore o feed e adicione produtos para vê-los aqui.
-          </Text>
+          <Text style={styles.emptyTitle}>{t('Bag.emptyTitle')}</Text>
+          <Text style={styles.description}>{t('Bag.emptyDescription')}</Text>
         </View>
       ) : error ? (
         <View style={styles.centerState}>
-          <Text style={styles.emptyTitle}>
-            Não foi possível carregar sua sacola.
-          </Text>
+          <Text style={styles.emptyTitle}>{t('Bag.loadError')}</Text>
         </View>
       ) : (
         stores.map(store => {
@@ -285,12 +281,14 @@ export function BagScreen({ navigation }: Props) {
       {selectedProducts.length > 0 ? (
         <View style={styles.summaryCard}>
           <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Subtotal</Text>
+            <Text style={styles.summaryLabel}>{t('Bag.subtotal')}</Text>
             <Text style={styles.summaryValue}>{formatPrice(subtotal)}</Text>
           </View>
 
           <Pressable style={styles.primaryButton} onPress={handleContinue}>
-            <Text style={styles.primaryButtonText}>Finalizar compra</Text>
+            <Text style={styles.primaryButtonText}>
+              {t('Bag.checkoutButton')}
+            </Text>
           </Pressable>
         </View>
       ) : null}

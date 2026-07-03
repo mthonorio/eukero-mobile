@@ -1,24 +1,20 @@
+import type { TFunction } from 'i18next';
+
 import type { ApiOrderStatus } from '../types/orders.type';
 
-export const ORDER_STATUS_TABS: { key: ApiOrderStatus | 'all'; label: string }[] = [
-  { key: 'all', label: 'Todos' },
-  { key: 'AP', label: 'Aguard. pagamento' },
-  { key: 'PC', label: 'Preparando' },
-  { key: 'EN', label: 'Enviado' },
-  { key: 'EC', label: 'Finalizado' },
-  { key: 'SD', label: 'Devolução' },
-  { key: 'CA', label: 'Cancelado' },
-];
-
-export const ORDER_STATUS_LABELS: Record<string, string> = {
-  AP: 'Aguardando pagamento',
-  PC: 'Preparando',
-  EN: 'Enviado',
-  EC: 'Finalizado',
-  SD: 'Devolução solicitada',
-  CA: 'Cancelado',
-  DE: 'Devolvido',
-};
+export function getOrderStatusTabs(
+  t: TFunction,
+): { key: ApiOrderStatus | 'all'; label: string }[] {
+  return [
+    { key: 'all', label: t('OrderStatus.tabs.all') },
+    { key: 'AP', label: t('OrderStatus.tabs.AP') },
+    { key: 'PC', label: t('OrderStatus.tabs.PC') },
+    { key: 'EN', label: t('OrderStatus.tabs.EN') },
+    { key: 'EC', label: t('OrderStatus.tabs.EC') },
+    { key: 'SD', label: t('OrderStatus.tabs.SD') },
+    { key: 'CA', label: t('OrderStatus.tabs.CA') },
+  ];
+}
 
 export const ORDER_STATUS_COLORS: Record<
   string,
@@ -33,8 +29,10 @@ export const ORDER_STATUS_COLORS: Record<
   DE: { text: '#B42318', background: 'rgba(180, 35, 24, 0.10)' },
 };
 
-export function getOrderStatusLabel(status: string) {
-  return ORDER_STATUS_LABELS[status] ?? status;
+export function getOrderStatusLabel(t: TFunction, status: string) {
+  const key = `OrderStatus.labels.${status}`;
+  const translated = t(key);
+  return translated === key ? status : translated;
 }
 
 export function getOrderStatusColor(status: string) {

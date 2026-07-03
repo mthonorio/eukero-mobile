@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import {
   ActivityIndicator,
   Pressable,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type Resolver } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import type { RegisterPersonFormValues } from '../../../types/auth/register';
 import { RegisterField } from './RegisterField';
@@ -16,7 +17,7 @@ import {
   maskCpf,
   maskPhone,
 } from '../../../validators/register/register.helpers';
-import { registerPersonSchema } from '../../../validators/register/register.schemas';
+import { createRegisterPersonSchema } from '../../../validators/register/register.schemas';
 
 type RegisterPersonFormProps = {
   loading?: boolean;
@@ -38,6 +39,8 @@ export function RegisterPersonForm({
   const passwordRef = useRef<TextInput>(null);
   const confirmPasswordRef = useRef<TextInput>(null);
   const pixKeyRef = useRef<TextInput>(null);
+  const { t } = useTranslation();
+  const registerPersonSchema = useMemo(() => createRegisterPersonSchema(t), [t]);
 
   const {
     control,
@@ -63,10 +66,9 @@ export function RegisterPersonForm({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Pessoa Física</Text>
+        <Text style={styles.title}>{t('RegisterPersonForm.title')}</Text>
         <Text style={styles.description}>
-          Cadastre sua conta em poucos passos, com campos otimizados para
-          mobile.
+          {t('RegisterPersonForm.description')}
         </Text>
       </View>
 
@@ -76,7 +78,7 @@ export function RegisterPersonForm({
         <RegisterField
           control={control}
           name='name'
-          label='Nome completo'
+          label={t('RegisterPersonForm.fullNameLabel')}
           autoCapitalize='words'
           textContentType='name'
           returnKeyType='next'
@@ -87,7 +89,7 @@ export function RegisterPersonForm({
         <RegisterField
           control={control}
           name='document'
-          label='CPF'
+          label={t('RegisterPersonForm.documentLabel')}
           keyboardType='number-pad'
           inputMode='numeric'
           maxLength={14}
@@ -100,7 +102,7 @@ export function RegisterPersonForm({
         <RegisterField
           control={control}
           name='phone'
-          label='Telefone'
+          label={t('RegisterPersonForm.phoneLabel')}
           keyboardType='phone-pad'
           inputMode='tel'
           maxLength={15}
@@ -113,7 +115,7 @@ export function RegisterPersonForm({
         <RegisterField
           control={control}
           name='email'
-          label='E-mail'
+          label={t('RegisterPersonForm.emailLabel')}
           keyboardType='email-address'
           autoCapitalize='none'
           autoCorrect={false}
@@ -127,20 +129,20 @@ export function RegisterPersonForm({
         <RegisterField
           control={control}
           name='password'
-          label='Senha'
+          label={t('RegisterPersonForm.passwordLabel')}
           secureTextEntry
           autoComplete='password-new'
           textContentType='newPassword'
           returnKeyType='next'
           inputRef={passwordRef}
-          helperText='Use 8+ caracteres, com maiúscula, minúscula, número e símbolo.'
+          helperText={t('RegisterPersonForm.passwordHelperText')}
           error={errors.password?.message}
         />
 
         <RegisterField
           control={control}
           name='confirmPassword'
-          label='Confirmar senha'
+          label={t('RegisterPersonForm.confirmPasswordLabel')}
           secureTextEntry
           autoComplete='password-new'
           textContentType='newPassword'
@@ -152,7 +154,7 @@ export function RegisterPersonForm({
         <RegisterField
           control={control}
           name='pixKey'
-          label='Chave Pix'
+          label={t('RegisterPersonForm.pixKeyLabel')}
           autoCapitalize='none'
           autoCorrect={false}
           returnKeyType='done'
@@ -173,14 +175,14 @@ export function RegisterPersonForm({
             {loading ? (
               <View style={styles.loadingRow}>
                 <ActivityIndicator color='#fff' />
-                <Text style={styles.primaryButtonText}>Criando conta...</Text>
+                <Text style={styles.primaryButtonText}>{t('RegisterPersonForm.creatingAccount')}</Text>
               </View>
             ) : (
-              <Text style={styles.primaryButtonText}>Criar conta</Text>
+              <Text style={styles.primaryButtonText}>{t('RegisterPersonForm.createAccount')}</Text>
             )}
           </Pressable>
           <Pressable onPress={onBack} style={styles.secondaryButton}>
-            <Text style={styles.secondaryButtonText}>Voltar</Text>
+            <Text style={styles.secondaryButtonText}>{t('RegisterPersonForm.back')}</Text>
           </Pressable>
         </View>
       </View>

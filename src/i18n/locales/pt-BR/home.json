@@ -1,0 +1,81 @@
+{
+  "Home": {
+    "heroEyebrow": "Descubra agora",
+    "heroTitle": "Feed com itens em destaque para o mobile.",
+    "heroDescription": "Explore novidades, acompanhe lojas e encontre produtos com uma navegação pensada para a tela pequena.",
+    "searchPlaceholder": "Pesquisar produtos ou lojas",
+    "featuredStoresTitle": "Lojas em destaque",
+    "featuredStoresSubtitle": "Atalhos para os perfis mais recentes do feed.",
+    "tabAll": "Explorar",
+    "tabFollowing": "Seguindo",
+    "productsTitle": "Produtos",
+    "errorLoadingProducts": "Não foi possível carregar os produtos agora.",
+    "loadingProducts": "Carregando produtos...",
+    "emptyProducts": "Nenhum produto encontrado.",
+    "emptyProductsDescription": "Ajuste a busca ou troque a aba para ver outros itens.",
+    "footerHint": "Puxe para atualizar ou role para mais itens"
+  },
+  "Menu": {
+    "home": "Início",
+    "notifications": "Notificações",
+    "bag": "Sacola",
+    "profile": "Perfil",
+    "liked": "Curtidos",
+    "orders": "Minhas compras",
+    "products": "Meus produtos",
+    "superFilters": "Super Filtros",
+    "superFiltersDescription": "Super filtros em desenvolvimento.",
+    "support": "Suporte",
+    "dashboard": "Dashboard",
+    "newProduct": "Novo produto",
+    "sales": "Minhas vendas",
+    "finance": "Gestão Financeira",
+    "pieces": "Peças",
+    "stock": "Estoque",
+    "ordersDescription": "Histórico de compras em desenvolvimento.",
+    "plans": "Planos",
+    "actionsSection": "AÇÕES",
+    "settings": "Configurações",
+    "logout": "Sair"
+  },
+  "Search": {
+    "searchPlaceholder": "Buscar produtos ou lojas",
+    "tabProducts": "Produtos",
+    "tabStores": "Lojas",
+    "emptyProductsFound": "Nenhum produto encontrado.",
+    "emptyProductsPrompt": "Digite para buscar produtos.",
+    "emptyStoresFound": "Nenhuma loja encontrada.",
+    "emptyStoresPrompt": "Digite para buscar lojas."
+  },
+  "FeaturePlaceholder": {
+    "backToHome": "Voltar para Início"
+  },
+  "DetailsPlaceholder": {
+    "title": "Tela Details",
+    "back": "Voltar"
+  },
+  "Notifications": {
+    "eyebrow": "Notificações",
+    "title": "Fique por dentro das novidades.",
+    "markAll": "Marcar todas",
+    "errorLoading": "Não foi possível carregar suas notificações.",
+    "empty": "Você ainda não tem notificações."
+  },
+  "Support": {
+    "eyebrow": "Suporte",
+    "title": "Como podemos ajudar?",
+    "emailTitle": "E-mail",
+    "whatsappTitle": "WhatsApp",
+    "whatsappDescription": "Atendimento em horário comercial.",
+    "documentsTitle": "Documentos",
+    "termsOfUse": "Termos de uso",
+    "privacyPolicy": "Política de privacidade",
+    "returnPolicy": "Política de devolução"
+  },
+  "LegalDocument": {
+    "terms": "Termos de uso",
+    "policy": "Política de privacidade",
+    "return": "Política de devolução",
+    "loadError": "Não foi possível carregar este documento no momento."
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "Profile": {
+    "defaultName": "Mi Perfil",
+    "defaultUsername": "@usuario",
+    "sectionLabel": "Mi Perfil",
+    "menu": {
+      "liked": "Me gusta",
+      "sales": "Mis ventas",
+      "products": "Mis productos",
+      "finance": "Gestión Financiera",
+      "orders": "Mis compras",
+      "plans": "Planes",
+      "superFilters": "Super Filtros",
+      "support": "Soporte",
+      "ordersCustomer": "Mis Compras",
+      "productsCustomer": "Mis Productos",
+      "settings": "Configuración",
+      "logout": "Cerrar sesión"
+    },
+    "featureDescriptions": {
+      "sales": "Lista de ventas en desarrollo.",
+      "finance": "Área financiera en desarrollo.",
+      "orders": "Historial de compras en desarrollo.",
+      "plans": "Gestión de planes en desarrollo.",
+      "superFilters": "Super filtros en desarrollo.",
+      "support": "Atención al cliente en desarrollo."
+    }
+  },
+  "ProfileSettings": {
+    "titleStore": "Editar perfil de la tienda",
+    "title": "Editar perfil",
+    "breadcrumb": "Configuración > Perfil",
+    "avatarHint": "Toca para cambiar la foto",
+    "fields": {
+      "name": "Nombre completo",
+      "username": "Nombre de usuario",
+      "storeName": "Nombre de la tienda",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "newPassword": "Nueva contraseña",
+      "confirmNewPassword": "Confirmar nueva contraseña",
+      "pixOwnerName": "Titular de la cuenta Pix",
+      "pixKey": "Clave PIX",
+      "pixDocument": "CPF/CNPJ del titular"
+    },
+    "hints": {
+      "newPassword": "Usa 8+ caracteres, con mayúscula, minúscula, número y símbolo.",
+      "pixOwnerName": "Ingresa el nombre exactamente como está registrado en la cuenta Pix.",
+      "pixKey": "Puede ser CPF, CNPJ, email, teléfono o clave aleatoria.",
+      "pixDocument": "Documento del titular del cobro."
+    },
+    "pixSectionTitle": "Datos de Cobro (Pix)",
+    "changeButton": "Cambiar",
+    "saveButton": "Guardar cambios",
+    "errors": {
+      "saveTitle": "Error",
+      "saveMessage": "No fue posible guardar los cambios."
+    }
+  },
+  "ProfileCollection": {
+    "descriptionLiked": "Artículos que te gustaron y puedes volver a explorar.",
+    "descriptionMine": "Productos registrados en tu cuenta, organizados en tarjetas reutilizables.",
+    "loading": "Cargando...",
+    "emptyDefault": "No se encontraron artículos.",
+    "errorEmpty": "No se encontraron productos.",
+    "errorLoad": "No fue posible cargar los productos en este momento."
+  },
+  "ProfileFeature": {},
+  "Addresses": {
+    "breadcrumb": "Configuración",
+    "titleEdit": "Editar dirección",
+    "titleNew": "Nueva dirección",
+    "titleList": "Direcciones",
+    "emptyText": "Aún no has registrado ninguna dirección.",
+    "cepLabel": "Código Postal: {{cep}}",
+    "addButton": "Agregar dirección",
+    "fields": {
+      "name": "Nombre (opcional)",
+      "cep": "Código Postal",
+      "address": "Dirección",
+      "number": "Número",
+      "complement": "Complemento",
+      "neighborhood": "Barrio",
+      "city": "Ciudad",
+      "state": "Estado"
+    },
+    "cepLoading": "Buscando dirección por el código postal...",
+    "cancelButton": "Cancelar",
+    "saveButton": "Guardar",
+    "deleteDialog": {
+      "title": "Eliminar dirección",
+      "message": "¿Estás seguro de que deseas eliminar esta dirección?",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar"
+    },
+    "errors": {
+      "loadTitle": "Error",
+      "loadMessage": "No fue posible cargar las direcciones.",
+      "saveTitle": "Error",
+      "saveMessage": "No fue posible guardar la dirección.",
+      "deleteTitle": "Error",
+      "deleteMessage": "No fue posible eliminar la dirección."
+    }
+  },
+  "Connect": {
+    "breadcrumb": "Configuración",
+    "title": "Conectar Instagram",
+    "connectedAs": "Conectado como @{{username}}",
+    "disconnectButton": "Desconectar",
+    "description": "Conecta una cuenta comercial o de creador de contenido de Instagram para vincular tu perfil con tu tienda.",
+    "connectButton": "Conectar con Instagram",
+    "disconnectDialog": {
+      "title": "Desconectar Instagram",
+      "message": "¿Estás seguro de que deseas desconectar tu cuenta de Instagram?",
+      "cancel": "Cancelar",
+      "confirm": "Desconectar"
+    },
+    "errors": {
+      "connectTitle": "Error",
+      "connectMessage": "No fue posible iniciar la conexión con Instagram.",
+      "disconnectTitle": "Error",
+      "disconnectMessage": "No fue posible desconectar tu cuenta."
+    }
+  }
+}

@@ -1,10 +1,13 @@
 import { Button, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { RootStackParamList } from '../navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
 export function DetailsScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+
   return (
     <View
       style={{
@@ -14,9 +17,12 @@ export function DetailsScreen({ navigation }: Props) {
         gap: 20,
       }}
     >
-      <Text>Tela Details</Text>
+      <Text>{t('DetailsPlaceholder.title')}</Text>
 
-      <Button title="Voltar" onPress={() => navigation.goBack()} />
+      <Button
+        title={t('DetailsPlaceholder.back')}
+        onPress={() => navigation.goBack()}
+      />
     </View>
   );
 }

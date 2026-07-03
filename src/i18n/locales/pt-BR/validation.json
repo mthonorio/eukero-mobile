@@ -1,0 +1,49 @@
+{
+  "Validation": {
+    "password": {
+      "min8": "A senha deve ter pelo menos 8 caracteres.",
+      "lowercase": "A senha deve conter uma letra minúscula.",
+      "uppercase": "A senha deve conter uma letra maiúscula.",
+      "number": "A senha deve conter um número.",
+      "special": "A senha deve conter um caractere especial.",
+      "weak": "Use 8+ caracteres, com maiúscula, minúscula, número e símbolo."
+    },
+    "confirmPassword": {
+      "required": "Confirme a senha.",
+      "mismatch": "As senhas não coincidem."
+    },
+    "email": {
+      "invalid": "Informe um e-mail válido."
+    },
+    "phone": {
+      "invalid": "Informe um telefone válido."
+    },
+    "name": {
+      "required": "Informe o nome completo."
+    },
+    "username": {
+      "required": "Informe o username."
+    },
+    "storeName": {
+      "required": "Informe o nome da loja."
+    },
+    "document": {
+      "cpfInvalid": "Informe um CPF válido.",
+      "cpfCnpjInvalid": "Informe um CPF ou CNPJ válido."
+    },
+    "address": {
+      "cepInvalid": "Informe um CEP válido.",
+      "addressRequired": "Informe o endereço.",
+      "numberRequired": "Informe o número.",
+      "neighborhoodRequired": "Informe o bairro.",
+      "cityRequired": "Informe a cidade.",
+      "stateRequired": "Informe a UF."
+    },
+    "pix": {
+      "ownerNameRequired": "Informe o nome do titular.",
+      "keyRequired": "Informe a chave Pix.",
+      "documentRequired": "Informe o CPF ou CNPJ.",
+      "documentInvalid": "Informe um CPF ou CNPJ válido."
+    }
+  }
+}

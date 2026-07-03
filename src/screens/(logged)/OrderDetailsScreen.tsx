@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft } from 'lucide-react-native';
 
 import { OrderDetailsContent } from '../../components/OrderDetailsContent';
@@ -27,6 +28,7 @@ const colors = {
 };
 
 export function OrderDetailsScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const { orderId } = route.params;
 
   const { data: order, isLoading, error } = useQuery({
@@ -47,7 +49,7 @@ export function OrderDetailsScreen({ navigation, route }: Props) {
       ) : error || !order ? (
         <View style={styles.centerState}>
           <Text style={styles.emptyTitle}>
-            Não foi possível carregar este pedido.
+            {t('OrderDetails.loadError')}
           </Text>
         </View>
       ) : (

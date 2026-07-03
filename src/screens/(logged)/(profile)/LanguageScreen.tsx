@@ -8,9 +8,11 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { Check, ChevronLeft } from 'lucide-react-native';
 
 import { RootStackParamList } from '../../../navigation/types';
+import { changeLanguage } from '../../../i18n';
 import {
   DEFAULT_LANGUAGE,
   getLanguagePreference,
@@ -31,13 +33,10 @@ const colors = {
   primarySoft: 'rgba(15, 122, 79, 0.10)',
 };
 
-const LANGUAGES: { code: LanguageCode; label: string; nativeName: string }[] = [
-  { code: 'pt-BR', label: 'Português (Brasil)', nativeName: 'Português' },
-  { code: 'en-US', label: 'Inglês (Estados Unidos)', nativeName: 'English' },
-  { code: 'es', label: 'Espanhol', nativeName: 'Español' },
-];
+const LANGUAGE_CODES: LanguageCode[] = ['pt-BR', 'en-US', 'es'];
 
 export function LanguageScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [selected, setSelected] = useState<LanguageCode>(DEFAULT_LANGUAGE);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,6 +49,7 @@ export function LanguageScreen({ navigation }: Props) {
   async function handleSelect(code: LanguageCode) {
     setSelected(code);
     await saveLanguagePreference(code);
+    await changeLanguage(code);
   }
 
   return (
@@ -63,8 +63,8 @@ export function LanguageScreen({ navigation }: Props) {
         </Pressable>
 
         <View>
-          <Text style={styles.heroEyebrow}>Configurações</Text>
-          <Text style={styles.title}>Idioma</Text>
+          <Text style={styles.heroEyebrow}>{t('Language.sectionLabel')}</Text>
+          <Text style={styles.title}>{t('Language.title')}</Text>
         </View>
       </View>
 
@@ -74,17 +74,21 @@ export function LanguageScreen({ navigation }: Props) {
             <ActivityIndicator color={colors.primary} />
           </View>
         ) : (
-          LANGUAGES.map(language => {
-            const isSelected = language.code === selected;
+          LANGUAGE_CODES.map(code => {
+            const isSelected = code === selected;
             return (
               <Pressable
-                key={language.code}
+                key={code}
                 style={[styles.languageRow, isSelected && styles.languageRowSelected]}
-                onPress={() => handleSelect(language.code)}
+                onPress={() => handleSelect(code)}
               >
                 <View style={styles.languageInfo}>
-                  <Text style={styles.languageLabel}>{language.label}</Text>
-                  <Text style={styles.languageNative}>{language.nativeName}</Text>
+                  <Text style={styles.languageLabel}>
+                    {t(`Language.options.${code}.label`)}
+                  </Text>
+                  <Text style={styles.languageNative}>
+                    {t(`Language.options.${code}.nativeName`)}
+                  </Text>
                 </View>
                 {isSelected ? (
                   <View style={styles.checkBadge}>

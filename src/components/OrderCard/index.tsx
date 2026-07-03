@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { ChevronRight } from 'lucide-react-native';
 
 import { Avatar } from '../atoms/Avatar';
@@ -23,6 +24,7 @@ const colors = {
 };
 
 export function OrderCard({ order, mode, onPress }: Props) {
+  const { t } = useTranslation();
   const counterpart = mode === 'orders' ? order.store : order.buyer;
   const statusColor = getOrderStatusColor(order.status);
 
@@ -33,7 +35,7 @@ export function OrderCard({ order, mode, onPress }: Props) {
 
         <View style={styles.headerInfo}>
           <Text style={styles.storeName} numberOfLines={1}>
-            {counterpart?.name ?? 'Usuário'}
+            {counterpart?.name ?? t('OrderCard.defaultUserName')}
           </Text>
           <Text style={styles.storeUsername} numberOfLines={1}>
             @{counterpart?.username}
@@ -44,7 +46,7 @@ export function OrderCard({ order, mode, onPress }: Props) {
           style={[styles.statusBadge, { backgroundColor: statusColor.background }]}
         >
           <Text style={[styles.statusText, { color: statusColor.text }]}>
-            {getOrderStatusLabel(order.status)}
+            {getOrderStatusLabel(t, order.status)}
           </Text>
         </View>
       </View>
@@ -52,7 +54,7 @@ export function OrderCard({ order, mode, onPress }: Props) {
       <View style={styles.footer}>
         <View>
           <Text style={styles.orderId} numberOfLines={1}>
-            Pedido #{order.orderId.slice(0, 8)}
+            {t('OrderCard.orderIdLabel', { id: order.orderId.slice(0, 8) })}
           </Text>
           <Text style={styles.date}>
             {new Date(order.createdAt).toLocaleDateString('pt-BR')}

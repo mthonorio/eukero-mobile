@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   Alert,
@@ -31,6 +32,7 @@ const colors = {
 };
 
 export function SupplierFormScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const supplierId = route.params?.supplierId;
   const isEditing = Boolean(supplierId);
 
@@ -61,7 +63,10 @@ export function SupplierFormScreen({ navigation, route }: Props) {
         });
         setPercentage(supplier.percentageValue ?? 10);
       } catch {
-        Alert.alert('Erro', 'Não foi possível carregar o fornecedor.');
+        Alert.alert(
+          t('SupplierForm.alerts.loadErrorTitle'),
+          t('SupplierForm.alerts.loadErrorMessage'),
+        );
       } finally {
         setIsLoading(false);
       }
@@ -101,7 +106,10 @@ export function SupplierFormScreen({ navigation, route }: Props) {
 
   const handleSubmit = useCallback(async () => {
     if (!selectedUser) {
-      Alert.alert('Atenção', 'Selecione um usuário para continuar.');
+      Alert.alert(
+        t('SupplierForm.alerts.selectUserTitle'),
+        t('SupplierForm.alerts.selectUserMessage'),
+      );
       return;
     }
 
@@ -121,11 +129,14 @@ export function SupplierFormScreen({ navigation, route }: Props) {
 
       navigation.goBack();
     } catch {
-      Alert.alert('Erro', 'Não foi possível salvar o fornecedor.');
+      Alert.alert(
+        t('SupplierForm.alerts.saveErrorTitle'),
+        t('SupplierForm.alerts.saveErrorMessage'),
+      );
     } finally {
       setIsSaving(false);
     }
-  }, [isEditing, navigation, percentage, selectedUser, supplierId]);
+  }, [isEditing, navigation, percentage, selectedUser, supplierId, t]);
 
   return (
     <ScrollView
@@ -143,10 +154,12 @@ export function SupplierFormScreen({ navigation, route }: Props) {
 
         <View>
           <Text style={styles.title}>
-            {isEditing ? 'Editar fornecedor' : 'Adicionar fornecedor'}
+            {isEditing
+              ? t('SupplierForm.titleEdit')
+              : t('SupplierForm.titleAdd')}
           </Text>
           <Text style={styles.description}>
-            Busque um usuário e defina o percentual de repasse.
+            {t('SupplierForm.description')}
           </Text>
         </View>
       </View>
@@ -157,7 +170,7 @@ export function SupplierFormScreen({ navigation, route }: Props) {
         </View>
       ) : (
         <View style={styles.card}>
-          <Text style={styles.label}>Usuário fornecedor</Text>
+          <Text style={styles.label}>{t('SupplierForm.userLabel')}</Text>
 
           {selectedUser ? (
             <View style={styles.selectedUserRow}>
@@ -172,7 +185,9 @@ export function SupplierFormScreen({ navigation, route }: Props) {
               </View>
               {!isEditing ? (
                 <Pressable onPress={() => setSelectedUser(null)}>
-                  <Text style={styles.changeLink}>Alterar</Text>
+                  <Text style={styles.changeLink}>
+                    {t('SupplierForm.changeLink')}
+                  </Text>
                 </Pressable>
               ) : null}
             </View>
@@ -183,7 +198,7 @@ export function SupplierFormScreen({ navigation, route }: Props) {
                 <TextInput
                   value={search}
                   onChangeText={setSearch}
-                  placeholder='Buscar por nome ou username'
+                  placeholder={t('SupplierForm.searchPlaceholder')}
                   placeholderTextColor={colors.muted}
                   style={styles.searchInput}
                   autoCapitalize='none'
@@ -212,7 +227,7 @@ export function SupplierFormScreen({ navigation, route }: Props) {
           )}
 
           <Text style={[styles.label, styles.percentageLabel]}>
-            Percentual de repasse ao fornecedor
+            {t('SupplierForm.percentageLabel')}
           </Text>
 
           <View style={styles.percentageRow}>
@@ -242,7 +257,9 @@ export function SupplierFormScreen({ navigation, route }: Props) {
               <ActivityIndicator color='#FFFFFF' />
             ) : (
               <Text style={styles.primaryButtonText}>
-                {isEditing ? 'Salvar alterações' : 'Adicionar fornecedor'}
+                {isEditing
+                  ? t('SupplierForm.buttonSave')
+                  : t('SupplierForm.buttonAdd')}
               </Text>
             )}
           </Pressable>

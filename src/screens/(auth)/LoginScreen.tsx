@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../../stores/auth.store';
 import Layout from './layout';
 import { AuthStackParamList } from '../../navigation/types';
@@ -17,6 +18,7 @@ import { isBiometricAvailable } from '../../services/biometric.service';
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
 export function LoginScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const signIn = useAuthStore(state => state.signIn);
   const signInWithBiometrics = useAuthStore(
     state => state.signInWithBiometrics,
@@ -26,7 +28,9 @@ export function LoginScreen({ navigation }: Props) {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState<string | null>(null);
   const [biometricAvailable, setBiometricAvailable] = useState(false);
-  const [biometricLabel, setBiometricLabel] = useState('biometria');
+  const [biometricLabel, setBiometricLabel] = useState(
+    t('Login.biometricGeneric'),
+  );
   const [isBiometricChecking, setIsBiometricChecking] = useState(true);
   const [biometricError, setBiometricError] = useState<string | null>(null);
 
@@ -44,8 +48,8 @@ export function LoginScreen({ navigation }: Props) {
     } catch (error) {
       const message =
         axios.isAxiosError(error) && error.response?.status === 401
-          ? 'Usuário ou senha incorretos'
-          : 'Não foi possível entrar. Tente novamente.';
+          ? t('Login.invalidCredentials')
+          : t('Login.genericError');
 
       setLoginError(message);
     }
@@ -60,10 +64,10 @@ export function LoginScreen({ navigation }: Props) {
       const message =
         error instanceof Error
           ? error.message
-          : 'Não foi possível autenticar com biometria.';
+          : t('Login.biometricAuthError');
 
       setBiometricError(message);
-      Alert.alert('Biometria', message);
+      Alert.alert(t('Login.biometricAlertTitle'), message);
     }
   }
 
@@ -85,10 +89,10 @@ export function LoginScreen({ navigation }: Props) {
         setBiometricAvailable(available);
         setBiometricLabel(
           biometryType === 'FaceID'
-            ? 'Face ID'
+            ? t('Login.biometricFaceId')
             : biometryType === 'TouchID'
-            ? 'digital'
-            : 'biometria',
+            ? t('Login.biometricFingerprint')
+            : t('Login.biometricGeneric'),
         );
       } catch {
         if (isMounted) {
@@ -120,7 +124,7 @@ export function LoginScreen({ navigation }: Props) {
         }}
       >
         <TextInput
-          placeholder='Login'
+          placeholder={t('Login.loginPlaceholder')}
           value={email}
           keyboardType='email-address'
           autoCapitalize='none'
@@ -140,7 +144,7 @@ export function LoginScreen({ navigation }: Props) {
         />
 
         <TextInput
-          placeholder='Senha'
+          placeholder={t('Login.passwordPlaceholder')}
           secureTextEntry
           value={password}
           onChangeText={text => {
@@ -170,7 +174,7 @@ export function LoginScreen({ navigation }: Props) {
               fontWeight: '600',
             }}
           >
-            Esqueceu a senha?
+            {t('Login.forgotPassword')}
           </Text>
         </TouchableOpacity>
 
@@ -197,7 +201,7 @@ export function LoginScreen({ navigation }: Props) {
                 fontWeight: '700',
               }}
             >
-              Entrar
+              {t('Login.submit')}
             </Text>
           )}
         </TouchableOpacity>
@@ -231,7 +235,7 @@ export function LoginScreen({ navigation }: Props) {
               fontWeight: '700',
             }}
           >
-            Criar conta
+            {t('Login.createAccount')}
           </Text>
         </TouchableOpacity>
 
@@ -260,7 +264,7 @@ export function LoginScreen({ navigation }: Props) {
                   fontWeight: '700',
                 }}
               >
-                Entrar com {biometricLabel}
+                {t('Login.signInWith', { method: biometricLabel })}
               </Text>
             )}
           </TouchableOpacity>
@@ -275,8 +279,8 @@ export function LoginScreen({ navigation }: Props) {
             }}
           >
             {biometricAvailable
-              ? 'Use Face ID, digital ou a senha do dispositivo para entrar.'
-              : 'Biometria indisponível neste dispositivo.'}
+              ? t('Login.biometricHintAvailable')
+              : t('Login.biometricHintUnavailable')}
           </Text>
         ) : null}
 

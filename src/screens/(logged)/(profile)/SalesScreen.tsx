@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -12,12 +12,13 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft, PackageSearch, Search } from 'lucide-react-native';
 
 import { OrderCard } from '../../../components/OrderCard';
 import { OrderService } from '../../../services/order.service';
 import { RootStackParamList } from '../../../navigation/types';
-import { ORDER_STATUS_TABS } from '../../../utils/orderStatus.utils';
+import { getOrderStatusTabs } from '../../../utils/orderStatus.utils';
 import type { ApiOrderStatus } from '../../../types/orders.type';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Sales'>;
@@ -33,8 +34,10 @@ const colors = {
 };
 
 export function SalesScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ApiOrderStatus | 'all'>('all');
   const [search, setSearch] = useState('');
+  const orderStatusTabs = useMemo(() => getOrderStatusTabs(t), [t]);
 
   const { data, isLoading, isRefetching, refetch, error } = useQuery({
     queryKey: ['sales', activeTab, search],
@@ -53,15 +56,15 @@ export function SalesScreen({ navigation }: Props) {
           <ChevronLeft color={colors.text} size={22} />
         </Pressable>
 
-        <Text style={styles.heroEyebrow}>Minhas vendas</Text>
-        <Text style={styles.title}>Acompanhe suas vendas.</Text>
+        <Text style={styles.heroEyebrow}>{t('Sales.heroEyebrow')}</Text>
+        <Text style={styles.title}>{t('Sales.title')}</Text>
 
         <View style={styles.searchBox}>
           <Search color={colors.muted} size={16} />
           <TextInput
             value={search}
             onChangeText={setSearch}
-            placeholder='Buscar por comprador'
+            placeholder={t('Sales.searchPlaceholder')}
             placeholderTextColor={colors.muted}
             style={styles.searchInput}
           />
@@ -73,7 +76,7 @@ export function SalesScreen({ navigation }: Props) {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.tabsRow}
       >
-        {ORDER_STATUS_TABS.map(tab => (
+        {orderStatusTabs.map(tab => (
           <Pressable
             key={tab.key}
             style={[styles.tab, activeTab === tab.key && styles.tabActive]}
@@ -128,9 +131,7 @@ export function SalesScreen({ navigation }: Props) {
           <View style={styles.centerState}>
             <PackageSearch color={colors.muted} size={32} />
             <Text style={styles.emptyTitle}>
-              {error
-                ? 'Não foi possível carregar suas vendas.'
-                : 'Você ainda não realizou vendas.'}
+              {error ? t('Sales.loadError') : t('Sales.empty')}
             </Text>
           </View>
         )

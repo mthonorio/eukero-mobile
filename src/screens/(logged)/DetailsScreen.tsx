@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ChevronLeft, Heart, Tag, Truck } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 import Video from 'react-native-video';
 
 import { RootStackParamList } from '../../navigation/types';
@@ -41,6 +42,7 @@ type MediaItem =
   | { type: 'image'; uri: string };
 
 export function DetailsScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const { product } = route.params;
   const selectProduct = useCheckoutStore(state => state.selectProduct);
   const { width: screenWidth } = useWindowDimensions();
@@ -208,14 +210,16 @@ export function DetailsScreen({ navigation, route }: Props) {
 
         <View style={styles.priceRow}>
           <View style={styles.priceStack}>
-            <Text style={styles.priceLabel}>Preço atual</Text>
+            <Text style={styles.priceLabel}>{t('ProductDetails.priceLabel')}</Text>
             {hasDiscount ? (
               <View style={styles.chipRow}>
                 <Text style={styles.originalPrice}>
                   {formatPrice(product.salePrice)}
                 </Text>
                 <Text style={styles.discountPrice}>
-                  {discount > 0 ? `-${discount}%` : null}
+                  {discount > 0
+                    ? t('ProductDetails.discount', { percent: discount })
+                    : null}
                 </Text>
               </View>
             ) : null}
@@ -228,90 +232,98 @@ export function DetailsScreen({ navigation, route }: Props) {
         <View style={styles.chipRow}>
           <View style={styles.chip}>
             <Tag color={colors.primary} size={14} />
-            <Text style={styles.chipText}>{product.category || 'Produto'}</Text>
+            <Text style={styles.chipText}>
+              {product.category || t('ProductDetails.categoryFallback')}
+            </Text>
           </View>
           <View style={styles.chipSoft}>
             <Truck color={colors.muted} size={14} />
             <Text style={styles.chipSoftText}>
-              {product.inStock ? 'Em estoque' : 'Sob consulta'}
+              {product.inStock
+                ? t('ProductDetails.inStock')
+                : t('ProductDetails.onRequest')}
             </Text>
           </View>
         </View>
 
         <Pressable style={styles.primaryButton} onPress={handleCheckout}>
-          <Text style={styles.primaryButtonText}>EUKERO</Text>
+          <Text style={styles.primaryButtonText}>
+            {t('ProductDetails.checkoutButton')}
+          </Text>
         </Pressable>
       </View>
 
       <View style={styles.sectionCard}>
-        <Text style={styles.sectionTitle}>Detalhes</Text>
+        <Text style={styles.sectionTitle}>{t('ProductDetails.detailsTitle')}</Text>
 
         <View style={styles.detailList}>
           {product.department ? (
             <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Departamento:</Text>
+              <Text style={styles.detailLabel}>{t('ProductDetails.department')}</Text>
               <Text style={styles.detailValue}>{product.department}</Text>
             </View>
           ) : null}
 
           {product.category ? (
             <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Categoria:</Text>
+              <Text style={styles.detailLabel}>{t('ProductDetails.category')}</Text>
               <Text style={styles.detailValue}>{product.category}</Text>
             </View>
           ) : null}
 
           {product.classification ? (
             <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Classificação:</Text>
+              <Text style={styles.detailLabel}>
+                {t('ProductDetails.classification')}
+              </Text>
               <Text style={styles.detailValue}>{product.classification}</Text>
             </View>
           ) : null}
 
           {product.style ? (
             <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Estilo:</Text>
+              <Text style={styles.detailLabel}>{t('ProductDetails.style')}</Text>
               <Text style={styles.detailValue}>{product.style}</Text>
             </View>
           ) : null}
 
           <View style={styles.detailRow}>
-            <Text style={styles.detailLabel}>Qualidade:</Text>
+            <Text style={styles.detailLabel}>{t('ProductDetails.quality')}</Text>
             <Text style={styles.detailValue}>
               {product.quality != null
                 ? String(product.quality)
-                : 'Não informada'}
+                : t('ProductDetails.qualityNotInformed')}
             </Text>
           </View>
 
           <View style={styles.detailColumnRow}>
-            <Text style={styles.detailLabel}>Dimensões:</Text>
+            <Text style={styles.detailLabel}>{t('ProductDetails.dimensions')}</Text>
             <View style={styles.detailColumn}>
-              <Text style={styles.detailValue}>{`Altura: ${
-                product.height ?? 0
-              }`}</Text>
-              <Text style={styles.detailValue}>{`Largura: ${
-                product.width ?? 0
-              }`}</Text>
-              <Text style={styles.detailValue}>{`Comprimento: ${
-                product.length ?? 0
-              }`}</Text>
-              <Text style={styles.detailValue}>{`Peso: ${
-                product.weight ?? 0
-              }`}</Text>
+              <Text style={styles.detailValue}>
+                {t('ProductDetails.height', { value: product.height ?? 0 })}
+              </Text>
+              <Text style={styles.detailValue}>
+                {t('ProductDetails.width', { value: product.width ?? 0 })}
+              </Text>
+              <Text style={styles.detailValue}>
+                {t('ProductDetails.length', { value: product.length ?? 0 })}
+              </Text>
+              <Text style={styles.detailValue}>
+                {t('ProductDetails.weight', { value: product.weight ?? 0 })}
+              </Text>
             </View>
           </View>
 
           {product.size ? (
             <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Tamanho:</Text>
+              <Text style={styles.detailLabel}>{t('ProductDetails.size')}</Text>
               <Text style={styles.detailValue}>{product.size}</Text>
             </View>
           ) : null}
 
           {product.color ? (
             <View style={styles.detailRow}>
-              <Text style={styles.detailLabel}>Cor:</Text>
+              <Text style={styles.detailLabel}>{t('ProductDetails.color')}</Text>
               <Text style={styles.detailValue}>{product.color}</Text>
             </View>
           ) : null}

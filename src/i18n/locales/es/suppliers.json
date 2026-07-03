@@ -1,0 +1,60 @@
+{
+  "Suppliers": {
+    "eyebrow": "Proveedores",
+    "title": "Gestione sus proveedores.",
+    "emptyError": "No fue posible cargar sus proveedores.",
+    "emptyTitle": "Aún no ha registrado proveedores."
+  },
+  "SupplierForm": {
+    "titleEdit": "Editar proveedor",
+    "titleAdd": "Agregar proveedor",
+    "description": "Busque un usuario y defina el porcentaje de traspaso.",
+    "userLabel": "Usuario proveedor",
+    "changeLink": "Cambiar",
+    "searchPlaceholder": "Buscar por nombre o nombre de usuario",
+    "percentageLabel": "Porcentaje de traspaso al proveedor",
+    "buttonSave": "Guardar cambios",
+    "buttonAdd": "Agregar proveedor",
+    "alerts": {
+      "loadErrorTitle": "Error",
+      "loadErrorMessage": "No fue posible cargar el proveedor.",
+      "selectUserTitle": "Atención",
+      "selectUserMessage": "Seleccione un usuario para continuar.",
+      "saveErrorTitle": "Error",
+      "saveErrorMessage": "No fue posible guardar el proveedor."
+    }
+  },
+  "SupplierConsigned": {
+    "steps": {
+      "identification": "Identificación",
+      "commission": "Comisión",
+      "confirmation": "Confirmación"
+    },
+    "badgeInProgress": "En curso",
+    "title": "Consignación de proveedor",
+    "searchPlaceholder": "Buscar por nombre o nombre de usuario",
+    "percentageLabel": "Porcentaje traspasado al proveedor",
+    "splitSupplierReceives": "Proveedor recibe",
+    "splitStoreRetains": "Tienda retiene",
+    "summaryLabel": "Resumen",
+    "buttonContinue": "Continuar",
+    "buttonConfirm": "Confirmar consignación",
+    "alerts": {
+      "successTitle": "Éxito",
+      "successMessage": "Consignación registrada exitosamente.",
+      "errorTitle": "Error",
+      "errorMessage": "No fue posible registrar la consignación."
+    }
+  },
+  "Pieces": {
+    "eyebrow": "Piezas",
+    "title": "Productos por proveedor.",
+    "emptyError": "No fue posible cargar sus proveedores.",
+    "emptyTitle": "Ningún proveedor asociado.",
+    "detail": {
+      "productsAvailable": "Productos disponibles",
+      "supplierTransfer": "Traspaso al proveedor",
+      "status": "Estado"
+    }
+  }
+}

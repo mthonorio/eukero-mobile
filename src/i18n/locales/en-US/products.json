@@ -1,0 +1,154 @@
+{
+  "MyProducts": {
+    "heroEyebrow": "My products",
+    "title": "Manage your products on mobile.",
+    "description": "The list uses progressive loading with Tanstack Query and displays each item through MyProductCard.",
+    "itemsBadge": "{{count}} items",
+    "loading": "Loading...",
+    "emptyTitleError": "We couldn't load your products.",
+    "emptyTitleNoProducts": "You haven't registered any products yet."
+  },
+  "ProductForm": {
+    "kicker": {
+      "edit": "Product edit",
+      "create": "Product registration"
+    },
+    "title": {
+      "edit": "Update the product information",
+      "createStep1": "Create the product base",
+      "createStep2": "Add images"
+    },
+    "subtitle": {
+      "edit": "The fields below are already filled in with the current data.",
+      "create": "The flow has two steps: first save the product, then upload the images."
+    },
+    "steps": {
+      "data": "1. Data",
+      "images": "2. Images"
+    },
+    "loadingState": {
+      "product": "Loading product...",
+      "dependencies": "Loading dependencies..."
+    },
+    "errorState": {
+      "title": "We couldn't open the form.",
+      "edit": "Failed to load the product data for editing.",
+      "create": "Failed to load the data required for the selects."
+    },
+    "basicInfo": {
+      "sectionTitle": "General information",
+      "name": {
+        "label": "Name",
+        "placeholder": "Ex: Pink Prime T-shirt"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Describe the product in detail"
+      },
+      "sku": {
+        "label": "SKU",
+        "placeholder": "Internal code"
+      },
+      "salePrice": {
+        "label": "Price",
+        "placeholder": "0.00"
+      },
+      "promotionalPrice": {
+        "label": "Promotion",
+        "placeholder": "0.00"
+      },
+      "quantity": {
+        "label": "Quantity",
+        "placeholder": "1"
+      }
+    },
+    "shippingInfo": {
+      "weight": {
+        "label": "Weight",
+        "placeholder": "0.0"
+      },
+      "height": {
+        "label": "Height",
+        "placeholder": "0.0"
+      },
+      "width": {
+        "label": "Width",
+        "placeholder": "0.0"
+      },
+      "length": {
+        "label": "Length",
+        "placeholder": "0.0"
+      }
+    },
+    "selects": {
+      "department": {
+        "label": "Department",
+        "placeholder": "Select department"
+      },
+      "classification": {
+        "label": "Classification",
+        "placeholder": "Select classification"
+      },
+      "category": {
+        "label": "Category",
+        "placeholder": "Select category"
+      },
+      "style": {
+        "label": "Style",
+        "placeholder": "Select style"
+      },
+      "size": {
+        "label": "Size",
+        "placeholder": "Select size"
+      },
+      "color": {
+        "label": "Color",
+        "placeholder": "Select color"
+      }
+    },
+    "buttons": {
+      "saveChanges": "Save changes",
+      "saveAndContinue": "Save and continue",
+      "back": "Back",
+      "finishRegistration": "Finish registration",
+      "goToMyProducts": "Go to my products"
+    },
+    "media": {
+      "sectionTitle": "Product image",
+      "summaryLabel": "Product created",
+      "defaultProductName": "Unnamed product",
+      "picker": {
+        "title": "Add images",
+        "text": "Select one or more images from the gallery."
+      }
+    },
+    "modal": {
+      "title": "Select option",
+      "emptyText": "No option available at the moment."
+    },
+    "validation": {
+      "nameRequired": "Enter the product name.",
+      "salePriceRequired": "Enter the sale price.",
+      "quantityRequired": "Enter the quantity."
+    },
+    "alerts": {
+      "attentionTitle": "Attention",
+      "invalidSalePrice": "Enter a valid sale price.",
+      "updateSuccessTitle": "Success",
+      "updateSuccessMessage": "Product updated successfully.",
+      "viewMyProducts": "View my products",
+      "createErrorTitle": "Error creating product",
+      "updateErrorTitle": "Error updating product",
+      "saveErrorMessage": "We couldn't save the product data right now.",
+      "genericErrorTitle": "Error",
+      "createProductBeforeImages": "Create the product before uploading images.",
+      "productSavedTitle": "Product saved",
+      "productSavedMessage": "Your product has been created. You can add images later.",
+      "stayHere": "Stay here",
+      "uploadSuccessTitle": "Success",
+      "uploadSuccessMessage": "Product created and images uploaded successfully.",
+      "uploadErrorTitle": "Error uploading images",
+      "uploadErrorMessage": "The product was created, but the image upload failed."
+    }
+  }
+}

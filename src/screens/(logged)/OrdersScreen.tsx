@@ -14,12 +14,13 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { PackageSearch, Search } from 'lucide-react-native';
 
 import { OrderCard } from '../../components/OrderCard';
 import { OrderService } from '../../services/order.service';
 import { RootStackParamList, RootTabParamList } from '../../navigation/types';
-import { ORDER_STATUS_TABS } from '../../utils/orderStatus.utils';
+import { getOrderStatusTabs } from '../../utils/orderStatus.utils';
 import type { ApiOrderStatus } from '../../types/orders.type';
 
 type Props = CompositeScreenProps<
@@ -38,8 +39,10 @@ const colors = {
 };
 
 export function OrdersScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ApiOrderStatus | 'all'>('all');
   const [search, setSearch] = useState('');
+  const orderStatusTabs = useMemo(() => getOrderStatusTabs(t), [t]);
 
   const { data, isLoading, isRefetching, refetch, error } = useQuery({
     queryKey: ['orders'],
@@ -68,15 +71,15 @@ export function OrdersScreen({ navigation }: Props) {
   const header = (
     <View style={styles.headerBlock}>
       <View style={styles.headerCard}>
-        <Text style={styles.heroEyebrow}>Minhas compras</Text>
-        <Text style={styles.title}>Acompanhe seus pedidos.</Text>
+        <Text style={styles.heroEyebrow}>{t('Orders.heroEyebrow')}</Text>
+        <Text style={styles.title}>{t('Orders.title')}</Text>
 
         <View style={styles.searchBox}>
           <Search color={colors.muted} size={16} />
           <TextInput
             value={search}
             onChangeText={setSearch}
-            placeholder='Buscar por loja'
+            placeholder={t('Orders.searchPlaceholder')}
             placeholderTextColor={colors.muted}
             style={styles.searchInput}
           />
@@ -88,7 +91,7 @@ export function OrdersScreen({ navigation }: Props) {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.tabsRow}
       >
-        {ORDER_STATUS_TABS.map(tab => (
+        {orderStatusTabs.map(tab => (
           <Pressable
             key={tab.key}
             style={[styles.tab, activeTab === tab.key && styles.tabActive]}
@@ -143,9 +146,7 @@ export function OrdersScreen({ navigation }: Props) {
           <View style={styles.centerState}>
             <PackageSearch color={colors.muted} size={32} />
             <Text style={styles.emptyTitle}>
-              {error
-                ? 'Não foi possível carregar seus pedidos.'
-                : 'Você ainda não fez nenhuma compra.'}
+              {error ? t('Orders.loadError') : t('Orders.empty')}
             </Text>
           </View>
         )

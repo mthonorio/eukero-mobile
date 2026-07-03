@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft } from 'lucide-react-native';
 
 import { RootStackParamList } from '../../../navigation/types';
@@ -32,6 +33,7 @@ function toLabel(key: string): string {
 }
 
 export function GlobalVariablesScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [parameters, setParameters] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -49,7 +51,10 @@ export function GlobalVariablesScreen({ navigation }: Props) {
       );
       setParameters(normalized);
     } catch {
-      Alert.alert('Erro', 'Não foi possível carregar as variáveis globais.');
+      Alert.alert(
+        t('GlobalVariables.errors.load.title'),
+        t('GlobalVariables.errors.load.message'),
+      );
     } finally {
       setIsLoading(false);
     }
@@ -63,9 +68,15 @@ export function GlobalVariablesScreen({ navigation }: Props) {
     try {
       setIsSaving(true);
       await ParameterService.putParameters(parameters);
-      Alert.alert('Sucesso', 'Variáveis atualizadas com sucesso.');
+      Alert.alert(
+        t('GlobalVariables.success.title'),
+        t('GlobalVariables.success.message'),
+      );
     } catch {
-      Alert.alert('Erro', 'Não foi possível salvar as variáveis.');
+      Alert.alert(
+        t('GlobalVariables.errors.save.title'),
+        t('GlobalVariables.errors.save.message'),
+      );
     } finally {
       setIsSaving(false);
     }
@@ -84,8 +95,8 @@ export function GlobalVariablesScreen({ navigation }: Props) {
         </Pressable>
 
         <View>
-          <Text style={styles.heroEyebrow}>Configurações</Text>
-          <Text style={styles.title}>Variáveis globais</Text>
+          <Text style={styles.heroEyebrow}>{t('GlobalVariables.heroEyebrow')}</Text>
+          <Text style={styles.title}>{t('GlobalVariables.title')}</Text>
         </View>
       </View>
 
@@ -96,7 +107,7 @@ export function GlobalVariablesScreen({ navigation }: Props) {
           </View>
         ) : entries.length === 0 ? (
           <Text style={styles.emptyText}>
-            Nenhuma variável global disponível no momento.
+            {t('GlobalVariables.empty')}
           </Text>
         ) : (
           <>
@@ -120,7 +131,7 @@ export function GlobalVariablesScreen({ navigation }: Props) {
               {isSaving ? (
                 <ActivityIndicator color='#FFFFFF' />
               ) : (
-                <Text style={styles.primaryButtonText}>Salvar</Text>
+                <Text style={styles.primaryButtonText}>{t('GlobalVariables.save')}</Text>
               )}
             </Pressable>
           </>

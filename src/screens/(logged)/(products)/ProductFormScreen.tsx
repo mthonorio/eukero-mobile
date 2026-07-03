@@ -16,6 +16,7 @@ import { launchImageLibrary, type Asset } from 'react-native-image-picker';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
@@ -166,6 +167,7 @@ function mapProductToFormValues(
 }
 
 export function ProductFormScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [step, setStep] = useState<Step>(1);
   const [selectedImages, setSelectedImages] = useState<Asset[]>([]);
@@ -309,14 +311,14 @@ export function ProductFormScreen({ navigation, route }: Props) {
     const promotionalPrice = parseNumeric(values.promotionalPrice) ?? 0;
 
     return {
-      title: values.name || 'Produto sem nome',
+      title: values.name || t('ProductForm.media.defaultProductName'),
       price:
         promotionalPrice > 0 && promotionalPrice < salePrice
           ? promotionalPrice
           : salePrice,
       originalPrice: salePrice,
     };
-  }, [values.name, values.promotionalPrice, values.salePrice]);
+  }, [values.name, values.promotionalPrice, values.salePrice, t]);
 
   function resetFlow() {
     setStep(1);
@@ -332,7 +334,10 @@ export function ProductFormScreen({ navigation, route }: Props) {
       const salePrice = parseNumeric(formValues.salePrice);
 
       if (!salePrice) {
-        Alert.alert('Atenção', 'Informe um preço de venda válido.');
+        Alert.alert(
+          t('ProductForm.alerts.attentionTitle'),
+          t('ProductForm.alerts.invalidSalePrice'),
+        );
         return;
       }
 
@@ -370,23 +375,29 @@ export function ProductFormScreen({ navigation, route }: Props) {
       }
 
       if (isEditMode) {
-        Alert.alert('Sucesso', 'Produto atualizado com sucesso.', [
-          {
-            text: 'Ver meus produtos',
-            onPress: () => {
-              resetFlow();
-              navigation.navigate('MyProducts');
+        Alert.alert(
+          t('ProductForm.alerts.updateSuccessTitle'),
+          t('ProductForm.alerts.updateSuccessMessage'),
+          [
+            {
+              text: t('ProductForm.alerts.viewMyProducts'),
+              onPress: () => {
+                resetFlow();
+                navigation.navigate('MyProducts');
+              },
             },
-          },
-        ]);
+          ],
+        );
         return;
       }
 
       setStep(2);
     } catch (error) {
       Alert.alert(
-        isEditMode ? 'Erro ao atualizar produto' : 'Erro ao criar produto',
-        'Não foi possível salvar os dados do produto agora.',
+        isEditMode
+          ? t('ProductForm.alerts.updateErrorTitle')
+          : t('ProductForm.alerts.createErrorTitle'),
+        t('ProductForm.alerts.saveErrorMessage'),
       );
     } finally {
       setIsSavingProduct(false);
@@ -422,24 +433,27 @@ export function ProductFormScreen({ navigation, route }: Props) {
   async function handleFinishStep2() {
     try {
       if (!createdProduct) {
-        Alert.alert('Erro', 'Crie o produto antes de enviar imagens.');
+        Alert.alert(
+          t('ProductForm.alerts.genericErrorTitle'),
+          t('ProductForm.alerts.createProductBeforeImages'),
+        );
         return;
       }
 
       if (selectedImages.length === 0) {
         Alert.alert(
-          'Produto salvo',
-          'Seu produto foi criado. Você pode adicionar imagens depois.',
+          t('ProductForm.alerts.productSavedTitle'),
+          t('ProductForm.alerts.productSavedMessage'),
           [
             {
-              text: 'Ver meus produtos',
+              text: t('ProductForm.alerts.viewMyProducts'),
               onPress: () => {
                 resetFlow();
                 navigation.navigate('MyProducts');
               },
             },
             {
-              text: 'Ficar aqui',
+              text: t('ProductForm.alerts.stayHere'),
               style: 'cancel',
             },
           ],
@@ -472,19 +486,23 @@ export function ProductFormScreen({ navigation, route }: Props) {
         ),
       );
 
-      Alert.alert('Sucesso', 'Produto criado e imagens enviadas com sucesso.', [
-        {
-          text: 'Ver meus produtos',
-          onPress: () => {
-            resetFlow();
-            navigation.navigate('MyProducts');
+      Alert.alert(
+        t('ProductForm.alerts.uploadSuccessTitle'),
+        t('ProductForm.alerts.uploadSuccessMessage'),
+        [
+          {
+            text: t('ProductForm.alerts.viewMyProducts'),
+            onPress: () => {
+              resetFlow();
+              navigation.navigate('MyProducts');
+            },
           },
-        },
-      ]);
+        ],
+      );
     } catch (error) {
       Alert.alert(
-        'Erro ao enviar imagens',
-        'O produto foi criado, mas ocorreu falha no upload das imagens.',
+        t('ProductForm.alerts.uploadErrorTitle'),
+        t('ProductForm.alerts.uploadErrorMessage'),
       );
     }
   }
@@ -505,7 +523,9 @@ export function ProductFormScreen({ navigation, route }: Props) {
       <View style={styles.centerState}>
         <ActivityIndicator color={colors.zen.primary} />
         <Text style={styles.centerText}>
-          {isEditMode ? 'Carregando produto...' : 'Carregando dependências...'}
+          {isEditMode
+            ? t('ProductForm.loadingState.product')
+            : t('ProductForm.loadingState.dependencies')}
         </Text>
       </View>
     );
@@ -515,12 +535,12 @@ export function ProductFormScreen({ navigation, route }: Props) {
     return (
       <View style={styles.centerState}>
         <Text style={styles.centerTitle}>
-          Não foi possível abrir o formulário.
+          {t('ProductForm.errorState.title')}
         </Text>
         <Text style={styles.centerText}>
           {isEditMode
-            ? 'Falha ao carregar os dados do produto para edição.'
-            : 'Falha ao carregar os dados necessários para os selects.'}
+            ? t('ProductForm.errorState.edit')
+            : t('ProductForm.errorState.create')}
         </Text>
       </View>
     );
@@ -536,19 +556,21 @@ export function ProductFormScreen({ navigation, route }: Props) {
       >
         <View style={styles.heroCard}>
           <Text style={styles.kicker}>
-            {isEditMode ? 'Edição de produto' : 'Cadastro de produto'}
+            {isEditMode
+              ? t('ProductForm.kicker.edit')
+              : t('ProductForm.kicker.create')}
           </Text>
           <Text style={styles.title}>
             {isEditMode
-              ? 'Atualize as informações do produto'
+              ? t('ProductForm.title.edit')
               : step === 1
-              ? 'Crie a base do produto'
-              : 'Adicione imagens'}
+              ? t('ProductForm.title.createStep1')
+              : t('ProductForm.title.createStep2')}
           </Text>
           <Text style={styles.subtitle}>
             {isEditMode
-              ? 'Os campos abaixo já vêm preenchidos com os dados atuais.'
-              : 'O fluxo segue em duas etapas: primeiro salva o produto e depois envia as imagens.'}
+              ? t('ProductForm.subtitle.edit')
+              : t('ProductForm.subtitle.create')}
           </Text>
 
           {!isEditMode ? (
@@ -562,7 +584,7 @@ export function ProductFormScreen({ navigation, route }: Props) {
                     step === 1 && styles.stepPillTextActive,
                   ]}
                 >
-                  1. Dados
+                  {t('ProductForm.steps.data')}
                 </Text>
               </View>
               <View
@@ -574,7 +596,7 @@ export function ProductFormScreen({ navigation, route }: Props) {
                     step === 2 && styles.stepPillTextActive,
                   ]}
                 >
-                  2. Imagens
+                  {t('ProductForm.steps.images')}
                 </Text>
               </View>
             </View>
@@ -583,20 +605,24 @@ export function ProductFormScreen({ navigation, route }: Props) {
 
         {isEditMode || step === 1 ? (
           <View style={styles.card}>
-            <Text style={styles.sectionTitle}>Informações gerais</Text>
+            <Text style={styles.sectionTitle}>
+              {t('ProductForm.basicInfo.sectionTitle')}
+            </Text>
 
             <Controller
               control={control}
               name='name'
-              rules={{ required: 'Informe o nome do produto.' }}
+              rules={{ required: t('ProductForm.validation.nameRequired') }}
               render={({ field: { onChange, onBlur, value }, fieldState }) => (
                 <View style={styles.fieldWrap}>
-                  <Text style={styles.fieldLabel}>Nome</Text>
+                  <Text style={styles.fieldLabel}>
+                    {t('ProductForm.basicInfo.name.label')}
+                  </Text>
                   <TextInput
                     value={value}
                     onBlur={onBlur}
                     onChangeText={onChange}
-                    placeholder='Ex.: Vestido longo floral'
+                    placeholder={t('ProductForm.basicInfo.name.placeholder')}
                     placeholderTextColor={colors.zen.muted}
                     style={[
                       styles.input,
@@ -617,12 +643,16 @@ export function ProductFormScreen({ navigation, route }: Props) {
               name='description'
               render={({ field: { onChange, onBlur, value } }) => (
                 <View style={styles.fieldWrap}>
-                  <Text style={styles.fieldLabel}>Descrição</Text>
+                  <Text style={styles.fieldLabel}>
+                    {t('ProductForm.basicInfo.description.label')}
+                  </Text>
                   <TextInput
                     value={value}
                     onBlur={onBlur}
                     onChangeText={onChange}
-                    placeholder='Descreva o produto em detalhes'
+                    placeholder={t(
+                      'ProductForm.basicInfo.description.placeholder',
+                    )}
                     placeholderTextColor={colors.zen.muted}
                     style={[styles.input, styles.textArea]}
                     multiline
@@ -636,12 +666,14 @@ export function ProductFormScreen({ navigation, route }: Props) {
               name='sku'
               render={({ field: { onChange, onBlur, value } }) => (
                 <View style={styles.fieldWrap}>
-                  <Text style={styles.fieldLabel}>SKU</Text>
+                  <Text style={styles.fieldLabel}>
+                    {t('ProductForm.basicInfo.sku.label')}
+                  </Text>
                   <TextInput
                     value={value}
                     onBlur={onBlur}
                     onChangeText={onChange}
-                    placeholder='Código interno'
+                    placeholder={t('ProductForm.basicInfo.sku.placeholder')}
                     placeholderTextColor={colors.zen.muted}
                     style={styles.input}
                   />

@@ -1,0 +1,22 @@
+{
+  "Common": {
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "loading": "Carregando...",
+    "confirm": "Confirmar",
+    "edit": "Editar",
+    "delete": "Deletar",
+    "error": "Erro",
+    "success": "Sucesso"
+  },
+  "Language": {
+    "sectionLabel": "Configurações",
+    "title": "Idioma",
+    "options": {
+      "pt-BR": { "label": "Português (Brasil)", "nativeName": "Português" },
+      "en-US": { "label": "Inglês (Estados Unidos)", "nativeName": "English" },
+      "es": { "label": "Espanhol", "nativeName": "Español" }
+    }
+  }
+}

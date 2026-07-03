@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft } from 'lucide-react-native';
 
 import { OrderDetailsContent } from '../../../components/OrderDetailsContent';
@@ -27,6 +28,7 @@ const colors = {
 };
 
 export function SaleDetailsScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const { saleId } = route.params;
 
   const { data: sale, isLoading, error } = useQuery({
@@ -47,7 +49,7 @@ export function SaleDetailsScreen({ navigation, route }: Props) {
       ) : error || !sale ? (
         <View style={styles.centerState}>
           <Text style={styles.emptyTitle}>
-            Não foi possível carregar esta venda.
+            {t('SaleDetails.loadError')}
           </Text>
         </View>
       ) : (

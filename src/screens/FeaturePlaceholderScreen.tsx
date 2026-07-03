@@ -1,5 +1,6 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { useTranslation } from 'react-i18next';
 
 import { RootTabParamList } from '../navigation/types';
 
@@ -44,6 +45,7 @@ const screenContent: Record<
 };
 
 export function FeaturePlaceholderScreen({ route, navigation }: Props) {
+  const { t } = useTranslation();
   const content = screenContent[route.name];
 
   return (
@@ -51,7 +53,7 @@ export function FeaturePlaceholderScreen({ route, navigation }: Props) {
       <Text style={styles.title}>{content.title}</Text>
       <Text style={styles.description}>{content.description}</Text>
       <Button
-        title='Voltar para Início'
+        title={t('FeaturePlaceholder.backToHome')}
         onPress={() => navigation.navigate('Home')}
       />
     </View>

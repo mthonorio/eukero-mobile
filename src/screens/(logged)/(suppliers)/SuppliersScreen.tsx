@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   FlatList,
@@ -37,6 +38,7 @@ const colors = {
 };
 
 export function SuppliersScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const {
     data,
     error,
@@ -72,8 +74,8 @@ export function SuppliersScreen({ navigation }: Props) {
     <View style={styles.headerCard}>
       <View style={styles.headerTop}>
         <View>
-          <Text style={styles.heroEyebrow}>Fornecedores</Text>
-          <Text style={styles.title}>Gerencie seus fornecedores.</Text>
+          <Text style={styles.heroEyebrow}>{t('Suppliers.eyebrow')}</Text>
+          <Text style={styles.title}>{t('Suppliers.title')}</Text>
         </View>
 
         <View style={styles.headerActions}>
@@ -158,8 +160,8 @@ export function SuppliersScreen({ navigation }: Props) {
             <Truck color={colors.muted} size={32} />
             <Text style={styles.emptyTitle}>
               {error
-                ? 'Não foi possível carregar seus fornecedores.'
-                : 'Você ainda não cadastrou fornecedores.'}
+                ? t('Suppliers.emptyError')
+                : t('Suppliers.emptyTitle')}
             </Text>
           </View>
         )

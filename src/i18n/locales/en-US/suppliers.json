@@ -1,0 +1,60 @@
+{
+  "Suppliers": {
+    "eyebrow": "Suppliers",
+    "title": "Manage your suppliers.",
+    "emptyError": "We couldn't load your suppliers.",
+    "emptyTitle": "You haven't registered any suppliers yet."
+  },
+  "SupplierForm": {
+    "titleEdit": "Edit supplier",
+    "titleAdd": "Add supplier",
+    "description": "Search for a user and set the transfer percentage.",
+    "userLabel": "Supplier user",
+    "changeLink": "Change",
+    "searchPlaceholder": "Search by name or username",
+    "percentageLabel": "Percentage transferred to the supplier",
+    "buttonSave": "Save changes",
+    "buttonAdd": "Add supplier",
+    "alerts": {
+      "loadErrorTitle": "Error",
+      "loadErrorMessage": "We couldn't load the supplier.",
+      "selectUserTitle": "Attention",
+      "selectUserMessage": "Select a user to continue.",
+      "saveErrorTitle": "Error",
+      "saveErrorMessage": "We couldn't save the supplier."
+    }
+  },
+  "SupplierConsigned": {
+    "steps": {
+      "identification": "Identification",
+      "commission": "Commission",
+      "confirmation": "Confirmation"
+    },
+    "badgeInProgress": "In progress",
+    "title": "Supplier consignment",
+    "searchPlaceholder": "Search by name or username",
+    "percentageLabel": "Percentage transferred to the supplier",
+    "splitSupplierReceives": "Supplier receives",
+    "splitStoreRetains": "Store retains",
+    "summaryLabel": "Summary",
+    "buttonContinue": "Continue",
+    "buttonConfirm": "Confirm consignment",
+    "alerts": {
+      "successTitle": "Success",
+      "successMessage": "Consignment registered successfully.",
+      "errorTitle": "Error",
+      "errorMessage": "We couldn't register the consignment."
+    }
+  },
+  "Pieces": {
+    "eyebrow": "Pieces",
+    "title": "Products by supplier.",
+    "emptyError": "We couldn't load your suppliers.",
+    "emptyTitle": "No supplier associated.",
+    "detail": {
+      "productsAvailable": "Available products",
+      "supplierTransfer": "Supplier transfer",
+      "status": "Status"
+    }
+  }
+}

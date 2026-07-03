@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft, SearchIcon } from 'lucide-react-native';
 
 import { Avatar } from '../../components/atoms/Avatar';
@@ -34,6 +35,7 @@ const colors = {
 };
 
 export function SearchScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const selectProduct = useCheckoutStore(state => state.selectProduct);
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState<SearchTab>('products');
@@ -85,7 +87,7 @@ export function SearchScreen({ navigation }: Props) {
           <TextInput
             value={query}
             onChangeText={setQuery}
-            placeholder='Buscar produtos ou lojas'
+            placeholder={t('Search.searchPlaceholder')}
             placeholderTextColor={colors.muted}
             style={styles.searchInput}
             autoFocus
@@ -104,7 +106,7 @@ export function SearchScreen({ navigation }: Props) {
               activeTab === 'products' && styles.tabTextActive,
             ]}
           >
-            Produtos
+            {t('Search.tabProducts')}
           </Text>
         </Pressable>
 
@@ -118,7 +120,7 @@ export function SearchScreen({ navigation }: Props) {
               activeTab === 'stores' && styles.tabTextActive,
             ]}
           >
-            Lojas
+            {t('Search.tabStores')}
           </Text>
         </Pressable>
       </View>
@@ -147,8 +149,8 @@ export function SearchScreen({ navigation }: Props) {
             <View style={styles.centerState}>
               <Text style={styles.emptyTitle}>
                 {query.trim()
-                  ? 'Nenhum produto encontrado.'
-                  : 'Digite para buscar produtos.'}
+                  ? t('Search.emptyProductsFound')
+                  : t('Search.emptyProductsPrompt')}
               </Text>
             </View>
           }
@@ -180,8 +182,8 @@ export function SearchScreen({ navigation }: Props) {
             <View style={styles.centerState}>
               <Text style={styles.emptyTitle}>
                 {query.trim()
-                  ? 'Nenhuma loja encontrada.'
-                  : 'Digite para buscar lojas.'}
+                  ? t('Search.emptyStoresFound')
+                  : t('Search.emptyStoresPrompt')}
               </Text>
             </View>
           }

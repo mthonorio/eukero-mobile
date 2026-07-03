@@ -1,0 +1,156 @@
+{
+  "Financial": {
+    "heroEyebrow": "Gestão financeira",
+    "title": "Acompanhe seus recebimentos.",
+    "metrics": {
+      "open": "Aberto",
+      "inTransit": "Em trânsito",
+      "paymentRequested": "Pag. solicitado",
+      "paid": "Quitado"
+    },
+    "typeFilters": {
+      "all": "Todos",
+      "receivable": "A receber",
+      "payable": "A pagar"
+    },
+    "statusLabels": {
+      "A": "Aberto",
+      "T": "Em trânsito",
+      "L": "Liberado",
+      "S": "Pagamento solicitado",
+      "Q": "Quitado"
+    },
+    "movementDate": "{{date}} · Pedido #{{orderId}}",
+    "emptyError": "Não foi possível carregar as movimentações.",
+    "emptyTitle": "Nenhuma movimentação encontrada."
+  },
+  "FinancialForm": {
+    "titleEdit": "Editar lançamento",
+    "titleCreate": "Novo lançamento",
+    "description": "Registre uma movimentação financeira manual.",
+    "typeLabel": "Tipo",
+    "statusLabel": "Status",
+    "amountLabel": "Valor",
+    "amountPlaceholder": "0,00",
+    "descriptionLabel": "Descrição",
+    "descriptionPlaceholder": "Descreva o lançamento",
+    "referenceLabel": "Referência (opcional)",
+    "referencePlaceholder": "Nº de referência",
+    "typeOptions": {
+      "receivable": "A receber",
+      "payable": "A pagar"
+    },
+    "statusOptions": {
+      "A": "Aberto",
+      "T": "Em trânsito",
+      "L": "Liberado",
+      "S": "Solicitado",
+      "Q": "Quitado"
+    },
+    "submitEdit": "Salvar alterações",
+    "submitCreate": "Criar lançamento",
+    "alerts": {
+      "attentionTitle": "Atenção",
+      "invalidAmount": "Informe um valor válido.",
+      "missingDescription": "Informe uma descrição.",
+      "successTitle": "Sucesso",
+      "successEdit": "Lançamento atualizado.",
+      "successCreate": "Lançamento criado."
+    }
+  },
+  "Stock": {
+    "heroEyebrow": "Estoque",
+    "title": "Movimentações de produtos.",
+    "tabs": {
+      "all": "Todos",
+      "entries": "Entradas",
+      "exits": "Saídas"
+    },
+    "emptyTitle": "Nenhuma movimentação encontrada.",
+    "movementMeta": "{{origin}} · {{date}}",
+    "balance": "Saldo: {{balance}}",
+    "modal": {
+      "title": "Nova movimentação",
+      "productLabel": "Produto",
+      "typeLabel": "Tipo",
+      "typeOptions": {
+        "entry": "Entrada",
+        "exit": "Saída"
+      },
+      "originLabel": "Origem",
+      "quantityLabel": "Quantidade",
+      "notesLabel": "Notas (opcional)",
+      "submit": "Registrar movimentação"
+    }
+  },
+  "Dashboard": {
+    "heroEyebrow": "Dashboard",
+    "title": "Visão geral da sua loja.",
+    "timeFilters": {
+      "Week": "Semana",
+      "Month": "Mês",
+      "Quarter": "Trimestre",
+      "Year": "Ano"
+    },
+    "metrics": {
+      "totalRevenue": "Receita total",
+      "newOrders": "Pedidos novos",
+      "toPay": "A pagar",
+      "toReceive": "A receber"
+    },
+    "sections": {
+      "revenueOverTime": "Receita ao longo do tempo",
+      "salesByCategory": "Vendas por categoria",
+      "topProducts": "Produtos mais vendidos",
+      "recentActivities": "Atividades recentes"
+    },
+    "revenueOverview": {
+      "labels": {
+        "week1": "Sem 1",
+        "week2": "Sem 2",
+        "week3": "Sem 3",
+        "week4": "Sem 4"
+      },
+      "datasets": {
+        "revenue": "Receita",
+        "profit": "Lucro"
+      }
+    },
+    "salesByCategory": {
+      "categories": {
+        "male": "Masculino",
+        "female": "Feminino",
+        "unisex": "Unissex",
+        "kids": "Infantil",
+        "other": "Outros"
+      }
+    },
+    "topProducts": {
+      "items": {
+        "floralDress": "Vestido floral",
+        "denimJacket": "Jaqueta jeans",
+        "retroSneakers": "Tênis retrô",
+        "crossbodyBag": "Bolsa transversal"
+      },
+      "salesCount": "{{price}} · {{sales}} vendas"
+    },
+    "recentActivities": {
+      "order": {
+        "description": "Novo pedido recebido"
+      },
+      "payment": {
+        "description": "Pagamento liberado"
+      },
+      "customer": {
+        "description": "Novo seguidor"
+      },
+      "review": {
+        "description": "Nova avaliação recebida"
+      },
+      "time": {
+        "minutesAgo": "há {{count}} min",
+        "hoursAgo": "há {{count}} h"
+      }
+    }
+  }
+}

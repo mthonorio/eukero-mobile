@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -16,6 +16,7 @@ import { ChevronLeft, Camera, Edit2 } from 'lucide-react-native';
 import { launchImageLibrary, type Asset } from 'react-native-image-picker';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type Resolver } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { RootStackParamList } from '../../../navigation/types';
 import { useAuthStore } from '../../../stores/auth.store';
@@ -27,7 +28,7 @@ import {
   maskPhone,
 } from '../../../validators/register/register.helpers';
 import {
-  profileSettingsSchema,
+  createProfileSettingsSchema,
   type ProfileSettingsFormValues,
 } from '../../../validators/profile/profile.schemas';
 
@@ -69,7 +70,11 @@ export function ProfileSettingsScreen({ navigation }: Props) {
   const [isChangingPassword, setIsChangingPassword] = useState(false);
 
   const isStoreUser = user?.type === 'STORE';
-  const title = isStoreUser ? 'Editar perfil da loja' : 'Editar perfil';
+  const { t } = useTranslation();
+  const title = isStoreUser
+    ? t('ProfileSettings.titleStore')
+    : t('ProfileSettings.title');
+  const profileSettingsSchema = useMemo(() => createProfileSettingsSchema(t), [t]);
 
   const {
     control,
@@ -157,7 +162,10 @@ export function ProfileSettingsScreen({ navigation }: Props) {
 
       navigation.goBack();
     } catch {
-      Alert.alert('Erro', 'Não foi possível salvar as alterações.');
+      Alert.alert(
+        t('ProfileSettings.errors.saveTitle'),
+        t('ProfileSettings.errors.saveMessage'),
+      );
     } finally {
       setIsSaving(false);
     }
@@ -183,7 +191,7 @@ export function ProfileSettingsScreen({ navigation }: Props) {
 
             <View>
               <Text style={styles.title}>{title}</Text>
-              <Text style={styles.subtitle}>Configurações &gt; Perfil</Text>
+              <Text style={styles.subtitle}>{t('ProfileSettings.breadcrumb')}</Text>
             </View>
           </View>
 
@@ -200,13 +208,13 @@ export function ProfileSettingsScreen({ navigation }: Props) {
                 <Camera color='#FFFFFF' size={14} />
               </View>
             </Pressable>
-            <Text style={styles.avatarHint}>Toque para alterar a foto</Text>
+            <Text style={styles.avatarHint}>{t('ProfileSettings.avatarHint')}</Text>
           </View>
 
           <RegisterField
             control={control}
             name='name'
-            label='Nome'
+            label={t('ProfileSettings.fields.name')}
             autoCapitalize='words'
             returnKeyType='next'
             error={errors.name?.message}
@@ -215,7 +223,7 @@ export function ProfileSettingsScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='username'
-            label='Username'
+            label={t('ProfileSettings.fields.username')}
             autoCapitalize='none'
             returnKeyType='next'
             error={errors.username?.message}
@@ -225,7 +233,7 @@ export function ProfileSettingsScreen({ navigation }: Props) {
             <RegisterField
               control={control}
               name='storeName'
-              label='Nome da loja'
+              label={t('ProfileSettings.fields.storeName')}
               autoCapitalize='words'
               returnKeyType='next'
               error={errors.storeName?.message}
@@ -235,7 +243,7 @@ export function ProfileSettingsScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='phone'
-            label='Telefone'
+            label={t('ProfileSettings.fields.phone')}
             keyboardType='phone-pad'
             inputMode='tel'
             maxLength={15}
@@ -245,7 +253,7 @@ export function ProfileSettingsScreen({ navigation }: Props) {
           />
 
           <View style={styles.field}>
-            <Text style={styles.label}>E-mail</Text>
+            <Text style={styles.label}>{t('ProfileSettings.fields.email')}</Text>
             {isChangingEmail ? (
               <RegisterField
                 control={control}
@@ -271,31 +279,31 @@ export function ProfileSettingsScreen({ navigation }: Props) {
                   style={styles.editButton}
                 >
                   <Edit2 color={colors.primary} size={15} />
-                  <Text style={styles.editButtonText}>Alterar</Text>
+                  <Text style={styles.editButtonText}>{t('ProfileSettings.changeButton')}</Text>
                 </Pressable>
               </View>
             )}
           </View>
 
           <View style={styles.field}>
-            <Text style={styles.label}>Senha</Text>
+            <Text style={styles.label}>{t('ProfileSettings.fields.password')}</Text>
             {isChangingPassword ? (
               <View style={styles.passwordSection}>
                 <RegisterField
                   control={control}
                   name='newPassword'
-                  label='Nova senha'
+                  label={t('ProfileSettings.fields.newPassword')}
                   secureTextEntry
                   autoComplete='password-new'
                   textContentType='newPassword'
                   returnKeyType='next'
-                  helperText='Use 8+ caracteres, com maiúscula, minúscula, número e símbolo.'
+                  helperText={t('ProfileSettings.hints.newPassword')}
                   error={errors.newPassword?.message}
                 />
                 <RegisterField
                   control={control}
                   name='confirmNewPassword'
-                  label='Confirmar nova senha'
+                  label={t('ProfileSettings.fields.confirmNewPassword')}
                   secureTextEntry
                   autoComplete='password-new'
                   textContentType='newPassword'
@@ -313,44 +321,44 @@ export function ProfileSettingsScreen({ navigation }: Props) {
                   style={styles.editButton}
                 >
                   <Edit2 color={colors.primary} size={15} />
-                  <Text style={styles.editButtonText}>Alterar</Text>
+                  <Text style={styles.editButtonText}>{t('ProfileSettings.changeButton')}</Text>
                 </Pressable>
               </View>
             )}
           </View>
 
           <View style={styles.pixSection}>
-            <Text style={styles.pixTitle}>Dados de recebimento (Pix)</Text>
+            <Text style={styles.pixTitle}>{t('ProfileSettings.pixSectionTitle')}</Text>
 
             <RegisterField
               control={control}
               name='pixOwnerName'
-              label='Nome do titular'
+              label={t('ProfileSettings.fields.pixOwnerName')}
               autoCapitalize='words'
               returnKeyType='next'
-              helperText='Nome do titular da chave Pix.'
+              helperText={t('ProfileSettings.hints.pixOwnerName')}
               error={errors.pixOwnerName?.message}
             />
 
             <RegisterField
               control={control}
               name='pixKey'
-              label='Chave Pix'
+              label={t('ProfileSettings.fields.pixKey')}
               autoCapitalize='none'
               returnKeyType='next'
-              helperText='CPF, CNPJ, e-mail, telefone ou chave aleatória.'
+              helperText={t('ProfileSettings.hints.pixKey')}
               error={errors.pixKey?.message}
             />
 
             <RegisterField
               control={control}
               name='pixDocument'
-              label='CPF ou CNPJ'
+              label={t('ProfileSettings.fields.pixDocument')}
               keyboardType='number-pad'
               inputMode='numeric'
               returnKeyType='done'
               transform={maskCpfCnpj}
-              helperText='Documento do titular do recebimento.'
+              helperText={t('ProfileSettings.hints.pixDocument')}
               error={errors.pixDocument?.message}
             />
           </View>
@@ -363,7 +371,7 @@ export function ProfileSettingsScreen({ navigation }: Props) {
             {isSaving ? (
               <ActivityIndicator color='#FFFFFF' />
             ) : (
-              <Text style={styles.primaryButtonText}>Salvar alterações</Text>
+              <Text style={styles.primaryButtonText}>{t('ProfileSettings.saveButton')}</Text>
             )}
           </Pressable>
         </View>

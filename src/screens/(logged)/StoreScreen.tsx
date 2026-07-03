@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MapPin } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ProductFeedCard } from '../../components/ProductFeedCard';
 import { RootStackParamList } from '../../navigation/types';
@@ -32,6 +33,7 @@ const colors = {
 type Props = NativeStackScreenProps<RootStackParamList, 'Store'>;
 
 export function StoreScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const { storeUsername, storeName, storeImageUrl } = route.params;
   const selectProduct = useCheckoutStore(state => state.selectProduct);
   const [products, setProducts] = useState<Product[]>([]);
@@ -57,7 +59,7 @@ export function StoreScreen({ navigation, route }: Props) {
       } catch (loadError) {
         console.error('Erro ao carregar produtos da loja:', loadError);
         if (isMounted) {
-          setError('Não foi possível carregar os produtos desta loja.');
+          setError(t('Store.loadError'));
           setProducts([]);
         }
       } finally {
@@ -72,7 +74,7 @@ export function StoreScreen({ navigation, route }: Props) {
     return () => {
       isMounted = false;
     };
-  }, [storeUsername]);
+  }, [storeUsername, t]);
 
   const header = useMemo(
     () => (
@@ -101,22 +103,21 @@ export function StoreScreen({ navigation, route }: Props) {
                 <Text style={styles.storeHandle}>@{storeUsername}</Text>
               </View>
               <Text style={styles.storeDescription}>
-                Catálogo da loja com produtos organizados no mesmo padrão visual
-                do feed.
+                {t('Store.description')}
               </Text>
             </View>
           </View>
         </View>
 
         <View style={styles.sectionRow}>
-          <Text style={styles.sectionTitle}>Itens da loja</Text>
+          <Text style={styles.sectionTitle}>{t('Store.sectionTitle')}</Text>
           <View style={styles.countBadge}>
             <Text style={styles.countBadgeText}>{products.length}</Text>
           </View>
         </View>
       </View>
     ),
-    [products.length, storeImageUrl, storeName, storeUsername],
+    [products.length, storeImageUrl, storeName, storeUsername, t],
   );
 
   return (
@@ -143,17 +144,15 @@ export function StoreScreen({ navigation, route }: Props) {
         isLoading ? (
           <View style={styles.loadingState}>
             <ActivityIndicator color={colors.primary} />
-            <Text style={styles.loadingText}>
-              Carregando produtos da loja...
-            </Text>
+            <Text style={styles.loadingText}>{t('Store.loadingText')}</Text>
           </View>
         ) : (
           <View style={styles.emptyState}>
             <Text style={styles.emptyTitle}>
-              {error || 'Nenhum item encontrado.'}
+              {error || t('Store.emptyTitle')}
             </Text>
             <Text style={styles.emptyDescription}>
-              Esta loja ainda não possui produtos disponíveis nesta listagem.
+              {t('Store.emptyDescription')}
             </Text>
           </View>
         )

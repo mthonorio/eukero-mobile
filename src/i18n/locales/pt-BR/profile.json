@@ -1,0 +1,126 @@
+{
+  "Profile": {
+    "defaultName": "Meu Perfil",
+    "defaultUsername": "@usuario",
+    "sectionLabel": "Meu Perfil",
+    "menu": {
+      "liked": "Curtidos",
+      "sales": "Minhas vendas",
+      "products": "Meus produtos",
+      "finance": "Gestão Financeira",
+      "orders": "Minhas compras",
+      "plans": "Planos",
+      "superFilters": "Super Filtros",
+      "support": "Suporte",
+      "ordersCustomer": "Minhas Compras",
+      "productsCustomer": "Meus Produtos",
+      "settings": "Configurações",
+      "logout": "Sair"
+    },
+    "featureDescriptions": {
+      "sales": "Lista de vendas em desenvolvimento.",
+      "finance": "Área financeira em desenvolvimento.",
+      "orders": "Histórico de compras em desenvolvimento.",
+      "plans": "Gerenciamento de planos em desenvolvimento.",
+      "superFilters": "Super filtros em desenvolvimento.",
+      "support": "Atendimento ao usuário em desenvolvimento."
+    }
+  },
+  "ProfileSettings": {
+    "titleStore": "Editar perfil da loja",
+    "title": "Editar perfil",
+    "breadcrumb": "Configurações > Perfil",
+    "avatarHint": "Toque para alterar a foto",
+    "fields": {
+      "name": "Nome",
+      "username": "Username",
+      "storeName": "Nome da loja",
+      "phone": "Telefone",
+      "email": "E-mail",
+      "password": "Senha",
+      "newPassword": "Nova senha",
+      "confirmNewPassword": "Confirmar nova senha",
+      "pixOwnerName": "Nome do titular",
+      "pixKey": "Chave Pix",
+      "pixDocument": "CPF ou CNPJ"
+    },
+    "hints": {
+      "newPassword": "Use 8+ caracteres, com maiúscula, minúscula, número e símbolo.",
+      "pixOwnerName": "Nome do titular da chave Pix.",
+      "pixKey": "CPF, CNPJ, e-mail, telefone ou chave aleatória.",
+      "pixDocument": "Documento do titular do recebimento."
+    },
+    "pixSectionTitle": "Dados de recebimento (Pix)",
+    "changeButton": "Alterar",
+    "saveButton": "Salvar alterações",
+    "errors": {
+      "saveTitle": "Erro",
+      "saveMessage": "Não foi possível salvar as alterações."
+    }
+  },
+  "ProfileCollection": {
+    "descriptionLiked": "Itens que você curtiu e pode voltar a navegar.",
+    "descriptionMine": "Produtos cadastrados na sua conta, organizados em cards reutilizáveis.",
+    "loading": "Carregando...",
+    "emptyDefault": "Nenhum item encontrado.",
+    "errorEmpty": "Nenhum produto encontrado.",
+    "errorLoad": "Não foi possível carregar os produtos neste momento."
+  },
+  "ProfileFeature": {},
+  "Addresses": {
+    "breadcrumb": "Configurações",
+    "titleEdit": "Editar endereço",
+    "titleNew": "Novo endereço",
+    "titleList": "Endereços",
+    "emptyText": "Você ainda não cadastrou nenhum endereço.",
+    "cepLabel": "CEP: {{cep}}",
+    "addButton": "Adicionar endereço",
+    "fields": {
+      "name": "Nome (opcional)",
+      "cep": "CEP",
+      "address": "Endereço",
+      "number": "Número",
+      "complement": "Complemento",
+      "neighborhood": "Bairro",
+      "city": "Cidade",
+      "state": "UF"
+    },
+    "cepLoading": "Buscando endereço pelo CEP...",
+    "cancelButton": "Cancelar",
+    "saveButton": "Salvar",
+    "deleteDialog": {
+      "title": "Excluir endereço",
+      "message": "Tem certeza que deseja excluir este endereço?",
+      "cancel": "Cancelar",
+      "confirm": "Excluir"
+    },
+    "errors": {
+      "loadTitle": "Erro",
+      "loadMessage": "Não foi possível carregar os endereços.",
+      "saveTitle": "Erro",
+      "saveMessage": "Não foi possível salvar o endereço.",
+      "deleteTitle": "Erro",
+      "deleteMessage": "Não foi possível excluir o endereço."
+    }
+  },
+  "Connect": {
+    "breadcrumb": "Configurações",
+    "title": "Conectar Instagram",
+    "connectedAs": "Conectado como @{{username}}",
+    "disconnectButton": "Desconectar",
+    "description": "Conecte uma conta comercial ou de criador de conteúdo do Instagram para vincular seu perfil à sua loja.",
+    "connectButton": "Conectar com Instagram",
+    "disconnectDialog": {
+      "title": "Desconectar Instagram",
+      "message": "Tem certeza que deseja desconectar sua conta do Instagram?",
+      "cancel": "Cancelar",
+      "confirm": "Desconectar"
+    },
+    "errors": {
+      "connectTitle": "Erro",
+      "connectMessage": "Não foi possível iniciar a conexão com o Instagram.",
+      "disconnectTitle": "Erro",
+      "disconnectMessage": "Não foi possível desconectar sua conta."
+    }
+  }
+}

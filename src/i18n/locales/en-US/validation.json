@@ -1,0 +1,49 @@
+{
+  "Validation": {
+    "password": {
+      "min8": "Password must be at least 8 characters long.",
+      "lowercase": "Password must contain a lowercase letter.",
+      "uppercase": "Password must contain an uppercase letter.",
+      "number": "Password must contain a number.",
+      "special": "Password must contain a special character.",
+      "weak": "Use 8+ characters with uppercase, lowercase, number, and symbol."
+    },
+    "confirmPassword": {
+      "required": "Confirm your password.",
+      "mismatch": "Passwords do not match."
+    },
+    "email": {
+      "invalid": "Enter a valid email."
+    },
+    "phone": {
+      "invalid": "Enter a valid phone number."
+    },
+    "name": {
+      "required": "Enter your full name."
+    },
+    "username": {
+      "required": "Enter a username."
+    },
+    "storeName": {
+      "required": "Enter the store name."
+    },
+    "document": {
+      "cpfInvalid": "Enter a valid CPF.",
+      "cpfCnpjInvalid": "Enter a valid CPF or CNPJ."
+    },
+    "address": {
+      "cepInvalid": "Enter a valid ZIP code.",
+      "addressRequired": "Enter the address.",
+      "numberRequired": "Enter the number.",
+      "neighborhoodRequired": "Enter the neighborhood.",
+      "cityRequired": "Enter the city.",
+      "stateRequired": "Enter the state."
+    },
+    "pix": {
+      "ownerNameRequired": "Enter the account holder's name.",
+      "keyRequired": "Enter the Pix key.",
+      "documentRequired": "Enter the CPF or CNPJ.",
+      "documentInvalid": "Enter a valid CPF or CNPJ."
+    }
+  }
+}

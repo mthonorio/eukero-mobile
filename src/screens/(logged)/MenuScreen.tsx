@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { ChevronRight } from 'lucide-react-native';
 
 import { RootStackParamList, RootTabParamList } from '../../navigation/types';
@@ -35,59 +36,62 @@ const colors = {
   accent: '#F97316',
 };
 
-function buildSections(navigation: Props['navigation']): MenuSection[] {
+function buildSections(
+  navigation: Props['navigation'],
+  t: (key: string) => string,
+): MenuSection[] {
   const userItems: MenuItem[] = [
     {
       key: 'home',
-      label: 'Início',
+      label: t('Menu.home'),
       onPress: () => navigation.navigate('Home'),
     },
     {
       key: 'notifications',
-      label: 'Notificações',
+      label: t('Menu.notifications'),
       onPress: () => navigation.navigate('Notifications'),
     },
     {
       key: 'bag',
-      label: 'Sacola',
+      label: t('Menu.bag'),
       onPress: () => navigation.navigate('Bag'),
     },
     {
       key: 'profile',
-      label: 'Perfil',
+      label: t('Menu.profile'),
       onPress: () => navigation.navigate('Profile'),
     },
     {
       key: 'liked',
-      label: 'Curtidos',
+      label: t('Menu.liked'),
       onPress: () =>
         navigation.navigate('ProfileCollection', {
-          title: 'Curtidos',
+          title: t('Menu.liked'),
           source: 'liked',
         }),
     },
     {
       key: 'orders',
-      label: 'Minhas compras',
+      label: t('Menu.orders'),
       onPress: () => navigation.navigate('MainTabs', { screen: 'Orders' }),
     },
     {
       key: 'products',
-      label: 'Meus produtos',
+      label: t('Menu.products'),
       onPress: () => navigation.navigate('MyProducts'),
     },
     {
       key: 'superFilters',
-      label: 'Super Filtros',
+      label: t('Menu.superFilters'),
       onPress: () =>
         navigation.navigate('ProfileFeature', {
-          title: 'Super Filtros',
-          description: 'Super filtros em desenvolvimento.',
+          title: t('Menu.superFilters'),
+          description: t('Menu.superFiltersDescription'),
         }),
     },
     {
       key: 'support',
-      label: 'Suporte',
+      label: t('Menu.support'),
       onPress: () => navigation.navigate('Support'),
     },
   ];
@@ -95,80 +99,80 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
   const storeItems: MenuItem[] = [
     {
       key: 'home',
-      label: 'Início',
+      label: t('Menu.home'),
       onPress: () => navigation.navigate('Home'),
     },
     {
       key: 'notifications',
-      label: 'Notificações',
+      label: t('Menu.notifications'),
       onPress: () => navigation.navigate('Notifications'),
     },
     {
       key: 'dashboard',
-      label: 'Dashboard',
+      label: t('Menu.dashboard'),
       onPress: () => navigation.navigate('Dashboard'),
     },
     {
       key: 'productForm',
-      label: 'Novo produto',
+      label: t('Menu.newProduct'),
       onPress: () => navigation.navigate('ProductForm'),
     },
     {
       key: 'profile',
-      label: 'Perfil',
+      label: t('Menu.profile'),
       onPress: () => navigation.navigate('Profile'),
     },
     {
       key: 'liked',
-      label: 'Curtidos',
+      label: t('Menu.liked'),
       onPress: () =>
         navigation.navigate('ProfileCollection', {
-          title: 'Curtidos',
+          title: t('Menu.liked'),
           source: 'liked',
         }),
     },
     {
       key: 'sales',
-      label: 'Minhas vendas',
+      label: t('Menu.sales'),
       onPress: () => navigation.navigate('Sales'),
     },
     {
       key: 'products',
-      label: 'Meus produtos',
+      label: t('Menu.products'),
       onPress: () => navigation.navigate('MyProducts'),
     },
     {
       key: 'finance',
-      label: 'Gestão Financeira',
+      label: t('Menu.finance'),
       onPress: () => navigation.navigate('Financial'),
     },
     {
       key: 'pieces',
-      label: 'Peças',
+      label: t('Menu.pieces'),
       onPress: () => navigation.navigate('Pieces'),
     },
     {
       key: 'stock',
-      label: 'Estoque',
+      label: t('Menu.stock'),
       onPress: () => navigation.navigate('Stock'),
     },
     {
       key: 'orders',
-      label: 'Minhas compras',
+      label: t('Menu.orders'),
       onPress: () =>
         navigation.navigate('ProfileFeature', {
-          title: 'Minhas compras',
-          description: 'Histórico de compras em desenvolvimento.',
+          title: t('Menu.orders'),
+          description: t('Menu.ordersDescription'),
         }),
     },
     {
       key: 'plans',
-      label: 'Planos',
+      label: t('Menu.plans'),
       onPress: () => navigation.navigate('Plans'),
     },
     {
       key: 'support',
-      label: 'Suporte',
+      label: t('Menu.support'),
       onPress: () => navigation.navigate('Support'),
     },
   ];
@@ -188,24 +192,25 @@ function buildSections(navigation: Props['navigation']): MenuSection[] {
 }
 
 export function MenuScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const user = useAuthStore(state => state.user);
   const signOut = useAuthStore(state => state.signOut);
 
   const sections = useMemo(() => {
-    const all = buildSections(navigation);
+    const all = buildSections(navigation, t);
     const userType = user?.type ?? 'USER';
     return all.filter(s => s.key === userType);
-  }, [navigation, user?.type]);
+  }, [navigation, user?.type, t]);
 
   const finalItems: MenuItem[] = [
     {
       key: 'settings',
-      label: 'Configurações',
+      label: t('Menu.settings'),
       onPress: () => navigation.navigate('Settings'),
     },
     {
       key: 'logout',
-      label: 'Sair',
+      label: t('Menu.logout'),
       onPress: () => signOut(),
       danger: true,
     },
@@ -241,7 +246,7 @@ export function MenuScreen({ navigation }: Props) {
       ))}
 
       <View style={styles.menuCard}>
-        <Text style={styles.groupLabel}>AÇÕES</Text>
+        <Text style={styles.groupLabel}>{t('Menu.actionsSection')}</Text>
 
         {finalItems.map(item => (
           <Pressable

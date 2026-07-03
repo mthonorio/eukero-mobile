@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { ArrowLeft, MailCheck, CheckCircle2 } from 'lucide-react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 
 import Layout from './layout';
 import { AuthStackParamList } from '../../navigation/types';
@@ -21,6 +22,7 @@ const OTP_LENGTH = 6;
 const RESEND_SECONDS = 60;
 
 export function ActivateAccountScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
@@ -43,16 +45,16 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
     }
 
     Alert.alert(
-      'Ativação',
-      'Não foi possível localizar o e-mail para ativação. Faça login novamente.',
+      t('ActivateAccount.alertTitle'),
+      t('ActivateAccount.emailNotFound'),
       [
         {
-          text: 'Voltar para o login',
+          text: t('ActivateAccount.backToLogin'),
           onPress: () => navigation.replace('Login'),
         },
       ],
     );
-  }, [navigation, route.params?.email]);
+  }, [navigation, route.params?.email, t]);
 
   useEffect(() => {
     if (intervalRef.current || resendCounter <= 0 || isSuccess) {
@@ -84,7 +86,7 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
 
   async function handleConfirm() {
     if (!email || !hasValidCode) {
-      Alert.alert('Ativação', 'Informe o código enviado por e-mail.');
+      Alert.alert(t('ActivateAccount.alertTitle'), t('ActivateAccount.enterCode'));
       return;
     }
 
@@ -98,21 +100,21 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
 
       setIsSuccess(true);
       Alert.alert(
-        'Conta ativada',
-        'Sua conta foi ativada com sucesso. Você já pode entrar.',
+        t('ActivateAccount.accountActivatedTitle'),
+        t('ActivateAccount.accountActivatedMessage'),
         [
           {
-            text: 'Ir para o login',
+            text: t('ActivateAccount.goToLogin'),
             onPress: () => navigation.replace('Login'),
           },
         ],
       );
     } catch (error) {
       Alert.alert(
-        'Ativação',
+        t('ActivateAccount.alertTitle'),
         error instanceof Error
           ? error.message
-          : 'Não foi possível confirmar o código informado.',
+          : t('ActivateAccount.confirmError'),
       );
       setValue('');
       inputRef.current?.focus();
@@ -128,8 +130,8 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
 
     if (resendCounter > 0) {
       Alert.alert(
-        'Ativação',
-        `Aguarde ${resendCounter}s para reenviar o código.`,
+        t('ActivateAccount.alertTitle'),
+        t('ActivateAccount.waitToResend', { seconds: resendCounter }),
       );
       return;
     }
@@ -137,13 +139,13 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
     try {
       await RegisterService.resendConfirmationEmail(email);
       setResendCounter(RESEND_SECONDS);
-      Alert.alert('Ativação', 'Enviamos um novo código para o seu e-mail.');
+      Alert.alert(t('ActivateAccount.alertTitle'), t('ActivateAccount.resendSuccess'));
     } catch (error) {
       Alert.alert(
-        'Ativação',
+        t('ActivateAccount.alertTitle'),
         error instanceof Error
           ? error.message
-          : 'Não foi possível reenviar o código agora.',
+          : t('ActivateAccount.resendError'),
       );
     }
   }
@@ -160,14 +162,13 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
             <CheckCircle2 color='#15803d' size={42} />
           </View>
 
-          <Text style={styles.title}>Conta ativada</Text>
+          <Text style={styles.title}>{t('ActivateAccount.successTitle')}</Text>
           <Text style={styles.description}>
-            Seu cadastro foi confirmado com sucesso. Você já pode acessar o
-            aplicativo.
+            {t('ActivateAccount.successDescription')}
           </Text>
 
           <Pressable style={styles.primaryButton} onPress={handleBackToLogin}>
-            <Text style={styles.primaryButtonText}>Ir para o login</Text>
+            <Text style={styles.primaryButtonText}>{t('ActivateAccount.goToLogin')}</Text>
           </Pressable>
         </View>
       </Layout>
@@ -183,19 +184,19 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
           </View>
 
           <View style={styles.headerTextWrap}>
-            <Text style={styles.title}>Ativar conta</Text>
+            <Text style={styles.title}>{t('ActivateAccount.title')}</Text>
             <Text style={styles.subtitle}>
-              Confirme o código enviado por e-mail
+              {t('ActivateAccount.subtitle')}
             </Text>
           </View>
         </View>
 
         <Text style={styles.description}>
-          Enviamos um código para {email || 'seu e-mail'}.
+          {t('ActivateAccount.codeSentTo', { email: email || t('ActivateAccount.yourEmail') })}
         </Text>
 
         <View style={styles.otpSection}>
-          <Text style={styles.codeLabel}>Código de ativação</Text>
+          <Text style={styles.codeLabel}>{t('ActivateAccount.codeLabel')}</Text>
           <TextInput
             ref={inputRef}
             value={value}
@@ -224,7 +225,7 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
             {loading ? (
               <ActivityIndicator color='#fff' />
             ) : (
-              <Text style={styles.primaryButtonText}>Confirmar código</Text>
+              <Text style={styles.primaryButtonText}>{t('ActivateAccount.confirmCode')}</Text>
             )}
           </Pressable>
 
@@ -239,15 +240,15 @@ export function ActivateAccountScreen({ navigation, route }: Props) {
           >
             <Text style={styles.secondaryButtonText}>
               {resendCounter > 0
-                ? `Reenviar código (${resendCounter}s)`
-                : 'Reenviar código'}
+                ? t('ActivateAccount.resendCodeWithTimer', { seconds: resendCounter })
+                : t('ActivateAccount.resendCode')}
             </Text>
           </Pressable>
         </View>
 
         <Pressable onPress={handleBackToLogin} style={styles.backButton}>
           <ArrowLeft color='#640000ff' size={16} />
-          <Text style={styles.backButtonText}>Voltar para o login</Text>
+          <Text style={styles.backButtonText}>{t('ActivateAccount.backToLogin')}</Text>
         </Pressable>
       </View>
     </Layout>

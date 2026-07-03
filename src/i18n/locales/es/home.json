@@ -1,0 +1,81 @@
+{
+  "Home": {
+    "heroEyebrow": "Descubre ahora",
+    "heroTitle": "Feed con artículos destacados para el móvil.",
+    "heroDescription": "Explora novedades, sigue tiendas y encuentra productos con una navegación pensada para la pantalla pequeña.",
+    "searchPlaceholder": "Buscar productos o tiendas",
+    "featuredStoresTitle": "Tiendas destacadas",
+    "featuredStoresSubtitle": "Accesos directos a los perfiles más recientes del feed.",
+    "tabAll": "Explorar",
+    "tabFollowing": "Siguiendo",
+    "productsTitle": "Productos",
+    "errorLoadingProducts": "No se pudieron cargar los productos en este momento.",
+    "loadingProducts": "Cargando productos...",
+    "emptyProducts": "Ningún producto encontrado.",
+    "emptyProductsDescription": "Ajusta la búsqueda o cambia de pestaña para ver otros artículos.",
+    "footerHint": "Desliza para actualizar o desplázate para ver más artículos"
+  },
+  "Menu": {
+    "home": "Inicio",
+    "notifications": "Notificaciones",
+    "bag": "Bolsa",
+    "profile": "Perfil",
+    "liked": "Favoritos",
+    "orders": "Mis compras",
+    "products": "Mis productos",
+    "superFilters": "Super Filtros",
+    "superFiltersDescription": "Super filtros en desarrollo.",
+    "support": "Soporte",
+    "dashboard": "Panel",
+    "newProduct": "Nuevo producto",
+    "sales": "Mis ventas",
+    "finance": "Gestión Financiera",
+    "pieces": "Piezas",
+    "stock": "Inventario",
+    "ordersDescription": "Historial de compras en desarrollo.",
+    "plans": "Planes",
+    "actionsSection": "ACCIONES",
+    "settings": "Configuraciones",
+    "logout": "Cerrar sesión"
+  },
+  "Search": {
+    "searchPlaceholder": "Buscar productos o tiendas",
+    "tabProducts": "Productos",
+    "tabStores": "Tiendas",
+    "emptyProductsFound": "Ningún producto encontrado.",
+    "emptyProductsPrompt": "Escribe para buscar productos.",
+    "emptyStoresFound": "Ninguna tienda encontrada.",
+    "emptyStoresPrompt": "Escribe para buscar tiendas."
+  },
+  "FeaturePlaceholder": {
+    "backToHome": "Volver al Inicio"
+  },
+  "DetailsPlaceholder": {
+    "title": "Pantalla Details",
+    "back": "Volver"
+  },
+  "Notifications": {
+    "eyebrow": "Notificaciones",
+    "title": "Mantente al tanto de las novedades.",
+    "markAll": "Marcar todas",
+    "errorLoading": "No se pudieron cargar tus notificaciones.",
+    "empty": "Todavía no tienes notificaciones."
+  },
+  "Support": {
+    "eyebrow": "Soporte",
+    "title": "¿Cómo podemos ayudarte?",
+    "emailTitle": "Correo electrónico",
+    "whatsappTitle": "WhatsApp",
+    "whatsappDescription": "Atención en horario comercial.",
+    "documentsTitle": "Documentos",
+    "termsOfUse": "Términos de uso",
+    "privacyPolicy": "Política de privacidad",
+    "returnPolicy": "Política de devolución"
+  },
+  "LegalDocument": {
+    "terms": "Términos de uso",
+    "policy": "Política de privacidad",
+    "return": "Política de devolución",
+    "loadError": "No se pudo cargar este documento en este momento."
+  }
+}

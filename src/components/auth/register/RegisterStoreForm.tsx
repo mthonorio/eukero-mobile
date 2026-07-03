@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import {
   ActivityIndicator,
   Pressable,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type Resolver } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import type { RegisterStoreFormValues } from '../../../types/auth/register';
 import { RegisterField } from './RegisterField';
@@ -17,7 +18,7 @@ import {
   maskCpfCnpj,
   maskPhone,
 } from '../../../validators/register/register.helpers';
-import { registerStoreSchema } from '../../../validators/register/register.schemas';
+import { createRegisterStoreSchema } from '../../../validators/register/register.schemas';
 import { useCepLookup } from '../../../hooks/register/useCepLookup';
 
 type RegisterStoreFormProps = {
@@ -41,6 +42,8 @@ export function RegisterStoreForm({
   const passwordRef = useRef<TextInput>(null);
   const confirmPasswordRef = useRef<TextInput>(null);
   const pixKeyRef = useRef<TextInput>(null);
+  const { t } = useTranslation();
+  const registerStoreSchema = useMemo(() => createRegisterStoreSchema(t), [t]);
 
   const {
     control,
@@ -110,10 +113,9 @@ export function RegisterStoreForm({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Loja</Text>
+        <Text style={styles.title}>{t('RegisterStoreForm.title')}</Text>
         <Text style={styles.description}>
-          Preencha os dados da loja com campos separados por contexto para uma
-          experiência mais fluida.
+          {t('RegisterStoreForm.description')}
         </Text>
       </View>
 
@@ -123,7 +125,7 @@ export function RegisterStoreForm({
         <RegisterField
           control={control}
           name='storeName'
-          label='Nome da loja'
+          label={t('RegisterStoreForm.storeNameLabel')}
           autoCapitalize='words'
           returnKeyType='next'
           inputRef={storeNameRef}
@@ -133,7 +135,7 @@ export function RegisterStoreForm({
         <RegisterField
           control={control}
           name='document'
-          label='CPF ou CNPJ'
+          label={t('RegisterStoreForm.documentLabel')}
           keyboardType='number-pad'
           inputMode='numeric'
           maxLength={18}
@@ -146,7 +148,7 @@ export function RegisterStoreForm({
         <RegisterField
           control={control}
           name='name'
-          label='Nome completo do proprietário'
+          label={t('RegisterStoreForm.ownerNameLabel')}
           autoCapitalize='words'
           textContentType='name'
           returnKeyType='next'
@@ -157,7 +159,7 @@ export function RegisterStoreForm({
         <RegisterField
           control={control}
           name='phone'
-          label='Telefone'
+          label={t('RegisterStoreForm.phoneLabel')}
           keyboardType='phone-pad'
           inputMode='tel'
           maxLength={15}
@@ -170,7 +172,7 @@ export function RegisterStoreForm({
         <RegisterField
           control={control}
           name='email'
-          label='E-mail'
+          label={t('RegisterStoreForm.emailLabel')}
           keyboardType='email-address'
           autoCapitalize='none'
           autoCorrect={false}
@@ -184,20 +186,20 @@ export function RegisterStoreForm({
         <RegisterField
           control={control}
           name='password'
-          label='Senha'
+          label={t('RegisterStoreForm.passwordLabel')}
           secureTextEntry
           autoComplete='password-new'
           textContentType='newPassword'
           returnKeyType='next'
           inputRef={passwordRef}
-          helperText='Use 8+ caracteres, com maiúscula, minúscula, número e símbolo.'
+          helperText={t('RegisterStoreForm.passwordHelperText')}
           error={errors.password?.message}
         />
 
         <RegisterField
           control={control}
           name='confirmPassword'
-          label='Confirmar senha'
+          label={t('RegisterStoreForm.confirmPasswordLabel')}
           secureTextEntry
           autoComplete='password-new'
           textContentType='newPassword'
@@ -209,7 +211,7 @@ export function RegisterStoreForm({
         <RegisterField
           control={control}
           name='pixKey'
-          label='Chave Pix'
+          label={t('RegisterStoreForm.pixKeyLabel')}
           autoCapitalize='none'
           autoCorrect={false}
           returnKeyType='done'

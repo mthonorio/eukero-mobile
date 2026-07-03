@@ -1,0 +1,126 @@
+{
+  "Profile": {
+    "defaultName": "My Profile",
+    "defaultUsername": "@user",
+    "sectionLabel": "My Profile",
+    "menu": {
+      "liked": "Liked",
+      "sales": "My sales",
+      "products": "My products",
+      "finance": "Financial Management",
+      "orders": "My orders",
+      "plans": "Plans",
+      "superFilters": "Super Filters",
+      "support": "Support",
+      "ordersCustomer": "My Orders",
+      "productsCustomer": "My Products",
+      "settings": "Settings",
+      "logout": "Log out"
+    },
+    "featureDescriptions": {
+      "sales": "Sales list under development.",
+      "finance": "Financial area under development.",
+      "orders": "Order history under development.",
+      "plans": "Plan management under development.",
+      "superFilters": "Super filters under development.",
+      "support": "Customer support under development."
+    }
+  },
+  "ProfileSettings": {
+    "titleStore": "Edit store profile",
+    "title": "Edit profile",
+    "breadcrumb": "Settings > Profile",
+    "avatarHint": "Tap to change the photo",
+    "fields": {
+      "name": "Full name",
+      "username": "Username",
+      "storeName": "Store Name",
+      "phone": "Phone",
+      "email": "Email",
+      "password": "Password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
+      "pixOwnerName": "Pix account holder",
+      "pixKey": "PIX Key",
+      "pixDocument": "Holder CPF/CNPJ"
+    },
+    "hints": {
+      "newPassword": "Use 8+ characters, with uppercase, lowercase, number and symbol.",
+      "pixOwnerName": "Enter the name exactly as registered in the Pix account.",
+      "pixKey": "Can be CPF, CNPJ, email, phone or random key.",
+      "pixDocument": "CPF or CNPJ linked to the Pix key (can differ from your profile)."
+    },
+    "pixSectionTitle": "Payment Details (Pix)",
+    "changeButton": "Change",
+    "saveButton": "Save changes",
+    "errors": {
+      "saveTitle": "Error",
+      "saveMessage": "Unable to save changes."
+    }
+  },
+  "ProfileCollection": {
+    "descriptionLiked": "Items you liked and can browse again.",
+    "descriptionMine": "Products registered on your account, organized in reusable cards.",
+    "loading": "Loading...",
+    "emptyDefault": "No items found.",
+    "errorEmpty": "No products found.",
+    "errorLoad": "Unable to load products right now."
+  },
+  "ProfileFeature": {},
+  "Addresses": {
+    "breadcrumb": "Settings",
+    "titleEdit": "Edit address",
+    "titleNew": "New address",
+    "titleList": "Addresses",
+    "emptyText": "You haven't added any addresses yet.",
+    "cepLabel": "ZIP Code: {{cep}}",
+    "addButton": "Add address",
+    "fields": {
+      "name": "Address name (optional)",
+      "cep": "ZIP Code",
+      "address": "Address",
+      "number": "Number",
+      "complement": "Complement",
+      "neighborhood": "Neighborhood",
+      "city": "City",
+      "state": "State"
+    },
+    "cepLoading": "Looking up address by ZIP code...",
+    "cancelButton": "Cancel",
+    "saveButton": "Save",
+    "deleteDialog": {
+      "title": "Delete address",
+      "message": "Are you sure you want to delete this address?",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    },
+    "errors": {
+      "loadTitle": "Error",
+      "loadMessage": "Unable to load addresses.",
+      "saveTitle": "Error",
+      "saveMessage": "Unable to save address.",
+      "deleteTitle": "Error",
+      "deleteMessage": "Unable to delete address."
+    }
+  },
+  "Connect": {
+    "breadcrumb": "Settings",
+    "title": "Connect Instagram",
+    "connectedAs": "Connected as @{{username}}",
+    "disconnectButton": "Disconnect",
+    "description": "Connect a business or creator Instagram account to link your profile to your store.",
+    "connectButton": "Connect with Instagram",
+    "disconnectDialog": {
+      "title": "Disconnect Instagram",
+      "message": "Are you sure you want to disconnect your Instagram account?",
+      "cancel": "Cancel",
+      "confirm": "Disconnect"
+    },
+    "errors": {
+      "connectTitle": "Error",
+      "connectMessage": "Unable to start the connection with Instagram.",
+      "disconnectTitle": "Error",
+      "disconnectMessage": "Unable to disconnect your account."
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "Common": {
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "loading": "Cargando...",
+    "confirm": "Confirmar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "Language": {
+    "sectionLabel": "Configuración",
+    "title": "Idioma",
+    "options": {
+      "pt-BR": { "label": "Portugués (Brasil)", "nativeName": "Português" },
+      "en-US": { "label": "Inglés (Estados Unidos)", "nativeName": "English" },
+      "es": { "label": "Español", "nativeName": "Español" }
+    }
+  }
+}

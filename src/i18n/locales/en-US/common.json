@@ -1,0 +1,22 @@
+{
+  "Common": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "save": "Save",
+    "loading": "Loading...",
+    "confirm": "Confirm",
+    "edit": "Edit",
+    "delete": "Delete",
+    "error": "Error",
+    "success": "Success"
+  },
+  "Language": {
+    "sectionLabel": "Settings",
+    "title": "Language",
+    "options": {
+      "pt-BR": { "label": "Portuguese (Brazil)", "nativeName": "Português" },
+      "en-US": { "label": "English (United States)", "nativeName": "English" },
+      "es": { "label": "Spanish", "nativeName": "Español" }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "Validation": {
+    "password": {
+      "min8": "La contraseña debe tener al menos 8 caracteres.",
+      "lowercase": "La contraseña debe contener una letra minúscula.",
+      "uppercase": "La contraseña debe contener una letra mayúscula.",
+      "number": "La contraseña debe contener un número.",
+      "special": "La contraseña debe contener un carácter especial.",
+      "weak": "Usa 8+ caracteres, con mayúscula, minúscula, número y símbolo."
+    },
+    "confirmPassword": {
+      "required": "Confirma la contraseña.",
+      "mismatch": "Las contraseñas no coinciden."
+    },
+    "email": {
+      "invalid": "Ingresa un correo válido."
+    },
+    "phone": {
+      "invalid": "Ingresa un teléfono válido."
+    },
+    "name": {
+      "required": "Ingresa el nombre completo."
+    },
+    "username": {
+      "required": "Ingresa un nombre de usuario."
+    },
+    "storeName": {
+      "required": "Ingresa el nombre de la tienda."
+    },
+    "document": {
+      "cpfInvalid": "Ingresa un CPF válido.",
+      "cpfCnpjInvalid": "Ingresa un CPF o CNPJ válido."
+    },
+    "address": {
+      "cepInvalid": "Ingresa un código postal válido.",
+      "addressRequired": "Ingresa la dirección.",
+      "numberRequired": "Ingresa el número.",
+      "neighborhoodRequired": "Ingresa el barrio.",
+      "cityRequired": "Ingresa la ciudad.",
+      "stateRequired": "Ingresa el estado."
+    },
+    "pix": {
+      "ownerNameRequired": "Ingresa el nombre del titular.",
+      "keyRequired": "Ingresa la clave Pix.",
+      "documentRequired": "Ingresa el CPF o CNPJ.",
+      "documentInvalid": "Ingresa un CPF o CNPJ válido."
+    }
+  }
+}

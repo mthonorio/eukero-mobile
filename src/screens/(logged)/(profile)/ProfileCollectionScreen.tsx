@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ChevronLeft } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ProductFeedCard } from '../../../components/ProductFeedCard';
 import ProductService from '../../../services/product.service';
@@ -40,6 +41,7 @@ function isRenderableProduct(product: Product) {
 
 export function ProfileCollectionScreen({ navigation, route }: Props) {
   const { title, source } = route.params;
+  const { t } = useTranslation();
   const selectProduct = useCheckoutStore(state => state.selectProduct);
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,7 +59,7 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
 
       if (!response || (Array.isArray(response) && response.length === 0)) {
         setProducts([]);
-        setError('Nenhum produto encontrado.');
+        setError(t('ProfileCollection.errorEmpty'));
         return;
       }
 
@@ -69,7 +71,7 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
         const validProducts = response.filter(isRenderableProduct);
         if (validProducts.length === 0) {
           setProducts([]);
-          setError('Nenhum produto encontrado.');
+          setError(t('ProfileCollection.errorEmpty'));
           return;
         }
         return setProducts(validProducts);
@@ -78,13 +80,13 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
       setError(null);
     } catch (loadError) {
       console.error('Erro ao carregar coleção de produtos:', loadError);
-      setError('Não foi possível carregar os produtos neste momento.');
+      setError(t('ProfileCollection.errorLoad'));
       setProducts([]);
     } finally {
       setIsLoading(false);
       setIsRefreshing(false);
     }
-  }, [source]);
+  }, [source, t]);
 
   useEffect(() => {
     loadProducts();
@@ -104,14 +106,14 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.description}>
               {source === 'liked'
-                ? 'Itens que você curtiu e pode voltar a navegar.'
-                : 'Produtos cadastrados na sua conta, organizados em cards reutilizáveis.'}
+                ? t('ProfileCollection.descriptionLiked')
+                : t('ProfileCollection.descriptionMine')}
             </Text>
           </View>
         </View>
       </View>
     ),
-    [navigation, source, title],
+    [navigation, source, title, t],
   );
 
   return (
@@ -149,12 +151,12 @@ export function ProfileCollectionScreen({ navigation, route }: Props) {
         isLoading ? (
           <View style={styles.loadingState}>
             <ActivityIndicator color={colors.primary} />
-            <Text style={styles.loadingText}>Carregando...</Text>
+            <Text style={styles.loadingText}>{t('ProfileCollection.loading')}</Text>
           </View>
         ) : (
           <View style={styles.emptyState}>
             <Text style={styles.emptyTitle}>
-              {error || 'Nenhum item encontrado.'}
+              {error || t('ProfileCollection.emptyDefault')}
             </Text>
           </View>
         )

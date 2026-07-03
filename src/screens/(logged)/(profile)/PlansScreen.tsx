@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { Check, ChevronLeft, Star } from 'lucide-react-native';
 
 import { RootStackParamList } from '../../../navigation/types';
@@ -20,54 +22,49 @@ const colors = {
   accent: '#F97316',
 };
 
-const PLAN_DETAILS: {
-  key: Plan;
-  label: string;
-  price: string;
-  features: string[];
-}[] = [
-  {
-    key: Plan.STANDARD,
-    label: 'Standard',
-    price: 'Grátis',
-    features: [
-      'Até 20 produtos publicados',
-      'Suporte via e-mail',
-      'Relatórios básicos',
-    ],
-  },
-  {
-    key: Plan.PRO,
-    label: 'Pro',
-    price: 'R$ 39,90/mês',
-    features: [
-      'Produtos ilimitados',
-      'Gestão financeira completa',
-      'Suporte prioritário',
-    ],
-  },
-  {
-    key: Plan.PREMIUM,
-    label: 'Premium',
-    price: 'R$ 79,90/mês',
-    features: [
-      'Tudo do plano Pro',
-      'Consignação de fornecedores',
-      'Dashboard avançado',
-    ],
-  },
-];
-
 export function PlansScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const user = useAuthStore(state => state.user);
   const currentPlan = (user?.plan as Plan | undefined) ?? Plan.STANDARD;
+
+  const PLAN_DETAILS = useMemo<
+    { key: Plan; label: string; price: string; features: string[] }[]
+  >(
+    () => [
+      {
+        key: Plan.STANDARD,
+        label: t('Plans.plans.standard.label'),
+        price: t('Plans.plans.standard.price'),
+        features: t('Plans.plans.standard.features', {
+          returnObjects: true,
+        }) as string[],
+      },
+      {
+        key: Plan.PRO,
+        label: t('Plans.plans.pro.label'),
+        price: t('Plans.plans.pro.price'),
+        features: t('Plans.plans.pro.features', {
+          returnObjects: true,
+        }) as string[],
+      },
+      {
+        key: Plan.PREMIUM,
+        label: t('Plans.plans.premium.label'),
+        price: t('Plans.plans.premium.price'),
+        features: t('Plans.plans.premium.features', {
+          returnObjects: true,
+        }) as string[],
+      },
+    ],
+    [t],
+  );
 
   function handleSelectPlan(plan: Plan) {
     if (plan === currentPlan) return;
 
     Alert.alert(
-      'Em breve',
-      'A alteração de plano com pagamento estará disponível em breve.',
+      t('Plans.comingSoon.title'),
+      t('Plans.comingSoon.message'),
     );
   }
 
@@ -82,8 +79,8 @@ export function PlansScreen({ navigation }: Props) {
         </Pressable>
 
         <View>
-          <Text style={styles.heroEyebrow}>Planos</Text>
-          <Text style={styles.title}>Escolha o plano ideal para você.</Text>
+          <Text style={styles.heroEyebrow}>{t('Plans.heroEyebrow')}</Text>
+          <Text style={styles.title}>{t('Plans.title')}</Text>
         </View>
       </View>
 
@@ -104,7 +101,7 @@ export function PlansScreen({ navigation }: Props) {
               {isCurrent ? (
                 <View style={styles.currentBadge}>
                   <Star color={colors.primary} size={14} fill={colors.primary} />
-                  <Text style={styles.currentBadgeText}>Atual</Text>
+                  <Text style={styles.currentBadgeText}>{t('Plans.current')}</Text>
                 </View>
               ) : null}
             </View>
@@ -132,7 +129,9 @@ export function PlansScreen({ navigation }: Props) {
                   isCurrent && styles.selectButtonTextDisabled,
                 ]}
               >
-                {isCurrent ? 'Plano atual' : 'Selecionar plano'}
+                {isCurrent
+                  ? t('Plans.currentPlanButton')
+                  : t('Plans.selectPlanButton')}
               </Text>
             </Pressable>
           </View>

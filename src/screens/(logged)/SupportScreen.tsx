@@ -1,5 +1,6 @@
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, FileText, Mail, MessageCircle } from 'lucide-react-native';
 
 import { RootStackParamList } from '../../navigation/types';
@@ -18,6 +19,8 @@ const colors = {
 };
 
 export function SupportScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.headerCard}>
@@ -29,8 +32,8 @@ export function SupportScreen({ navigation }: Props) {
         </Pressable>
 
         <View>
-          <Text style={styles.heroEyebrow}>Suporte</Text>
-          <Text style={styles.title}>Como podemos ajudar?</Text>
+          <Text style={styles.heroEyebrow}>{t('Support.eyebrow')}</Text>
+          <Text style={styles.title}>{t('Support.title')}</Text>
         </View>
       </View>
 
@@ -43,7 +46,7 @@ export function SupportScreen({ navigation }: Props) {
             <Mail color={colors.primary} size={18} />
           </View>
           <View style={styles.contactInfo}>
-            <Text style={styles.contactTitle}>E-mail</Text>
+            <Text style={styles.contactTitle}>{t('Support.emailTitle')}</Text>
             <Text style={styles.contactDescription}>suporte@eukero.com</Text>
           </View>
           <ChevronRight color={colors.muted} size={18} />
@@ -59,9 +62,9 @@ export function SupportScreen({ navigation }: Props) {
             <MessageCircle color={colors.primary} size={18} />
           </View>
           <View style={styles.contactInfo}>
-            <Text style={styles.contactTitle}>WhatsApp</Text>
+            <Text style={styles.contactTitle}>{t('Support.whatsappTitle')}</Text>
             <Text style={styles.contactDescription}>
-              Atendimento em horário comercial.
+              {t('Support.whatsappDescription')}
             </Text>
           </View>
           <ChevronRight color={colors.muted} size={18} />
@@ -69,7 +72,7 @@ export function SupportScreen({ navigation }: Props) {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Documentos</Text>
+        <Text style={styles.sectionTitle}>{t('Support.documentsTitle')}</Text>
 
         <Pressable
           style={styles.docRow}
@@ -78,7 +81,7 @@ export function SupportScreen({ navigation }: Props) {
           }
         >
           <FileText color={colors.muted} size={18} />
-          <Text style={styles.docText}>Termos de uso</Text>
+          <Text style={styles.docText}>{t('Support.termsOfUse')}</Text>
           <ChevronRight color={colors.muted} size={16} />
         </Pressable>
 
@@ -89,7 +92,7 @@ export function SupportScreen({ navigation }: Props) {
           }
         >
           <FileText color={colors.muted} size={18} />
-          <Text style={styles.docText}>Política de privacidade</Text>
+          <Text style={styles.docText}>{t('Support.privacyPolicy')}</Text>
           <ChevronRight color={colors.muted} size={16} />
         </Pressable>
 
@@ -100,7 +103,7 @@ export function SupportScreen({ navigation }: Props) {
           }
         >
           <FileText color={colors.muted} size={18} />
-          <Text style={styles.docText}>Política de devolução</Text>
+          <Text style={styles.docText}>{t('Support.returnPolicy')}</Text>
           <ChevronRight color={colors.muted} size={16} />
         </Pressable>
       </View>

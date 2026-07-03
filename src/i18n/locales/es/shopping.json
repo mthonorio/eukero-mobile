@@ -1,0 +1,76 @@
+{
+  "Bag": {
+    "eyebrow": "Bolsa",
+    "title": "Tus artículos seleccionados",
+    "description": "Selecciona los productos que deseas llevar y finaliza la compra.",
+    "emptyTitle": "Tu bolsa está vacía.",
+    "emptyDescription": "Explora el feed y añade productos para verlos aquí.",
+    "loadError": "No se pudo cargar tu bolsa.",
+    "subtotal": "Subtotal",
+    "checkoutButton": "Finalizar compra"
+  },
+  "Checkout": {
+    "eyebrow": "Checkout",
+    "title": "Confirma tu artículo antes de continuar.",
+    "description": "El producto elegido se guardó en el store y en el almacenamiento para mantener el flujo incluso después de la navegación.",
+    "emptyTitle": "Ningún producto seleccionado",
+    "emptyDescription": "Vuelve al feed y selecciona un artículo para iniciar el checkout.",
+    "placeOrderButton": "Realizar pedido",
+    "viewProductButton": "Ver detalles del producto",
+    "removeSelectionButton": "Eliminar selección",
+    "errors": {
+      "title": "Error",
+      "orderFailed": "No se pudo finalizar el pedido."
+    }
+  },
+  "CheckoutCompleted": {
+    "title": "¡Gracias por tu compra!",
+    "descriptionWithOrder": "Tu pedido #{{orderId}} fue registrado con éxito.",
+    "descriptionWithoutOrder": "Tu pedido fue registrado con éxito.",
+    "viewOrderButton": "Ver pedido",
+    "infoTitle": "Dónde encontrar tu pedido",
+    "infoDescription": "Puedes seguir el estado de tu compra en cualquier momento.",
+    "infoStep1": "1. Accede al Menú de la aplicación.",
+    "infoStep2": "2. Toca \"Mis compras\".",
+    "infoStep3": "3. Encuentra tu pedido en la lista de estados.",
+    "continueShoppingButton": "Continuar comprando",
+    "recommendedTitle": "También te puede gustar"
+  },
+  "Store": {
+    "description": "Catálogo de la tienda con productos organizados en el mismo estilo visual del feed.",
+    "sectionTitle": "Artículos de la tienda",
+    "loadingText": "Cargando productos de la tienda...",
+    "emptyTitle": "Ningún artículo encontrado.",
+    "emptyDescription": "Esta tienda aún no tiene productos disponibles en esta lista.",
+    "loadError": "No se pudieron cargar los productos de esta tienda."
+  },
+  "ProductDetails": {
+    "priceLabel": "Precio actual",
+    "discount": "-{{percent}}%",
+    "categoryFallback": "Producto",
+    "inStock": "Disponible",
+    "onRequest": "Bajo consulta",
+    "checkoutButton": "EUKERO",
+    "detailsTitle": "Detalles",
+    "department": "Departamento:",
+    "category": "Categoría:",
+    "classification": "Clasificación:",
+    "style": "Estilo:",
+    "quality": "Calidad:",
+    "qualityNotInformed": "No informada",
+    "dimensions": "Dimensiones:",
+    "height": "Altura: {{value}}",
+    "width": "Ancho: {{value}}",
+    "length": "Largo: {{value}}",
+    "weight": "Peso: {{value}}",
+    "size": "Tamaño:",
+    "color": "Color:"
+  },
+  "ProductFeedCard": {
+    "priceLabel": "Desde",
+    "likes": "{{count}} me gusta",
+    "inStock": "Disponible",
+    "onRequest": "Bajo consulta",
+    "checkoutButton": "EUKERO"
+  }
+}

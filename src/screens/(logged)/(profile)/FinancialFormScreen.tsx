@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft } from 'lucide-react-native';
 
 import { RootStackParamList } from '../../../navigation/types';
@@ -27,19 +28,6 @@ const colors = {
   border: '#E4E7EC',
   primary: '#0F7A4F',
 };
-
-const TYPE_OPTIONS: { key: MovementType; label: string }[] = [
-  { key: 'CR', label: 'A receber' },
-  { key: 'CP', label: 'A pagar' },
-];
-
-const STATUS_OPTIONS: { key: MovementStatus; label: string }[] = [
-  { key: 'A', label: 'Aberto' },
-  { key: 'T', label: 'Em trânsito' },
-  { key: 'L', label: 'Liberado' },
-  { key: 'S', label: 'Solicitado' },
-  { key: 'Q', label: 'Quitado' },
-];
 
 function maskCurrencyInput(value: string) {
   const digitsOnly = value.replace(/\D/g, '');

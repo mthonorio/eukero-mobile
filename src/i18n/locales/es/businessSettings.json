@@ -1,0 +1,178 @@
+{
+  "Settings": {
+    "heroEyebrow": "Configuraciones",
+    "title": "Gestiona tu cuenta",
+    "items": {
+      "profile": {
+        "label": "Perfil",
+        "description": "Datos personales, avatar y Pix."
+      },
+      "addresses": {
+        "label": "Direcciones",
+        "description": "Gestiona tus direcciones guardadas."
+      },
+      "language": {
+        "label": "Idioma",
+        "description": "Elige el idioma de la aplicación."
+      },
+      "terms": {
+        "label": "Términos y políticas",
+        "description": "Documentos legales y política de cambios."
+      },
+      "connect": {
+        "label": "Conectar Instagram",
+        "description": "Vincula tu cuenta comercial de Instagram."
+      },
+      "globalVariables": {
+        "label": "Variables globales",
+        "description": "Parámetros generales de tu tienda."
+      },
+      "migrateToStore": {
+        "label": "Migrar a tienda",
+        "description": "Convierte tu cuenta en una tienda."
+      }
+    }
+  },
+  "GlobalVariables": {
+    "heroEyebrow": "Configuraciones",
+    "title": "Variables globales",
+    "empty": "No hay variables globales disponibles por el momento.",
+    "save": "Guardar",
+    "errors": {
+      "load": {
+        "title": "Error",
+        "message": "No fue posible cargar las variables globales."
+      },
+      "save": {
+        "title": "Error",
+        "message": "No fue posible guardar las variables."
+      }
+    },
+    "success": {
+      "title": "Éxito",
+      "message": "Variables actualizadas con éxito."
+    }
+  },
+  "MigrateToStore": {
+    "heroEyebrow": "Configuraciones",
+    "title": "Migrar a tienda",
+    "alreadyStore": {
+      "description": "Tu cuenta ya es una tienda. No es necesario migrar nuevamente."
+    },
+    "success": {
+      "title": "¡Tienda creada con éxito!",
+      "description": "Tu cuenta ahora es una tienda. Ya puedes gestionar productos, ventas y mucho más.",
+      "button": "Ir al inicio"
+    },
+    "infoBanner": "Completa los datos a continuación para convertir tu cuenta en una tienda.",
+    "sections": {
+      "storeData": "1. Datos de la tienda",
+      "address": "2. Dirección",
+      "pix": "3. Datos de recibo (Pix)"
+    },
+    "fields": {
+      "storeName": "Nombre de la tienda",
+      "cep": "Código postal",
+      "cepLoading": "Buscando dirección por el código postal...",
+      "address": "Dirección",
+      "number": "Número",
+      "complement": "Complemento",
+      "neighborhood": "Barrio",
+      "city": "Ciudad",
+      "state": "Estado",
+      "ownerName": "Nombre del titular",
+      "ownerNameHint": "Nombre del titular de la clave Pix.",
+      "pixKey": "Clave Pix",
+      "pixKeyHint": "CPF, CNPJ, correo, teléfono o clave aleatoria.",
+      "document": "CPF o CNPJ",
+      "documentHint": "Documento del titular del recibo."
+    },
+    "buttons": {
+      "cancel": "Cancelar",
+      "submit": "Migrar a tienda"
+    },
+    "errors": {
+      "migrate": {
+        "title": "Error",
+        "message": "No fue posible migrar tu cuenta a tienda en este momento."
+      }
+    }
+  },
+  "Plans": {
+    "heroEyebrow": "Planes",
+    "title": "Elige el plan ideal para ti.",
+    "current": "Actual",
+    "currentPlanButton": "Plan actual",
+    "selectPlanButton": "Seleccionar plan",
+    "comingSoon": {
+      "title": "Próximamente",
+      "message": "El cambio de plan con pago estará disponible próximamente."
+    },
+    "plans": {
+      "standard": {
+        "label": "Standard",
+        "price": "Gratis",
+        "features": [
+          "Hasta 20 productos publicados",
+          "Soporte por correo electrónico",
+          "Reportes básicos"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "R$ 39,90/mes",
+        "features": [
+          "Productos ilimitados",
+          "Gestión financiera completa",
+          "Soporte prioritario"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "price": "R$ 79,90/mes",
+        "features": [
+          "Todo del plan Pro",
+          "Consignación de proveedores",
+          "Panel avanzado"
+        ]
+      }
+    }
+  },
+  "Terms": {
+    "heroEyebrow": "Configuraciones",
+    "title": "Términos y políticas",
+    "sections": {
+      "documents": "Documentos",
+      "storeReturns": "Cambios y devoluciones de la tienda"
+    },
+    "documents": {
+      "terms": "Términos de uso",
+      "privacyPolicy": "Política de privacidad",
+      "returnPolicy": "Política de devolución"
+    },
+    "allowReturns": "Acepto cambios y devoluciones",
+    "policyPlaceholder": "Describe las condiciones de cambio y devolución...",
+    "buttons": {
+      "restore": "Restaurar",
+      "save": "Guardar"
+    },
+    "alerts": {
+      "emptyPolicy": {
+        "title": "Atención",
+        "message": "Describe la política de cambio y devolución."
+      },
+      "policyTooLong": {
+        "title": "Atención",
+        "message": "El texto excede el límite de caracteres."
+      },
+      "success": {
+        "title": "Éxito",
+        "message": "Política actualizada con éxito."
+      },
+      "error": {
+        "title": "Error",
+        "message": "No fue posible guardar la política."
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "Orders": {
+    "heroEyebrow": "My purchases",
+    "title": "Track your orders.",
+    "searchPlaceholder": "Search by store",
+    "loadError": "Could not load your orders.",
+    "empty": "You haven't made any purchases yet."
+  },
+  "OrderDetails": {
+    "loadError": "Could not load this order."
+  },
+  "Sales": {
+    "heroEyebrow": "My sales",
+    "title": "Track your sales.",
+    "searchPlaceholder": "Search by buyer",
+    "loadError": "Could not load your sales.",
+    "empty": "You haven't made any sales yet."
+  },
+  "SaleDetails": {
+    "loadError": "Could not load this sale."
+  },
+  "OrderCard": {
+    "defaultUserName": "User",
+    "orderIdLabel": "Order #{{id}}"
+  },
+  "OrderDetailsContent": {
+    "orderIdLabel": "Order #{{id}}",
+    "storeSectionTitle": "Store",
+    "buyerSectionTitle": "Buyer",
+    "fulfillmentPickup": "Pickup at store",
+    "fulfillmentDelivery": "Delivery",
+    "validationCodeLabel": "Validation code",
+    "productsSectionTitle": "Products",
+    "quantityLabel": "Qty: {{quantity}}",
+    "subtotalLabel": "Subtotal",
+    "shippingLabel": "Shipping",
+    "totalLabel": "Total"
+  },
+  "OrderStatus": {
+    "tabs": {
+      "all": "All",
+      "AP": "Pending payment",
+      "PC": "Preparing",
+      "EN": "Shipped",
+      "EC": "Finished",
+      "SD": "Return",
+      "CA": "Cancelled"
+    },
+    "labels": {
+      "AP": "Pending payment",
+      "PC": "Preparing",
+      "EN": "On the way",
+      "EC": "Finished",
+      "SD": "Return requested",
+      "CA": "Cancelled",
+      "DE": "Returned"
+    }
+  }
+}

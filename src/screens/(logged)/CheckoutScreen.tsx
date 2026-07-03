@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 
 import { OrderService } from '../../services/order.service';
 import { RootStackParamList } from '../../navigation/types';
@@ -35,6 +36,7 @@ function formatPrice(value: number) {
 }
 
 export function CheckoutScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const selectedProduct = useCheckoutStore(state => state.selectedProduct);
   const isHydrated = useCheckoutStore(state => state.isHydrated);
   const hydrate = useCheckoutStore(state => state.hydrate);
@@ -72,7 +74,7 @@ export function CheckoutScreen({ navigation }: Props) {
       await clearSelection();
       navigation.replace('CheckoutCompleted', { orderId: order.orderId });
     } catch {
-      Alert.alert('Erro', 'Não foi possível finalizar o pedido.');
+      Alert.alert(t('Checkout.errors.title'), t('Checkout.errors.orderFailed'));
     } finally {
       setIsPlacingOrder(false);
     }
@@ -89,10 +91,8 @@ export function CheckoutScreen({ navigation }: Props) {
   if (!selectedProduct) {
     return (
       <View style={styles.centerState}>
-        <Text style={styles.title}>Nenhum produto selecionado</Text>
-        <Text style={styles.description}>
-          Volte ao feed e selecione um item para iniciar o checkout.
-        </Text>
+        <Text style={styles.title}>{t('Checkout.emptyTitle')}</Text>
+        <Text style={styles.description}>{t('Checkout.emptyDescription')}</Text>
       </View>
     );
   }
@@ -100,12 +100,9 @@ export function CheckoutScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.heroCard}>
-        <Text style={styles.heroEyebrow}>Checkout</Text>
-        <Text style={styles.title}>Confirme seu item antes de seguir.</Text>
-        <Text style={styles.description}>
-          O produto escolhido foi salvo no store e no storage para manter o
-          fluxo mesmo após navegação.
-        </Text>
+        <Text style={styles.heroEyebrow}>{t('Checkout.eyebrow')}</Text>
+        <Text style={styles.title}>{t('Checkout.title')}</Text>
+        <Text style={styles.description}>{t('Checkout.description')}</Text>
       </View>
 
       <View style={styles.productCard}>
@@ -145,16 +142,22 @@ export function CheckoutScreen({ navigation }: Props) {
           {isPlacingOrder ? (
             <ActivityIndicator color='#FFFFFF' />
           ) : (
-            <Text style={styles.primaryButtonText}>Finalizar pedido</Text>
+            <Text style={styles.primaryButtonText}>
+              {t('Checkout.placeOrderButton')}
+            </Text>
           )}
         </Pressable>
 
         <Pressable style={styles.secondaryButton} onPress={handleContinue}>
-          <Text style={styles.secondaryButtonText}>Ver detalhes do produto</Text>
+          <Text style={styles.secondaryButtonText}>
+            {t('Checkout.viewProductButton')}
+          </Text>
         </Pressable>
 
         <Pressable style={styles.secondaryButton} onPress={clearSelection}>
-          <Text style={styles.secondaryButtonText}>Remover seleção</Text>
+          <Text style={styles.secondaryButtonText}>
+            {t('Checkout.removeSelectionButton')}
+          </Text>
         </Pressable>
       </View>
     </View>

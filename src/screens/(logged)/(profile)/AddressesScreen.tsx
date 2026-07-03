@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -11,6 +11,7 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type Resolver } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import {
   ChevronLeft,
   MapPin,
@@ -26,7 +27,7 @@ import { RegisterField } from '../../../components/auth/register/RegisterField';
 import { useCepLookup } from '../../../hooks/register/useCepLookup';
 import { maskCep, normalizeState } from '../../../validators/register/register.helpers';
 import {
-  addressFormSchema,
+  createAddressFormSchema,
   type AddressFormValues,
 } from '../../../validators/settings/settings.schemas';
 
@@ -63,6 +64,8 @@ export function AddressesScreen({ navigation }: Props) {
   const [editingId, setEditingId] = useState<string | null>(null);
 
   const { loading: isLoadingCep, lookup } = useCepLookup();
+  const { t } = useTranslation();
+  const addressFormSchema = useMemo(() => createAddressFormSchema(t), [t]);
 
   const {
     control,
@@ -82,7 +85,10 @@ export function AddressesScreen({ navigation }: Props) {
       const data = await UserService.getAddresses();
       setAddresses(data);
     } catch {
-      Alert.alert('Erro', 'Não foi possível carregar os endereços.');
+      Alert.alert(
+        t('Addresses.errors.loadTitle'),
+        t('Addresses.errors.loadMessage'),
+      );
     } finally {
       setIsLoading(false);
     }
@@ -137,7 +143,10 @@ export function AddressesScreen({ navigation }: Props) {
       await loadAddresses();
       setMode('list');
     } catch {
-      Alert.alert('Erro', 'Não foi possível salvar o endereço.');
+      Alert.alert(
+        t('Addresses.errors.saveTitle'),
+        t('Addresses.errors.saveMessage'),
+      );
     } finally {
       setIsSaving(false);
     }
@@ -148,19 +157,22 @@ export function AddressesScreen({ navigation }: Props) {
     if (!id) return;
 
     Alert.alert(
-      'Excluir endereço',
-      'Tem certeza que deseja excluir este endereço?',
+      t('Addresses.deleteDialog.title'),
+      t('Addresses.deleteDialog.message'),
       [
-        { text: 'Cancelar', style: 'cancel' },
+        { text: t('Addresses.deleteDialog.cancel'), style: 'cancel' },
         {
-          text: 'Excluir',
+          text: t('Addresses.deleteDialog.confirm'),
           style: 'destructive',
           onPress: async () => {
             try {
               await UserService.deleteAddress(id);
               await loadAddresses();
             } catch {
-              Alert.alert('Erro', 'Não foi possível excluir o endereço.');
+              Alert.alert(
+                t('Addresses.errors.deleteTitle'),
+                t('Addresses.errors.deleteMessage'),
+              );
             }
           },
         },
@@ -181,13 +193,13 @@ export function AddressesScreen({ navigation }: Props) {
         </Pressable>
 
         <View>
-          <Text style={styles.heroEyebrow}>Configurações</Text>
+          <Text style={styles.heroEyebrow}>{t('Addresses.breadcrumb')}</Text>
           <Text style={styles.title}>
             {mode === 'form'
               ? editingId
-                ? 'Editar endereço'
-                : 'Novo endereço'
-              : 'Endereços'}
+                ? t('Addresses.titleEdit')
+                : t('Addresses.titleNew')
+              : t('Addresses.titleList')}
           </Text>
         </View>
       </View>
@@ -202,7 +214,7 @@ export function AddressesScreen({ navigation }: Props) {
             <View style={styles.emptyState}>
               <MapPin color={colors.muted} size={28} />
               <Text style={styles.emptyText}>
-                Você ainda não cadastrou nenhum endereço.
+                {t('Addresses.emptyText')}
               </Text>
             </View>
           ) : (
@@ -220,7 +232,9 @@ export function AddressesScreen({ navigation }: Props) {
                     {address.neighborhood ? `${address.neighborhood}, ` : ''}
                     {address.city} - {address.state}
                   </Text>
-                  <Text style={styles.addressMuted}>CEP: {address.cep}</Text>
+                  <Text style={styles.addressMuted}>
+                    {t('Addresses.cepLabel', { cep: address.cep })}
+                  </Text>
                 </View>
 
                 <View style={styles.addressActions}>
@@ -243,7 +257,7 @@ export function AddressesScreen({ navigation }: Props) {
 
           <Pressable style={styles.addButton} onPress={openNewAddressForm}>
             <Plus color={colors.primary} size={18} />
-            <Text style={styles.addButtonText}>Adicionar endereço</Text>
+            <Text style={styles.addButtonText}>{t('Addresses.addButton')}</Text>
           </Pressable>
         </View>
       ) : (
@@ -251,7 +265,7 @@ export function AddressesScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='name'
-            label='Nome (opcional)'
+            label={t('Addresses.fields.name')}
             returnKeyType='next'
             error={errors.name?.message}
           />
@@ -259,7 +273,7 @@ export function AddressesScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='cep'
-            label='CEP'
+            label={t('Addresses.fields.cep')}
             keyboardType='number-pad'
             inputMode='numeric'
             maxLength={9}
@@ -270,13 +284,13 @@ export function AddressesScreen({ navigation }: Props) {
           />
 
           {isLoadingCep ? (
-            <Text style={styles.helperText}>Buscando endereço pelo CEP...</Text>
+            <Text style={styles.helperText}>{t('Addresses.cepLoading')}</Text>
           ) : null}
 
           <RegisterField
             control={control}
             name='address'
-            label='Endereço'
+            label={t('Addresses.fields.address')}
             returnKeyType='next'
             error={errors.address?.message}
           />
@@ -285,7 +299,7 @@ export function AddressesScreen({ navigation }: Props) {
             <RegisterField
               control={control}
               name='number'
-              label='Número'
+              label={t('Addresses.fields.number')}
               keyboardType='number-pad'
               inputMode='numeric'
               returnKeyType='next'
@@ -296,7 +310,7 @@ export function AddressesScreen({ navigation }: Props) {
             <RegisterField
               control={control}
               name='complement'
-              label='Complemento'
+              label={t('Addresses.fields.complement')}
               returnKeyType='next'
               containerStyle={styles.column}
               error={errors.complement?.message}
@@ -306,7 +320,7 @@ export function AddressesScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='neighborhood'
-            label='Bairro'
+            label={t('Addresses.fields.neighborhood')}
             returnKeyType='next'
             error={errors.neighborhood?.message}
           />
@@ -315,7 +329,7 @@ export function AddressesScreen({ navigation }: Props) {
             <RegisterField
               control={control}
               name='city'
-              label='Cidade'
+              label={t('Addresses.fields.city')}
               returnKeyType='next'
               containerStyle={styles.column}
               error={errors.city?.message}
@@ -324,7 +338,7 @@ export function AddressesScreen({ navigation }: Props) {
             <RegisterField
               control={control}
               name='state'
-              label='UF'
+              label={t('Addresses.fields.state')}
               autoCapitalize='characters'
               maxLength={2}
               returnKeyType='done'
@@ -339,7 +353,7 @@ export function AddressesScreen({ navigation }: Props) {
               style={styles.secondaryButton}
               onPress={() => setMode('list')}
             >
-              <Text style={styles.secondaryButtonText}>Cancelar</Text>
+              <Text style={styles.secondaryButtonText}>{t('Addresses.cancelButton')}</Text>
             </Pressable>
 
             <Pressable
@@ -350,7 +364,7 @@ export function AddressesScreen({ navigation }: Props) {
               {isSaving ? (
                 <ActivityIndicator color='#FFFFFF' />
               ) : (
-                <Text style={styles.primaryButtonText}>Salvar</Text>
+                <Text style={styles.primaryButtonText}>{t('Addresses.saveButton')}</Text>
               )}
             </Pressable>
           </View>

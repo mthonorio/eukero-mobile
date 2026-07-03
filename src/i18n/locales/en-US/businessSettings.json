@@ -1,0 +1,178 @@
+{
+  "Settings": {
+    "heroEyebrow": "Settings",
+    "title": "Manage your account",
+    "items": {
+      "profile": {
+        "label": "Profile",
+        "description": "Personal information, avatar and Pix."
+      },
+      "addresses": {
+        "label": "Addresses",
+        "description": "Manage your saved addresses."
+      },
+      "language": {
+        "label": "Language",
+        "description": "Choose the app language."
+      },
+      "terms": {
+        "label": "Terms and policies",
+        "description": "Legal documents and return policy."
+      },
+      "connect": {
+        "label": "Connect Instagram",
+        "description": "Link your Instagram business account."
+      },
+      "globalVariables": {
+        "label": "Global variables",
+        "description": "General parameters for your store."
+      },
+      "migrateToStore": {
+        "label": "Migrate to store",
+        "description": "Turn your account into a store."
+      }
+    }
+  },
+  "GlobalVariables": {
+    "heroEyebrow": "Settings",
+    "title": "Global variables",
+    "empty": "No global variables available at the moment.",
+    "save": "Save",
+    "errors": {
+      "load": {
+        "title": "Error",
+        "message": "Could not load the global variables."
+      },
+      "save": {
+        "title": "Error",
+        "message": "Could not save the variables."
+      }
+    },
+    "success": {
+      "title": "Success",
+      "message": "Variables updated successfully."
+    }
+  },
+  "MigrateToStore": {
+    "heroEyebrow": "Settings",
+    "title": "Migrate to store",
+    "alreadyStore": {
+      "description": "Your account is already a store. No need to migrate again."
+    },
+    "success": {
+      "title": "Store created successfully!",
+      "description": "Your account is now a store. You can already manage products, sales and much more.",
+      "button": "Go to home"
+    },
+    "infoBanner": "Fill in the details below to turn your account into a store.",
+    "sections": {
+      "storeData": "1. Store data",
+      "address": "2. Address",
+      "pix": "3. Payment details (Pix)"
+    },
+    "fields": {
+      "storeName": "Store name",
+      "cep": "ZIP code",
+      "cepLoading": "Looking up address by ZIP code...",
+      "address": "Address",
+      "number": "Number",
+      "complement": "Complement",
+      "neighborhood": "Neighborhood",
+      "city": "City",
+      "state": "State",
+      "ownerName": "Account holder name",
+      "ownerNameHint": "Name of the Pix key holder.",
+      "pixKey": "Pix key",
+      "pixKeyHint": "CPF, CNPJ, email, phone or random key.",
+      "document": "CPF or CNPJ",
+      "documentHint": "Document of the payment recipient."
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "submit": "Migrate to store"
+    },
+    "errors": {
+      "migrate": {
+        "title": "Error",
+        "message": "Could not migrate your account to a store right now."
+      }
+    }
+  },
+  "Plans": {
+    "heroEyebrow": "Plans",
+    "title": "Choose the right plan for you.",
+    "current": "Current",
+    "currentPlanButton": "Current plan",
+    "selectPlanButton": "Select plan",
+    "comingSoon": {
+      "title": "Coming soon",
+      "message": "Paid plan changes will be available soon."
+    },
+    "plans": {
+      "standard": {
+        "label": "Standard",
+        "price": "Free",
+        "features": [
+          "Up to 20 published products",
+          "Support via email",
+          "Basic reports"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$39.90/month",
+        "features": [
+          "Unlimited products",
+          "Full financial management",
+          "Priority support"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "price": "$79.90/month",
+        "features": [
+          "Everything in the Pro plan",
+          "Supplier consignment",
+          "Advanced dashboard"
+        ]
+      }
+    }
+  },
+  "Terms": {
+    "heroEyebrow": "Settings",
+    "title": "Terms and policies",
+    "sections": {
+      "documents": "Documents",
+      "storeReturns": "Store returns and exchanges"
+    },
+    "documents": {
+      "terms": "Terms of use",
+      "privacyPolicy": "Privacy policy",
+      "returnPolicy": "Return policy"
+    },
+    "allowReturns": "I accept returns and exchanges",
+    "policyPlaceholder": "Describe the terms for returns and exchanges...",
+    "buttons": {
+      "restore": "Restore",
+      "save": "Save"
+    },
+    "alerts": {
+      "emptyPolicy": {
+        "title": "Attention",
+        "message": "Describe the return and exchange policy."
+      },
+      "policyTooLong": {
+        "title": "Attention",
+        "message": "The text exceeds the character limit."
+      },
+      "success": {
+        "title": "Success",
+        "message": "Policy updated successfully."
+      },
+      "error": {
+        "title": "Error",
+        "message": "Could not save the policy."
+      }
+    }
+  }
+}

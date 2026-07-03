@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import {
   ChevronLeft,
   ChevronRight,
@@ -38,6 +39,7 @@ type SettingsItem = {
 };
 
 export function SettingsScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const user = useAuthStore(state => state.user);
   const isStoreUser = user?.type === 'STORE';
 
@@ -45,29 +47,29 @@ export function SettingsScreen({ navigation }: Props) {
     const base: SettingsItem[] = [
       {
         key: 'profile',
-        label: 'Perfil',
-        description: 'Dados pessoais, avatar e Pix.',
+        label: t('Settings.items.profile.label'),
+        description: t('Settings.items.profile.description'),
         icon: UserRound,
         onPress: () => navigation.navigate('ProfileSettings'),
       },
       {
         key: 'addresses',
-        label: 'Endereços',
-        description: 'Gerencie seus endereços cadastrados.',
+        label: t('Settings.items.addresses.label'),
+        description: t('Settings.items.addresses.description'),
         icon: MapPin,
         onPress: () => navigation.navigate('Addresses'),
       },
       {
         key: 'language',
-        label: 'Idioma',
-        description: 'Escolha o idioma do aplicativo.',
+        label: t('Settings.items.language.label'),
+        description: t('Settings.items.language.description'),
         icon: Globe,
         onPress: () => navigation.navigate('Language'),
       },
       {
         key: 'terms',
-        label: 'Termos e políticas',
-        description: 'Documentos legais e política de trocas.',
+        label: t('Settings.items.terms.label'),
+        description: t('Settings.items.terms.description'),
         icon: ShieldCheck,
         onPress: () => navigation.navigate('Terms'),
       },
@@ -77,15 +79,15 @@ export function SettingsScreen({ navigation }: Props) {
       base.push(
         {
           key: 'connect',
-          label: 'Conectar Instagram',
-          description: 'Vincule sua conta comercial do Instagram.',
+          label: t('Settings.items.connect.label'),
+          description: t('Settings.items.connect.description'),
           icon: Link2,
           onPress: () => navigation.navigate('Connect'),
         },
         {
           key: 'globalVariables',
-          label: 'Variáveis globais',
-          description: 'Parâmetros gerais da sua loja.',
+          label: t('Settings.items.globalVariables.label'),
+          description: t('Settings.items.globalVariables.description'),
           icon: SlidersHorizontal,
           onPress: () => navigation.navigate('GlobalVariables'),
         },
@@ -93,15 +95,15 @@ export function SettingsScreen({ navigation }: Props) {
     } else {
       base.push({
         key: 'migrateToStore',
-        label: 'Migrar para loja',
-        description: 'Transforme sua conta em uma loja.',
+        label: t('Settings.items.migrateToStore.label'),
+        description: t('Settings.items.migrateToStore.description'),
         icon: Repeat,
         onPress: () => navigation.navigate('MigrateToStore'),
       });
     }
 
     return base;
-  }, [navigation, isStoreUser]);
+  }, [navigation, isStoreUser, t]);
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
@@ -114,8 +116,8 @@ export function SettingsScreen({ navigation }: Props) {
         </Pressable>
 
         <View>
-          <Text style={styles.heroEyebrow}>Configurações</Text>
-          <Text style={styles.title}>Gerencie sua conta</Text>
+          <Text style={styles.heroEyebrow}>{t('Settings.heroEyebrow')}</Text>
+          <Text style={styles.title}>{t('Settings.title')}</Text>
         </View>
       </View>
 

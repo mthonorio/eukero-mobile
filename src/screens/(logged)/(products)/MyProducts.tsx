@@ -11,6 +11,7 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { ChevronLeft, PackageSearch } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 import { MyProductCard } from '../../../components/MyProductCard';
 import ProductService from '../../../services/product.service';
@@ -41,6 +42,7 @@ function isRenderableProduct(product: Product) {
 }
 
 export function MyProductsScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const {
     data,
     error,
@@ -99,27 +101,30 @@ export function MyProductsScreen({ navigation }: Props) {
           </Pressable>
 
           <View style={styles.heroContent}>
-            <Text style={styles.heroEyebrow}>Meus produtos</Text>
-            <Text style={styles.title}>Gerencie seus produtos no mobile.</Text>
+            <Text style={styles.heroEyebrow}>
+              {t('MyProducts.heroEyebrow')}
+            </Text>
+            <Text style={styles.title}>{t('MyProducts.title')}</Text>
             <Text style={styles.description}>
-              A lista usa carregamento progressivo com Tanstack Query e exibe
-              cada item através do MyProductCard.
+              {t('MyProducts.description')}
             </Text>
           </View>
 
           <View style={styles.heroBadge}>
             <PackageSearch color={colors.primary} size={18} />
-            <Text style={styles.heroBadgeText}>{products.length} itens</Text>
+            <Text style={styles.heroBadgeText}>
+              {t('MyProducts.itemsBadge', { count: products.length })}
+            </Text>
           </View>
         </View>
       </View>
     ),
-    [navigation, products.length],
+    [navigation, products.length, t],
   );
 
   const emptyTitle = error
-    ? 'Não foi possível carregar os seus produtos.'
-    : 'Você ainda não cadastrou produtos.';
+    ? t('MyProducts.emptyTitleError')
+    : t('MyProducts.emptyTitleNoProducts');
 
   return (
     <FlatList
@@ -165,7 +170,7 @@ export function MyProductsScreen({ navigation }: Props) {
         isLoading ? (
           <View style={styles.loadingState}>
             <ActivityIndicator color={colors.primary} />
-            <Text style={styles.loadingText}>Carregando...</Text>
+            <Text style={styles.loadingText}>{t('MyProducts.loading')}</Text>
           </View>
         ) : (
           <View style={styles.emptyState}>

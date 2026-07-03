@@ -11,6 +11,7 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ChevronRight, Star } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 import {
   RootStackParamList,
@@ -45,14 +46,17 @@ const colors = {
 export function ProfileScreen({ navigation }: Props) {
   const user = useAuthStore(state => state.user);
   const signOut = useAuthStore(state => state.signOut);
+  const { t } = useTranslation();
 
   console.log('User data in ProfileScreen:', user);
 
   const displayName =
     user?.type === 'STORE'
       ? user.storeName || user.name
-      : user?.name || 'Meu Perfil';
-  const username = user?.username ? `@${user.username}` : '@usuario';
+      : user?.name || t('Profile.defaultName');
+  const username = user?.username
+    ? `@${user.username}`
+    : t('Profile.defaultUsername');
   const avatarUrl = user?.avatar;
 
   const menuItems: MenuItem[] = useMemo(() => {
@@ -60,70 +64,70 @@ export function ProfileScreen({ navigation }: Props) {
       return [
         {
           key: 'liked',
-          label: 'Curtidos',
+          label: t('Profile.menu.liked'),
           onPress: () =>
             navigation.navigate('ProfileCollection', {
-              title: 'Curtidos',
+              title: t('Profile.menu.liked'),
               source: 'liked',
             }),
         },
         {
           key: 'sales',
-          label: 'Minhas vendas',
+          label: t('Profile.menu.sales'),
           onPress: () =>
             navigation.navigate('ProfileFeature', {
-              title: 'Minhas vendas',
-              description: 'Lista de vendas em desenvolvimento.',
+              title: t('Profile.menu.sales'),
+              description: t('Profile.featureDescriptions.sales'),
             }),
         },
         {
           key: 'products',
-          label: 'Meus produtos',
+          label: t('Profile.menu.products'),
           onPress: () => navigation.navigate('MyProducts'),
         },
         {
           key: 'finance',
-          label: 'Gestão Financeira',
+          label: t('Profile.menu.finance'),
           onPress: () =>
             navigation.navigate('ProfileFeature', {
-              title: 'Gestão Financeira',
-              description: 'Área financeira em desenvolvimento.',
+              title: t('Profile.menu.finance'),
+              description: t('Profile.featureDescriptions.finance'),
             }),
         },
         {
           key: 'orders',
-          label: 'Minhas compras',
+          label: t('Profile.menu.orders'),
           onPress: () =>
             navigation.navigate('ProfileFeature', {
-              title: 'Minhas compras',
-              description: 'Histórico de compras em desenvolvimento.',
+              title: t('Profile.menu.orders'),
+              description: t('Profile.featureDescriptions.orders'),
             }),
         },
         {
           key: 'plans',
-          label: 'Planos',
+          label: t('Profile.menu.plans'),
           onPress: () =>
             navigation.navigate('ProfileFeature', {
-              title: 'Planos',
-              description: 'Gerenciamento de planos em desenvolvimento.',
+              title: t('Profile.menu.plans'),
+              description: t('Profile.featureDescriptions.plans'),
             }),
         },
         {
           key: 'superFilters',
-          label: 'Super Filtros',
+          label: t('Profile.menu.superFilters'),
           onPress: () =>
             navigation.navigate('ProfileFeature', {
-              title: 'Super Filtros',
-              description: 'Super filtros em desenvolvimento.',
+              title: t('Profile.menu.superFilters'),
+              description: t('Profile.featureDescriptions.superFilters'),
             }),
         },
         {
           key: 'support',
-          label: 'Suporte',
+          label: t('Profile.menu.support'),
           onPress: () =>
             navigation.navigate('ProfileFeature', {
-              title: 'Suporte',
-              description: 'Atendimento ao usuário em desenvolvimento.',
+              title: t('Profile.menu.support'),
+              description: t('Profile.featureDescriptions.support'),
             }),
         },
       ];
@@ -132,62 +136,62 @@ export function ProfileScreen({ navigation }: Props) {
     return [
       {
         key: 'liked',
-        label: 'Curtidos',
+        label: t('Profile.menu.liked'),
         onPress: () =>
           navigation.navigate('ProfileCollection', {
-            title: 'Curtidos',
+            title: t('Profile.menu.liked'),
             source: 'liked',
           }),
       },
       {
         key: 'orders',
-        label: 'Minhas Compras',
+        label: t('Profile.menu.ordersCustomer'),
         onPress: () =>
           navigation.navigate('ProfileFeature', {
-            title: 'Minhas Compras',
-            description: 'Histórico de compras em desenvolvimento.',
+            title: t('Profile.menu.ordersCustomer'),
+            description: t('Profile.featureDescriptions.orders'),
           }),
       },
       {
         key: 'products',
-        label: 'Meus Produtos',
+        label: t('Profile.menu.productsCustomer'),
         onPress: () =>
           navigation.navigate('ProfileCollection', {
-            title: 'Meus Produtos',
+            title: t('Profile.menu.productsCustomer'),
             source: 'mine',
           }),
       },
       {
         key: 'superFilters',
-        label: 'Super Filtros',
+        label: t('Profile.menu.superFilters'),
         onPress: () =>
           navigation.navigate('ProfileFeature', {
-            title: 'Super Filtros',
-            description: 'Super filtros em desenvolvimento.',
+            title: t('Profile.menu.superFilters'),
+            description: t('Profile.featureDescriptions.superFilters'),
           }),
       },
       {
         key: 'support',
-        label: 'Suporte',
+        label: t('Profile.menu.support'),
         onPress: () =>
           navigation.navigate('ProfileFeature', {
-            title: 'Suporte',
-            description: 'Atendimento ao usuário em desenvolvimento.',
+            title: t('Profile.menu.support'),
+            description: t('Profile.featureDescriptions.support'),
           }),
       },
     ];
-  }, [navigation, user?.type]);
+  }, [navigation, user?.type, t]);
 
   const finalItems: MenuItem[] = [
     ...menuItems,
     {
       key: 'settings',
-      label: 'Configurações',
+      label: t('Profile.menu.settings'),
       onPress: () => navigation.navigate('Settings'),
     },
     {
       key: 'logout',
-      label: 'Sair',
+      label: t('Profile.menu.logout'),
       onPress: () => signOut(),
       danger: true,
     },
@@ -196,7 +200,7 @@ export function ProfileScreen({ navigation }: Props) {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.headerCard}>
-        <Text style={styles.sectionLabel}>Meu Perfil</Text>
+        <Text style={styles.sectionLabel}>{t('Profile.sectionLabel')}</Text>
 
         <View style={styles.identityBlock}>
           <View style={styles.avatarWrap}>

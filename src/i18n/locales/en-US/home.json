@@ -1,0 +1,81 @@
+{
+  "Home": {
+    "heroEyebrow": "Discover now",
+    "heroTitle": "Feed with featured items for mobile.",
+    "heroDescription": "Explore what's new, follow stores, and find products with navigation designed for the small screen.",
+    "searchPlaceholder": "Search products or stores",
+    "featuredStoresTitle": "Featured stores",
+    "featuredStoresSubtitle": "Shortcuts to the most recent profiles in the feed.",
+    "tabAll": "Explore",
+    "tabFollowing": "Following",
+    "productsTitle": "Products",
+    "errorLoadingProducts": "We couldn't load the products right now.",
+    "loadingProducts": "Loading products...",
+    "emptyProducts": "No products found.",
+    "emptyProductsDescription": "Adjust your search or switch tabs to see other items.",
+    "footerHint": "Pull to refresh or scroll for more items"
+  },
+  "Menu": {
+    "home": "Home",
+    "notifications": "Notifications",
+    "bag": "Bag",
+    "profile": "Profile",
+    "liked": "Liked",
+    "orders": "My purchases",
+    "products": "My products",
+    "superFilters": "Super Filters",
+    "superFiltersDescription": "Super filters coming soon.",
+    "support": "Support",
+    "dashboard": "Dashboard",
+    "newProduct": "New product",
+    "sales": "My sales",
+    "finance": "Financial Management",
+    "pieces": "Pieces",
+    "stock": "Stock",
+    "ordersDescription": "Purchase history coming soon.",
+    "plans": "Plans",
+    "actionsSection": "ACTIONS",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "Search": {
+    "searchPlaceholder": "Search products or stores",
+    "tabProducts": "Products",
+    "tabStores": "Stores",
+    "emptyProductsFound": "No products found.",
+    "emptyProductsPrompt": "Type to search products.",
+    "emptyStoresFound": "No stores found.",
+    "emptyStoresPrompt": "Type to search stores."
+  },
+  "FeaturePlaceholder": {
+    "backToHome": "Back to Home"
+  },
+  "DetailsPlaceholder": {
+    "title": "Details Screen",
+    "back": "Back"
+  },
+  "Notifications": {
+    "eyebrow": "Notifications",
+    "title": "Stay up to date with what's new.",
+    "markAll": "Mark all as read",
+    "errorLoading": "We couldn't load your notifications.",
+    "empty": "You don't have any notifications yet."
+  },
+  "Support": {
+    "eyebrow": "Support",
+    "title": "How can we help?",
+    "emailTitle": "Email",
+    "whatsappTitle": "WhatsApp",
+    "whatsappDescription": "Support available during business hours.",
+    "documentsTitle": "Documents",
+    "termsOfUse": "Terms of use",
+    "privacyPolicy": "Privacy policy",
+    "returnPolicy": "Return policy"
+  },
+  "LegalDocument": {
+    "terms": "Terms of use",
+    "policy": "Privacy policy",
+    "return": "Return policy",
+    "loadError": "We couldn't load this document right now."
+  }
+}

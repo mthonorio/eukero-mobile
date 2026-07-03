@@ -1,0 +1,2095 @@
+{
+  "Common": {
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "loading": "Carregando...",
+    "confirm": "Confirmar",
+    "edit": "Editar",
+    "delete": "Deletar",
+    "error": "Erro",
+    "description": "Descrição",
+    "department": "Departamento",
+    "category": "Categoria",
+    "classification": "Classificação",
+    "qualityNote": "Nota de Qualidade",
+    "dimensions": "Dimensões",
+    "weight": "Peso (g)",
+    "height": "Altura (cm)",
+    "width": "Largura (cm)",
+    "length": "Comprimento (cm)",
+    "qualityLabels": {
+      "notRated": "Não avaliado",
+      "low": "Baixa",
+      "good": "Boa",
+      "average": "Média",
+      "excellent": "Excelente",
+      "new": "Novo"
+    },
+    "brand": "Marca",
+    "fromTo": "De {from} até {to}",
+    "date": "Data",
+    "current": "Atual"
+  },
+  "Search": {
+    "placeholder": "Buscar produtos ou lojas...",
+    "tabs": {
+      "products": "Produtos",
+      "stores": "Lojas"
+    },
+    "follow": "Seguir",
+    "products": {
+      "loading": "Carregando produtos...",
+      "notFound": "Nenhum produto encontrado",
+      "notFoundDesc": "Tente buscar por outro termo",
+      "empty": "Digite algo para buscar produtos"
+    },
+    "stores": {
+      "loading": "Carregando lojas...",
+      "notFound": "Nenhuma loja encontrada",
+      "notFoundDesc": "Tente buscar por outro termo",
+      "empty": "Digite algo para buscar lojas"
+    },
+    "errors": {
+      "loadProducts": "Erro ao buscar produtos",
+      "loadStores": "Erro ao buscar lojas"
+    }
+  },
+  "Orders": {
+    "title": "Minhas compras",
+    "orderId": "ID do pedido",
+    "searchPlaceholder": "Pesquisar por nome da loja ou produto",
+    "orderDate": "Data do pedido",
+    "createDate": "Data de criação",
+    "total": "Total",
+    "contactSeller": "Contatar vendedor",
+    "viewDetails": "Ver detalhes",
+    "empty": "Nenhum pedido encontrado",
+    "quantity": "Quantidade",
+    "shippingTitle": "Entrega/Retirada",
+    "tabs": {
+      "all": "Tudo",
+      "withdrawal": "Retirada",
+      "pending": "A pagar",
+      "preparing": "Preparando",
+      "shipped": "A caminho",
+      "delivered": "Entregue",
+      "cancelled": "Cancelado",
+      "return": "Devolução",
+      "finished": "Finalizado"
+    },
+    "errors": {
+      "loadFailed": "Erro ao carregar pedidos",
+      "loadFailedDesc": "Não foi possível carregar seus pedidos. Por favor, tente novamente."
+    }
+  },
+  "OrderDetails": {
+    "title": "Detalhes do pedido",
+    "productsTitle": "Produtos",
+    "quantity": "Quantidade",
+    "discount": "Desconto",
+    "shippingPickup": "Retirada",
+    "shippingDelivery": "Entrega",
+    "shippingType": "Tipo de entrega",
+    "deliveryType": "Entrega",
+    "shippingCost": "Custo de entrega",
+    "trackingTitle": "Rastreamento",
+    "trackingUnavailable": "Rastreamento indisponível no momento",
+    "subtotal": "Subtotal",
+    "shipping": "Frete",
+    "fulfillmentType": "Tipo de retirada",
+    "pickupType": "Retirada na loja",
+    "pickupInfo": "Informações de retirada",
+    "pickupAvailable": "Retirada disponível",
+    "pickupLocationLabel": "Local de Retirada",
+    "storeDataLabel": "Dados da Loja",
+    "buyerInfoLabel": "Dados do Comprador",
+    "addressLabel": "Endereço",
+    "phoneLabel": "Telefone",
+    "emailLabel": "Email",
+    "cpfCnpjLabel": "CPF/CNPJ",
+    "deliveryCode": "Código de validação de entrega",
+    "status": {
+      "AP": "Aguardando pagamento",
+      "PC": "Preparando",
+      "EN": "A caminho",
+      "EC": "Entrega confirmada",
+      "SD": "Solicitado devolução",
+      "CA": "Cancelado",
+      "DE": "Devolvido",
+      "FI": "Finalizado",
+      "PK": "Retirada"
+    },
+    "button": {
+      "back": "Voltar",
+      "contactSeller": "Contatar vendedor",
+      "cancel": "Cancelar",
+      "reportProblem": "Reportar um problema",
+      "trackOrder": "Rastrear pedido",
+      "confirmDelivery": "Confirmar entrega"
+    }
+  },
+  "Sales": {
+    "title": "Minhas vendas",
+    "orderId": "ID do Pedido",
+    "searchPlaceholder": "Pesquisar por nome da loja ou produto",
+    "orderDate": "Data do pedido",
+    "createDate": "Data de criação",
+    "total": "Total",
+    "contactSeller": "Contatar vendedor",
+    "viewDetails": "Ver detalhes",
+    "empty": "Nenhum pedido encontrado",
+    "quantity": "Quantidade",
+    "tabs": {
+      "all": "Tudo",
+      "withdrawal": "Retirada",
+      "pending": "A pagar",
+      "preparing": "Preparando",
+      "shipped": "A caminho",
+      "delivered": "Entregue",
+      "cancelled": "Cancelado",
+      "return": "Devolução",
+      "finished": "Finalizado"
+    },
+    "errors": {
+      "loadFailed": "Erro ao carregar pedidos",
+      "loadFailedDesc": "Não foi possível carregar seus pedidos. Por favor, tente novamente."
+    }
+  },
+  "Login": {
+    "title": "Entrar",
+    "label": { "login": "Email ou nome de usuário", "password": "Senha" },
+    "forgot": "Esqueceu a senha?",
+    "entering": "Entrando...",
+    "button": "Entrar",
+    "orContinue": "Ou continue com",
+    "social": { "google": "Google", "microsoft": "Microsoft" },
+    "noAccount": "Não tem uma conta?",
+    "signup": "Cadastre-se agora",
+    "errors": {
+      "emailRequired": "Email é obrigatório",
+      "emailInvalid": "Email inválido",
+      "passwordRequired": "Senha é obrigatória",
+      "passwordShort": "Senha deve ter pelo menos 6 caracteres"
+    },
+    "toast": {
+      "success": "Login realizado com sucesso!",
+      "welcome": "Bem-vindo, {name}!",
+      "error": "Erro no login",
+      "errorDefault": "Erro ao fazer login. Tente novamente.",
+      "inactiveAccount": "Conta inativa",
+      "inactiveAccountDescription": "Sua conta ainda não foi ativada. Verifique seu email para encontrar o link de ativação ou solicite um novo código."
+    }
+  },
+  "ForgotPassword": {
+    "title": "Esqueci a senha",
+    "description": "Insira seu email cadastrado para receber o link de recuperação de senha.",
+    "successDesc": "Verifique seu e-mail, em instantes você receberá um link para recuperar sua senha",
+    "label": { "email": "Email" },
+    "button": "Enviar link",
+    "sending": "Enviando...",
+    "backToLogin": "Voltar para login",
+    "openSupport": "Abrir suporte",
+    "toast": { "success": "Email de recuperação enviado com sucesso!", "error": "Erro", "errorDefault": "Erro ao enviar email. Tente novamente." }
+  },
+  "ChangePassword": {
+    "title": "Alteração de senha",
+    "description": "Preencha sua nova senha abaixo.",
+    "label": { "password": "Senha", "confirmPassword": "Confirmar Senha" },
+    "sending": "Enviando...",
+    "button": "Alterar senha",
+    "backToLogin": "Voltar para login",
+    "errors": {
+      "tokenMissing": "Token inválido ou ausente. Verifique o link enviado por email.",
+      "passwordShort": "Senha deve ter pelo menos 6 caracteres",
+      "mismatch": "As senhas não coincidem"
+    },
+    "toast": { "success": "Senha alterada com sucesso!", "error": "Erro", "errorDefault": "Erro ao alterar senha. Tente novamente." }
+  },
+  "Register": {
+    "Step1": {
+      "title": "Como deseja se cadastrar?",
+      "cards": {
+        "person": { "title": "Pessoa física", "description": "Encontre e compre seus produtos de forma rápida e segura" },
+        "store": { "title": "Loja", "description": "Gerencie seus produtos e demais processos de sua loja" }
+      },
+      "button": { "next": "Próximo" }
+    },
+    "Step2": {
+      "title": "Criar conta",
+      "social": { "googleContinue": "continuar com o Google", "microsoftContinue": "continuar com a Microsoft", "appleContinue": "continuar com a Apple" },
+      "or": "Ou",
+      "label": {
+        "fullName": "Nome completo",
+        "username": "Nome de usuário",
+        "phone": "Celular",
+        "email": "Email",
+        "password": "Senha"
+      },
+      "noContent": "Conteudo não disponivel ou não encontrado.",
+      "terms": { "prefix": "Ao clicar em {button}, você concorda em criar uma conta e em seguir os", "termsOfService": "termos de serviço", "and": "e a", "privacyPolicy": "política de privacidade" },
+      "button": { "submit": "Cadastre-se", "loading": "Cadastrando..." },
+      "links": { "haveAccount": "Já tenho uma conta" },
+      "security": { "protected": "protegido por Cap CAPTCHA", "privacy": "privacidade", "terms": "condições" },
+      "errors": {
+        "fullNameRequired": "Nome completo é obrigatório",
+        "usernameRequired": "Nome de usuário é obrigatório",
+        "usernameMax": "Nome de usuário deve ter no máximo 30 caracteres",
+        "phoneRequired": "Celular é obrigatório",
+        "emailRequired": "Email é obrigatório",
+        "emailInvalid": "Email inválido",
+        "passwordRequired": "Senha é obrigatória",
+        "passwordShort": "Senha deve ter pelo menos 6 caracteres",
+        "termsRequired": "Você precisa concordar com os termos de serviço e política de privacidade"
+      },
+      "toast": { "success": "Código de validação enviado!", "error": "Erro ao registrar usuário. Valide os campos e tente novamente." },
+      "validation": {
+        "checking": "Verificando disponibilidade...",
+        "usernameAvailable": "Nome de usuário disponível",
+        "usernameUnavailable": "Este nome de usuário já está sendo usado",
+        "emailAvailable": "E-mail disponível",
+        "emailUnavailable": "Este e-mail já está sendo usado",
+        "documentAvailable": "Documento disponível",
+        "documentUnavailable": "Este documento já está sendo usado"
+      }
+    },
+    "SheetConfirmAccount": {
+      "title": "Digite o código de confirmação",
+      "description": "Para confirmar sua conta, verifique o código enviado para o e-mail {email}. Caso não encontre, confira também a caixa de spam ou lixo eletrônico.",
+      "subtitle": "Ative sua conta para continuar",
+      "codeLabel": "Código de Ativação",
+      "button": {
+        "confirm": "Confirmar código",
+        "resend": "Reenviar código"
+      },
+      "actions": {
+        "confirming": "Ativando...",
+        "backToLogin": "Voltar para Login"
+      },
+      "toast": {
+        "success": "Conta confirmada com sucesso!",
+        "welcome": "Bem-vindo ao Eukero!",
+        "error": "Erro ao confirmar conta. Tente novamente.",
+        "resendSuccess": "Código reenviado com sucesso!",
+        "resendError": "Erro ao reenviar código. Tente novamente.",
+        "waitToResend": "Aguarde {seconds}s antes de reenviar o código.",
+        "incompleteCode": "Código incompleto. Digite todos os 6 dígitos.",
+        "emailNotFound": "Email não encontrado. Faça login novamente."
+      },
+      "loading": "Carregando...",
+      "successPage": {
+        "title": "Conta Ativada!",
+        "description": "Sua conta foi ativada com sucesso. Você será redirecionado em breve..."
+      }
+    },
+    "Step3": {
+      "title": "Dados da sua loja",
+      "description": "Preencha os dados da sua loja para concluir o cadastro.",
+      "labels": {
+        "storeName": "Nome da loja",
+        "cpfCnpj": "CPF/CNPJ",
+        "address": "Endereço",
+        "cep": "CEP",
+        "addressLine": "Logradouro",
+        "number": "Número",
+        "complement": "Complemento",
+        "neighborhood": "Bairro",
+        "city": "Cidade",
+        "state": "Estado"
+      },
+      "makeDefault": "Definir como padrão",
+      "button": { "next": "Próximo", "back": "Voltar" },
+      "toast": { "success": "Loja registrada com sucesso!", "error": "Erro ao registrar loja" }
+    },
+    "Step4": {
+      "heading": "ESCOLHA SEU PLANO",
+      "freeTrial": "GRÁTIS POR 14 DIAS",
+      "commons": {
+        "monthly": "Mensal",
+        "yearly": "Anual",
+        "free": "Grátis",
+        "month": "MÊS",
+        "year": "ANO"
+      },
+      "payment": {
+        "title": "Método de pagamento",
+        "description": "Adicione um cartão de crédito para sua assinatura.",
+        "confirmButton": "Confirmar pagamento",
+        "period": {
+          "monthly": "Pagamento MENSAL através do cartão",
+          "yearly": "Pagamento ANUAL através do cartão"
+        }
+      },
+      "plans": {
+        "current": "ATUAL",
+        "standard": {
+          "title": "STANDARD",
+          "features": [
+            "Pagamento via PIX",
+            "1 usuário",
+            "Marketplace próprio",
+            "Feed de vendas",
+            "Cadastro de produtos",
+            "Gestão de consignação",
+            "Gestão financeira",
+            "Gestão de estoque",
+            "App para compras",
+            "Relatórios via Excel e PDF",
+            "Emissão de etiquetas QR Code"
+          ]
+        },
+        "pro": {
+          "title": "PRO",
+          "badge": "Em breve",
+          "features": [
+            "Todos os itens do plano STANDARD",
+            "Pagamento via cartão de crédito/débito",
+            "Usuários ilimitados",
+            "Integração Instagram (Feed/Story)",
+            "Dashboard de Vendas",
+            "Provador virtual",
+            "Comunidade EuKero",
+            "Controle de Cupons de Descontos",
+            "Controle de Comissionamento",
+            "Chat"
+          ]
+        },
+        "premium": {
+          "title": "PREMIUM",
+          "badge": "Em breve",
+          "features": ["Todos os itens do plano PRO", "Emissão de NFe/CFe", "Lives", "Parcerias (Logistíca/Curadoria)", "Contabilidade integrada", "IA - Chat, Suporte, Busca e muito mais!"]
+        },
+        "promo": "Valor promocional para os 300 primeiros assinantes."
+      },
+      "errors": {
+        "cardHolderName": "Nome do titular é obrigatório",
+        "cardNumber": "Número do cartão inválido",
+        "expirationDate": "Mês de expiração é obrigatório",
+        "expirationYear": "Ano de expiração é obrigatório",
+        "cvv": "CVV inválido",
+        "paymentFailed": "Erro ao processar pagamento: {details}",
+        "unknown": "Erro desconhecido",
+        "serverConnection": "Erro ao conectar com o servidor."
+      },
+      "success": {
+        "assignCompleted": "Sua assinatura foi realizada com sucesso!",
+        "active": "Ativo",
+        "confirmationMessage": "Sua assinatura foi ativada com sucesso! Você já pode usar todos os recursos do plano.",
+        "invoiceMessage": "Uma cópia da fatura foi enviada para seu e-mail.",
+        "goToDashboard": "Ir para o Painel",
+        "continue": "Continuar",
+        "planChoiced": "Plano escolhido"
+      },
+      "soldBadge": "20% desconto"
+    }
+  },
+  "PaymentCardMethod": {
+    "title": "Pagamento do plano",
+    "description": "Cadastre o Cartão para débito do plano escolhido, somente após o período grátis.",
+    "label": {
+      "cardHolderName": "Nome do titular",
+      "cardNumber": "Número do cartão",
+      "expirationMonth": "Mês de expiração",
+      "expirationYear": "Ano de expiração",
+      "expirationDate": "Data de expiração",
+      "cvv": "CVV"
+    },
+    "button": { "submit": "Confirmar pagamento", "cancel": "Cancelar", "loading": "Carregando..." },
+    "errors": {
+      "cardHolderName": "Nome do titular é obrigatório",
+      "cardNumber": "Número do cartão inválido",
+      "expirationDate": "Mês de expiração é obrigatório",
+      "expirationYear": "Ano de expiração é obrigatório",
+      "cvv": "CVV inválido"
+    }
+  },
+  "Sidebar": {
+    "items": {
+      "home": "Início",
+      "inbox": "Notificações",
+      "products": "Produtos",
+      "suppliers": "Fornecedores",
+      "dashboard": "Painel",
+      "finance": "Financeiro",
+      "inventory": "Inventário",
+      "profile": "Perfil",
+      "stock": "Estoque",
+      "settings": "Configurações",
+      "more": "Mais",
+      "logout": "Sair",
+      "myPieces": "Meus produtos",
+      "superFilter": "Super Filtro",
+      "orders": "Meus pedidos"
+    }
+  },
+  "ProfileMenu": {
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "title": "Menu",
+    "defaultUser": "Usuário",
+    "items": {
+      "login": "Faça seu login",
+      "becomeStore": "EuKero ser uma Loja",
+      "sales": "Minhas Vendas",
+      "products": "Produtos",
+      "notifications": "Notificações",
+      "suppliers": "Fornecedores",
+      "consignado": "Consignado",
+      "financial": "Financeiro",
+      "orders": "Minhas Compras",
+      "plans": "Planos",
+      "superFilter": "Super Filtro",
+      "support": "Suporte",
+      "settings": "Configurações",
+      "logout": "Sair"
+    }
+  },
+  "Footer": {
+    "copyright": "© {year} EuKero from Inoutway. Todos os direitos reservados.",
+    "privacy": "Política de Privacidade"
+  },
+  "Dashboard": {
+    "title": "Painel",
+    "timeFilters": {
+      "week": "Semana",
+      "month": "Mês",
+      "quarter": "Trimestre",
+      "year": "Ano"
+    },
+    "metrics": {
+      "totalRevenue": {
+        "label": "Receita Total",
+        "changeLabel": "vs mês anterior"
+      },
+      "newOrders": {
+        "label": "Novos Pedidos",
+        "changeLabel": "vs mês anterior"
+      },
+      "totalCustomers": {
+        "label": "Total de Clientes",
+        "changeLabel": "vs mês anterior"
+      },
+      "scheduledDemos": {
+        "label": "Demos Agendadas",
+        "changeLabel": "próximas esta semana"
+      }
+    },
+    "charts": {
+      "revenueOverview": {
+        "title": "Visão Geral da Receita",
+        "labels": {
+          "revenue": "Receita",
+          "profit": "Lucro"
+        }
+      },
+      "salesByCategory": {
+        "title": "Vendas por Categoria",
+        "categories": {
+          "electronics": "Eletrônicos",
+          "apparel": "Vestuário",
+          "homeGoods": "Casa e Jardim",
+          "books": "Livros",
+          "other": "Outros"
+        }
+      }
+    },
+    "topProducts": {
+      "title": "Produtos Mais Vendidos",
+      "viewAll": "Ver Todos",
+      "headers": {
+        "product": "Produto",
+        "price": "Preço",
+        "sales": "Vendas",
+        "trend": "Tendência"
+      }
+    },
+    "recentActivities": {
+      "title": "Atividades Recentes",
+      "viewAll": "Ver Todas",
+      "activities": {
+        "orderPlaced": "Novo pedido realizado",
+        "customerRegistered": "Novo cliente registrado",
+        "paymentReceived": "Pagamento recebido",
+        "reviewPosted": "Nova avaliação publicada"
+      },
+      "timeAgo": {
+        "minAgo": "min atrás",
+        "hourAgo": "h atrás",
+        "dayAgo": "d atrás"
+      }
+    }
+  },
+  "Products": {
+    "title": "Meus produtos",
+    "addProduct": "Adicionar produto",
+    "moreActions": "Mais ações",
+    "export": "Exportar",
+    "import": "Importar",
+    "bulkEdit": "Edição em massa",
+    "searchPlaceholder": "Procurar produtos",
+    "saveFilter": "Salvar filtro",
+    "sort": "Ordenar",
+    "filters": "Filtros",
+    "loading": "Carregando produtos...",
+    "noProducts": "Nenhum produto encontrado",
+    "explorer": "Explorar",
+    "following": "Seguindo",
+    "highlights": "Destaques",
+    "tabs": {
+      "all": "Todos",
+      "active": "Ativos",
+      "inactive": "Inativos",
+      "outOfStock": "Venda sem estoque"
+    },
+    "table": {
+      "headers": {
+        "image": "IMAGEM",
+        "name": "NOME",
+        "quality": "QUALIDADE",
+        "actions": "AÇÕES",
+        "status": "STATUS",
+        "price": "PREÇO"
+      },
+      "actions": {
+        "edit": "Editar",
+        "copy": "Copiar",
+        "active": "Ativar",
+        "inactive": "Inativar",
+        "delete": "Deletar"
+      },
+      "labels": {
+        "price": "Preço",
+        "quality": "Qualidade"
+      }
+    },
+    "status": {
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "available": "Disponível",
+      "unavailable": "Indisponível",
+      "registered": "Cadastrado",
+      "sold": "Vendido",
+      "deleted": "Excluído",
+      "cancelled": "Cancelado",
+      "unknown": "Status desconhecido"
+    },
+    "newProduct": {
+      "title": "Novo produto",
+      "cancel": "Cancelar",
+      "save": "Salvar Produto",
+      "new": "Novo Produto",
+      "loading": "Carregando produto...",
+      "tabs": {
+        "general": "Geral",
+        "images": "Imagens"
+      },
+      "basicInfo": {
+        "title": "Informações básicas",
+        "subtitle": "Preencha todos os campos abaixo de forma detalhada.",
+        "active": "Ativo",
+        "inactive": "Inativo",
+        "productName": "Nome do produto",
+        "productNamePlaceholder": "Ex: Camiseta Rosa Prime",
+        "sku": "SKU (Código do produto)",
+        "salePrice": "Preço de venda",
+        "promotionalPrice": "Preço de promoção",
+        "pricePlaceholder": "0,00",
+        "description": "Descrição completa do produto",
+        "descriptionPlaceholder": "Escreva a descrição do produto aqui...",
+        "generateDescription": "Gerar descrição automática",
+        "descriptionHelp": "Descrição exibida abaixo da foto do produto. Informe as especificações técnicas, dimensões e outras informações importantes para o comprador.",
+        "qualityRating": "Nota de Qualidade",
+        "qualityRatingHelp": "Clique nas estrelas para definir a nota de qualidade do produto"
+      },
+      "shippingInfo": {
+        "title": "Dimensões",
+        "subtitle": "Preencha todos os campos para garantir o cálculo correto do frete. Considere sua embalagem padrão.",
+        "weight": "Peso (g)",
+        "height": "Altura (cm)",
+        "width": "Largura (cm)",
+        "length": "Comprimento (cm)"
+      },
+      "stock": {
+        "title": "Estoque",
+        "tooltip": "Indique quantas peças deste produto está disponível."
+      },
+      "classification": {
+        "title": "Classificação e Estilo",
+        "category": "Classificação",
+        "categoryPlaceholder": "Selecione uma categoria",
+        "style": "Estilo"
+      },
+      "brand": {
+        "title": "Marca",
+        "brand": "Marca",
+        "brandPlaceholder": "Ex: Nike, Samsung, Zara..."
+      },
+      "sizeColor": {
+        "title": "Tamanho e Cor",
+        "size": "Tamanho",
+        "color": "Cor"
+      },
+      "department": {
+        "title": "Departamento e Categoria",
+        "department": "Departamento",
+        "category": "Categoria"
+      },
+      "media": {
+        "title": "Imagens",
+        "subtitle": "Adicione até 3 imagens do seu produto",
+        "uploadText": "Clique ou arraste arquivos aqui",
+        "uploadSubtext": "Imagens: JPG, PNG, WebP",
+        "uploadSubtextMobile": "Toque para abrir a câmera ou galeria • Imagens: JPG, PNG, WebP • Vídeos: MP4, MOV, AVI, WebM",
+        "processing": "Processando arquivos...",
+        "errorsFound": "Erros encontrados:",
+        "imagesCount": "Imagens ({count}/3)",
+        "video": "Vídeo",
+        "camera": {
+          "photos": "Abrir Câmera",
+          "video": "Abrir Câmera",
+          "gallery": "Galeria"
+        },
+        "tips": {
+          "title": "Dicas importantes:",
+          "compression": "As imagens são automaticamente comprimidas para otimizar o carregamento",
+          "videoDuration": "Vídeos devem ter no máximo 10 segundos de duração",
+          "quality": "Use imagens de alta qualidade para melhor resultado após compressão",
+          "mainImage": "A primeira imagem será considerada como imagem principal do produto"
+        },
+        "update": "Atualizar",
+        "cutVideo": "Cortar Vídeo",
+        "selectSegment": "Selecione o trecho do vídeo (máximo {seconds}s)",
+        "videoProcessed": "Vídeo processado com sucesso!",
+        "videoError": "Erro ao processar vídeo",
+        "videoMaxSize": "Vídeo excede tamanho máximo permitido",
+        "save": "Salvar e fechar",
+        "addImages": "Adicione imagens para continuar",
+        "saveAndFinish": "Salvar imagens e finalizar",
+        "finish": "Finalizar",
+        "filesSaved": "Arquivos salvos com sucesso!",
+        "allMediaAdded": "Todas a mídia foi adicionadas ao produto.",
+        "error": "Erro",
+        "productNotFound": "ID do produto não encontrado. Salve o produto primeiro.",
+        "addOneImage": "Adicione pelo menos uma imagem antes de salvar.",
+        "errorSaving": "Erro ao salvar imagens",
+        "tryAgain": "Tente novamente mais tarde.",
+        "compressed": "Comprimido",
+        "savedImage": "Imagem salva",
+        "savedVideo": "Vídeo salvo",
+        "deleteImageModal": {
+          "title": "Deletar Imagem",
+          "description": "Tem certeza que deseja deletar esta imagem? Esta ação não pode ser desfeita."
+        },
+        "deleteVideoModal": {
+          "title": "Deletar Video",
+          "description": "Tem certeza que deseja deletar este vídeo? Esta ação não pode ser desfeita."
+        },
+        "errorDeletingImage": "Não foi possível deletar a imagem",
+        "uploading": "Enviando imagem...",
+        "imageUploaded": "Imagem enviada com sucesso!",
+        "errorUploading": "Ocorreu um erro ao tentar salvar a imagem/vídeo. Verifique sua conexão de internet e  tente novamente.",
+        "productCompleted": "Produto finalizado com sucesso!",
+        "noMediaAdded": "Nenhuma mídia adicionada",
+        "newProduct": "Novo produto"
+      },
+      "categories": {
+        "masculine": "Masculino",
+        "feminine": "Feminino",
+        "children": "Infantil",
+        "unisex": "Unissex",
+        "others": "Outros"
+      },
+      "sizes": {
+        "small": "P",
+        "medium": "M",
+        "large": "G",
+        "extraLarge": "GG"
+      },
+      "colors": {
+        "red": "Vermelho",
+        "blue": "Azul",
+        "green": "Verde",
+        "black": "Preto",
+        "white": "Branco",
+        "pink": "Rosa",
+        "yellow": "Amarelo"
+      },
+      "styles": {
+        "casual": "Casual",
+        "formal": "Formal",
+        "sport": "Esportivo"
+      },
+      "departments": {
+        "clothing": "Roupas",
+        "shoes": "Calçados",
+        "accessories": "Acessórios"
+      },
+      "supplier": {
+        "title": "Fornecedor",
+        "searchSupplier": "Busque por um fornecedor",
+        "supplierValue": "Valor Fornecedor",
+        "fixedValue": "Valor fixo"
+      },
+      "errors": {
+        "productNameRequired": "Nome do produto é obrigatório",
+        "priceRequired": "Preço é obrigatório",
+        "descriptionRequired": "Descrição é obrigatória",
+        "quantityMinimum": "Quantidade deve ser maior ou igual a 0",
+        "maxImages": "Máximo 3 imagens permitidas",
+        "maxVideoDuration": "Vídeo deve ter no máximo {seconds} segundos",
+        "onlyOneVideo": "Apenas 1 vídeo é permitido",
+        "imageProcessing": "Erro ao processar imagem: {fileName}"
+      }
+    },
+    "likeProductCard": {
+      "inStock": "Em Estoque",
+      "outOfStock": "Fora de Estoque",
+      "available": "disponível",
+      "availablePlural": "disponíveis",
+      "removeFromFavorites": "Remover dos favoritos"
+    }
+  },
+  "Bag": {
+    "title": "Sacola de compras",
+    "unselectAll": "Desmarcar todos os itens",
+    "subtotal": "Subtotal ({count} produtos):",
+    "subtotalSingle": "Subtotal (1 produto):",
+    "empty": "Sua sacola está vazia",
+    "emptyDescription": "Adicione produtos à sua sacola para continuar comprando",
+    "continueShopping": "Continuar comprando",
+    "checkout": "Finalizar compra",
+    "gift": "Este pedido contém um presente",
+    "loading": "Carregando produtos...",
+    "selectAll": "Selecionar todos os itens",
+    "removeItem": "Remover item",
+    "updateQuantity": "Atualizar quantidade",
+    "outOfStock": "Produto fora de estoque",
+    "errors": {
+      "loadFailed": "Erro ao carregar produtos da sacola",
+      "updateFailed": "Erro ao atualizar sacola",
+      "removeFailed": "Erro ao remover item"
+    }
+  },
+  "Store": {
+    "follow": "Seguir",
+    "following": "Seguindo",
+    "unfollow": "Deixar de seguir",
+    "products": "Produtos",
+    "noProducts": "Nenhum produto cadastrado.",
+    "noProductsDescription": "Esta loja ainda não possui produtos cadastrados",
+    "viewProduct": "Ver produto",
+    "addToBag": "Adicionar à sacola",
+    "share": "Compartilhar",
+    "report": "Denunciar",
+    "followers": "Seguidores",
+    "links": "Links",
+    "description": "Descrição",
+    "contact": "Contato",
+    "location": "Localização",
+    "hours": "Horários",
+    "website": "Site",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "errors": {
+      "storeNotFound": "Loja não encontrada",
+      "loadFailed": "Erro ao carregar dados da loja",
+      "followFailed": "Erro ao seguir loja"
+    }
+  },
+  "checkout": {
+    "title": "Finalizar Compra",
+    "subtitle": "Revise seus dados e finalize seu pedido",
+    "buttons": {
+      "processing": "Processando...",
+      "payWithCard": "Pagar com cartão",
+      "placeOrder": "Finalizar Pedido"
+    },
+    "labels": {
+      "orderTotal": "Total do pedido",
+      "total": "Total",
+      "installments": "Em 1x de {amount} sem juros"
+    },
+    "errors": {
+      "cardRequired": "Por favor, preencha todos os dados do cartão",
+      "orderFailed": "Erro ao processar pedido"
+    },
+    "success": {
+      "orderProcessed": "Pedido processado com sucesso!"
+    },
+    "info": {
+      "addressChangeInDevelopment": "Mudança de endereço estará disponível em breve"
+    },
+    "legal": {
+      "orderAgreement": "Ao fazer seu pedido, você concorda com as",
+      "termsOfUse": "Condições de Uso",
+      "and": "e a",
+      "privacyNotice": "Notificação de Privacidade",
+      "companyName": "da Eukero"
+    },
+    "delivery": {
+      "title": "Entrega para {name}",
+      "pickup": "Retirada",
+      "delivery": "Entrega para",
+      "change": "Alterar",
+      "chooseOption": "Escolha uma opção:",
+      "pickupDescription": "Retirar o produto diretamente com o vendedor",
+      "deliveryDescription": "Produto será entregue no endereço cadastrado",
+      "confirmAddress": "Confirmar endereço",
+      "addInstructions": "Adicionar instruções de entrega",
+      "savedAddresses": "Endereços salvos",
+      "newAddress": "Novo endereço",
+      "loading": "Carregando...",
+      "noAddresses": "Nenhum endereço salvo",
+      "addFirstAddress": "Adicione seu primeiro endereço",
+      "addressDetails": "Detalhes do endereço",
+      "selectedAddress": "Endereço selecionado",
+      "saveAddress": "Salvar endereço",
+      "options": {
+        "pickup": "Retirada",
+        "delivery": "Entrega"
+      },
+      "fields": {
+        "fullName": {
+          "label": "Nome do endereço",
+          "placeholder": "Casa, Trabalho, etc."
+        },
+        "phone": {
+          "label": "Telefone",
+          "placeholder": "(11) 99999-9999"
+        },
+        "zipCode": {
+          "label": "CEP",
+          "placeholder": "00000-000"
+        },
+        "address": {
+          "label": "Endereço",
+          "placeholder": "Rua, Avenida, etc."
+        },
+        "number": {
+          "label": "Número",
+          "placeholder": "123"
+        },
+        "complement": {
+          "label": "Complemento",
+          "placeholder": "Apto, Bloco"
+        },
+        "neighborhood": {
+          "label": "Bairro",
+          "placeholder": "Centro"
+        },
+        "city": {
+          "label": "Cidade",
+          "placeholder": "São Paulo"
+        },
+        "state": {
+          "label": "Estado",
+          "placeholder": "SP"
+        },
+        "cpf": {
+          "label": "CPF",
+          "placeholder": "000.000.000-00"
+        }
+      }
+    },
+    "payment": {
+      "title": "Pagando com {cardBrand} {cardNumber}",
+      "pixTitle": "Pix",
+      "change": "Alterar",
+      "confirm": "Confirmar",
+      "installments": {
+        "label": "Escolha em quantas vezes parcelar",
+        "placeholder": "Selecione as parcelas",
+        "option1": "Em 1x de R$ 1.999,00 sem juros",
+        "option2": "Em 2x de R$ 999,50 sem juros",
+        "option3": "Em 3x de R$ 666,33 sem juros",
+        "option6": "Em 6x de R$ 333,17 sem juros",
+        "option12": "Em 12x de R$ 177,42 com juros"
+      },
+      "coupon": {
+        "label": "Usar um cupom de desconto ou vale-presente"
+      },
+      "methods": {
+        "title": "Método de Pagamento",
+        "creditCard": "Cartão de Crédito",
+        "debitCard": "Cartão de Débito",
+        "pix": "PIX",
+        "boleto": "Boleto Bancário"
+      },
+      "cardData": {
+        "title": "Dados do Cartão",
+        "number": {
+          "label": "Número do Cartão",
+          "placeholder": "0000 0000 0000 0000"
+        },
+        "name": {
+          "label": "Nome no Cartão",
+          "placeholder": "Como está no cartão"
+        },
+        "expiry": {
+          "label": "Validade",
+          "placeholder": "MM/AA"
+        },
+        "cvv": {
+          "label": "CVV",
+          "placeholder": "123"
+        }
+      },
+      "pix": {
+        "title": "Pagamento via PIX",
+        "description": "Após confirmar o pedido, você receberá um QR Code para realizar o pagamento via PIX. O pagamento deve ser realizado em até 30 minutos."
+      },
+      "boleto": {
+        "title": "Pagamento via Boleto Bancário",
+        "description": "Após confirmar o pedido, você receberá um boleto para pagamento. O prazo de vencimento é de 3 dias úteis."
+      },
+      "processing": "Processando..."
+    },
+    "summary": {
+      "title": "Resumo do Pedido",
+      "items": "Items ({count})",
+      "itemsForShipping": "Itens para envio",
+      "shipping": {
+        "label": "Frete",
+        "free": "GRÁTIS"
+      },
+      "orderTotal": "Total do pedido",
+      "payment": {
+        "installment": "Em 1x de {amount} sem juros",
+        "change": "Alterar",
+        "payWithCard": "Pagar com cartão {cardNumber}",
+        "processing": "Processando..."
+      },
+      "delivery": {
+        "arrives": "Chega {date}"
+      },
+      "product": {
+        "shippedFrom": "Enviado de {seller}",
+        "soldBy": "Vendido por"
+      },
+      "options": {
+        "giftNotAvailable": "Opções para presente não disponíveis",
+        "viewMoreDelivery": "Ver mais opções de entrega"
+      },
+      "noDevolution": "Este produto não aceita devolução"
+    }
+  },
+  "Checkout": {
+    "title": "Finalizar Compra",
+    "completed": {
+      "title": "Obrigado pelo seu pedido!",
+      "description": "Você receberá atualizações na caixa de entrada de notificações.",
+      "viewOrder": "Ver pedido",
+      "findOrders": {
+        "title": "Onde encontrar seus pedidos",
+        "description": "Na guia Perfil, selecione Compras para visualizar todos os pedidos.",
+        "step1": "Abra o aplicativo ou site",
+        "step2": "Vá para o menu Perfil",
+        "step3": "Selecione 'Compras' para ver todos os seus pedidos"
+      },
+      "recommendations": {
+        "title": "Você também pode gostar",
+        "empty": "Nenhum produto disponível no momento"
+      },
+      "continueShopping": "Continuar comprando",
+      "viewAllOrders": "Ver todos os pedidos"
+    },
+    "subtitle": "Revise seus dados e finalize seu pedido",
+    "buttons": {
+      "processing": "Processando...",
+      "payWithCard": "Pagar com cartão",
+      "placeOrder": "Finalizar Pedido",
+      "backToHome": "Voltar para o início"
+    },
+    "labels": {
+      "orderTotal": "Total do pedido",
+      "total": "Total",
+      "installments": "Em 1x de {amount} sem juros"
+    },
+    "errors": {
+      "cardRequired": "Por favor, preencha todos os dados do cartão",
+      "orderFailed": "Erro ao processar pedido",
+      "timeExpired": "O tempo para completar sua compra expirou. Por favor, refaça seu pedido.",
+      "outStock": "O produto selecionado não está mais disponível. Ele será removido da sua bag e você será redirecionado para a tela inicial.",
+      "productUnavailable": "Produto indisponível"
+    },
+    "success": {
+      "orderProcessed": "Pedido processado com sucesso!",
+      "paymentReceived": "Pagamento recebido com sucesso!",
+      "orderCancelled": "Pedido cancelado com sucesso!"
+    },
+    "pix": {
+      "title": "Pagamento com PIX",
+      "keyLabel": "Chave PIX",
+      "copyButton": "Copiar",
+      "copiedSuccess": "Chave PIX copiada!",
+      "importantLabel": "Importante:",
+      "importantDescription": "Após realizar o pagamento, aguarde a confirmação. Você será automaticamente redirecionado assim que o pagamento for recebido.",
+      "statusLabel": "Status:",
+      "waitingPayment": "Aguardando pagamento...",
+      "cancelOrderButton": "Cancelar pedido"
+    },
+    "cancelOrder": {
+      "title": "Cancelar pedido?",
+      "description": "Tem certeza que deseja cancelar esta compra e voltar para a tela inicial?",
+      "continueButton": "Continuar compra",
+      "confirmButton": "Sim, cancelar pedido"
+    },
+    "info": {
+      "addressChangeInDevelopment": "Mudança de endereço estará disponível em breve",
+      "tryAgain": "Refaça seu pedido"
+    },
+    "legal": {
+      "orderAgreement": "Ao fazer seu pedido, você concorda com as",
+      "termsOfUse": "Condições de Uso",
+      "and": "e a",
+      "privacyNotice": "Notificação de Privacidade",
+      "companyName": "da Eukero"
+    }
+  },
+  "Notifications": {
+    "title": "Notificações",
+    "markAllRead": "Marcar todas como lidas",
+    "noNotifications": "Nenhuma notificação",
+    "noNotificationsDescription": "Você não tem novas notificações no momento",
+    "loadMore": "Carregar mais",
+    "priority": "Prioridade",
+    "types": {
+      "orderShipped": "Seu pedido #{orderId} foi enviado.",
+      "newMessage": "Você recebeu uma nova mensagem de {sender}.",
+      "priceDrop": "O preço do produto {productName} caiu para {newPrice}.",
+      "reviewReceived": "Seu produto {productName} recebeu uma nova avaliação."
+    },
+    "timeAgo": {
+      "justNow": "Agora mesmo",
+      "minAgo": "min atrás",
+      "hourAgo": "h atrás",
+      "dayAgo": "d atrás",
+      "today": "Hoje"
+    }
+  },
+  "UserProfile": {
+    "title": "Meu Perfil",
+    "back": "Voltar",
+    "searchPlaceholder": "O que você busca?",
+    "searchProduct": "Busque um produto",
+    "createListing": "Criar anúncio",
+    "profileMenu": {
+      "orders": "Compras",
+      "sales": "Vendas",
+      "products": "Produtos",
+      "dashboard": "Painel",
+      "reviews": "Avaliações",
+      "settings": "Configurações",
+      "suport": "Suporte",
+      "stock": "Estoque",
+      "plans": "Planos",
+      "superFilter": "Super Filtro",
+      "finance": "Financeiro",
+      "myPieces": "Meus produtos"
+    },
+    "menu": {
+      "editProfile": "Editar Perfil",
+      "orders": "Pedidos",
+      "following": "Seguindo (Lojas)",
+      "settings": {
+        "title": "Configurações",
+        "privacy": "Política de Privacidade",
+        "returnPolicy": "Política de Devolução",
+        "language": "Idiomas"
+      },
+      "logout": "Sair"
+    },
+    "stats": {
+      "sales": "Vendas",
+      "followers": "Seguidores",
+      "likes": "Curtidas"
+    },
+    "tabs": {
+      "paused": "Pausados",
+      "sold": "Vendidos",
+      "purchases": "Compras"
+    },
+    "soldTo": "Vendido para {buyer} em {date}",
+    "emptyStates": {
+      "paused": "Nenhum produto pausado",
+      "purchases": "Nenhuma compra realizada"
+    },
+    "likes": {
+      "title": "Curtidos",
+      "empty": "Nenhum produto curtido encontrado"
+    }
+  },
+  "EditProfileModal": {
+    "title": "Editar usuário",
+    "changeAvatar": "Clique no ícone para alterar foto",
+    "sections": {
+      "profile": "Dados do Perfil",
+      "contact": "Contato & Acesso",
+      "document": "Documento",
+      "pix": "Dados de Recebimento (Pix)"
+    },
+    "fields": {
+      "fullName": "Nome completo",
+      "username": "Nome de usuário",
+      "email": "E-mail",
+      "password": "Senha",
+      "pixKey": "Chave PIX",
+      "pixOwnerName": "Titular da conta Pix",
+      "pixDocument": "CPF/CNPJ do titular",
+      "storeName": "Nome da loja",
+      "proprietor": "Nome do proprietário",
+      "phone": "Telefone"
+    },
+    "placeholders": {
+      "fullName": "Ex: João Silva",
+      "username": "Ex: joao_silva",
+      "email": "Ex: joao@example.com",
+      "password": "Digite a nova senha",
+      "storeName": "Nome da loja",
+      "proprietor": "Nome do proprietário",
+      "pixOwnerName": "Nome completo do titular",
+      "pixDocument": "CPF ou CNPJ do titular"
+    },
+    "hints": {
+      "pixOwnerName": "Informe o nome exatamente como cadastrado na conta Pix",
+      "pixKey": "Pode ser CPF, CNPJ, e-mail, telefone ou chave aleatória",
+      "pixDocument": "CPF ou CNPJ vinculado à chave Pix (pode ser diferente do seu cadastro)"
+    },
+    "buttons": {
+      "save": "Salvar",
+      "saving": "Salvando...",
+      "cancel": "Cancelar",
+      "changePassword": "Alterar a senha",
+      "changeEmail": "Trocar"
+    },
+    "toast": {
+      "success": "Perfil atualizado com sucesso!",
+      "error": "Erro ao salvar perfil",
+      "passwordChanged": "Senha alterada com sucesso!"
+    }
+  },
+  "ProductDetailsModal": {
+    "labels": {
+      "description": "Descrição",
+      "salePrice": "Preço de Venda",
+      "promotionalPrice": "Preço Promocional",
+      "weight": "Peso",
+      "height": "Altura",
+      "width": "Largura",
+      "length": "Comprimento",
+      "quantity": "Quantidade",
+      "quality": "Qualidade",
+      "color": "Cor",
+      "size": "Tamanho",
+      "style": "Estilo",
+      "classification": "Classificação",
+      "inStock": "Em Estoque",
+      "outOfStock": "Fora de Estoque"
+    },
+    "buttons": {
+      "edit": "Editar",
+      "delete": "Deletar"
+    },
+    "messages": {
+      "noDescription": "Sem descrição"
+    }
+  },
+  "Suppliers": {
+    "title": "Fornecedores",
+    "storesTitle": "Lojas",
+    "name": "Nome",
+    "searchPlaceholder": "Procurar fornecedores ou produtos",
+    "storePercentage": "Percentual Loja (%)",
+    "supplierPercentage": "Percentual Fornecedor (%)",
+    "sort": "Ordenar",
+    "filters": "Filtros",
+    "loading": "Carregando fornecedores...",
+    "loadingStores": "Carregando lojas...",
+    "metrics": {
+      "toSell": "A vender",
+      "sold": "Vendido",
+      "toReceive": "A receber",
+      "received": "Recebido"
+    },
+    "noSuppliers": "Nenhum fornecedor encontrado",
+    "noStores": "Nenhuma loja encontrada",
+    "table": {
+      "headers": {
+        "image": "IMAGEM",
+        "name": "NOME",
+        "quality": "QUALIDADE",
+        "price": "PREÇO",
+        "status": "STATUS",
+        "repasse": "REPASSE",
+        "entryDate": "ENTRADA",
+        "exitDate": "FINALIZADO",
+        "actions": "AÇÕES"
+      },
+      "labels": {
+        "quality": "Qualidade"
+      }
+    },
+    "status": {
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "received": "Recebido",
+      "sold": "Vendido",
+      "paymentConfirmed": "Pagamento confirmado",
+      "inSeparation": "Em separação",
+      "shippedToBuyer": "Enviado para o comprador",
+      "receivedByBuyer": "Recebido pelo comprador",
+      "pending": "Pendente",
+      "approved": "Aprovado",
+      "rejected": "Rejeitado",
+      "disputed": "Disputado"
+    },
+    "registration": "Cadastro de Fornecedores",
+    "management": "Gerenciar Fornecedores",
+    "availableSuppliers": "Fornecedores Disponíveis",
+    "basicInfo": "Informações Básicas",
+    "basicInfoDesc": "Digite os dados identificativos do fornecedor",
+    "supplierName": "Nome do Fornecedor",
+    "username": "Username",
+    "avatar": "URL do Avatar",
+    "quantity": "Qtd",
+    "paymentConditions": "Condições de Pagamento",
+    "paymentConditionsDesc": "Configure como você vai pagar esse fornecedor",
+    "paymentType": "Tipo de Pagamento",
+    "percentagePerProduct": "Porcentagem por Produto",
+    "percentage": "Porcentagem",
+    "fixedPercentage": "Valor Fixo por Produto",
+    "percentageValue": "Porcentagem (%)",
+    "fixedValue": "Valor Fixo (R$)",
+    "paymentDescription": "Descrição",
+    "bankInfo": "Informações Bancárias (Opcional)",
+    "bankName": "Banco",
+    "accountType": "Tipo de Conta",
+    "checking": "Conta Corrente",
+    "savings": "Conta Poupança",
+    "accountNumber": "Número da Conta",
+    "routingNumber": "Código do Banco",
+    "adding": "Adicionando...",
+    "addSupplier": "Adicionar Fornecedor",
+    "editSupplier": "Editar Fornecedor",
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "updateSupplier": "Atualizar Fornecedor",
+    "supplierAdded": "Fornecedor adicionado com sucesso!",
+    "errorAddingSupplier": "Erro ao adicionar fornecedor",
+    "supplierDeleted": "Fornecedor removido com sucesso",
+    "errorDeleting": "Erro ao remover fornecedor",
+    "confirmDelete": "Confirmar exclusão",
+    "deleteSupplierMessage": "Esta ação não pode ser desfeita. O fornecedor será removido permanentemente.",
+    "cancel": "Cancelar",
+    "delete": "Deletar",
+    "edit": "Editar",
+    "suppliersList": "Lista de Fornecedores",
+    "actions": "Ações",
+    "selectSupplierToViewDetails": "Selecione um fornecedor na lista para visualizar os detalhes.",
+    "selectedSupplierDetails": "Detalhes do fornecedor selecionado: {name}",
+    "paymentValue": "Valor",
+    "paymentStoreValue": "Valor da loja",
+    "paymentSupplierValue": "% Fornecedor",
+    "paymentInfo": "Condições de pagamento",
+    "searchUser": "Buscar Usuário",
+    "searchUserDesc": "Busque e selecione um usuário existente para preencher os dados automaticamente",
+    "searchUserPlaceholder": "Busque por nome ou username...",
+    "noUsersFound": "Nenhum usuário encontrado",
+    "productSingular": "produto",
+    "noProducts": "Sem produtos cadastrados",
+    "products": "Produtos",
+    "supplierUpdated": "Fornecedor atualizado com sucesso!",
+    "errorUpdatingSupplier": "Erro ao atualizar fornecedor",
+    "errorLoadingSupplier": "Erro ao carregar fornecedor",
+    "requestWithdrawal": "Sacar",
+    "requestingWithdrawal": "Solicitando saque...",
+    "requested": "Solicitado",
+    "received": "Recebido",
+    "withdrawalRequested": "Saque solicitado com sucesso!",
+    "errorSolicitatingWithdrawal": "Erro ao solicitar saque"
+  },
+  "ProductDetails": {
+    "productNotFound": "Produto não encontrado",
+    "errorLoading": "Erro ao carregar produto",
+    "errorLoadingDesc": "Não foi possível carregar o produto. Tente novamente.",
+    "discount": "-{percent}%",
+    "shopCoupons": "Cupons Da Loja",
+    "color": "Cor",
+    "size": "Tamanho",
+    "quantity": "Quantidade",
+    "style": "Estilo",
+    "brand": "Marca",
+    "classification": "Classificação",
+    "onlyOneAvailable": "Único disponível",
+    "unitsAvailable": "{count} unidades disponíveis",
+    "addToCart": "Adicionar à sacola",
+    "removeFromCart": "Remover da Sacola",
+    "buyNow": "EuKero",
+    "relatedProducts": "Mais Produtos desta Loja",
+    "viewAll": "Ver Tudo →",
+    "noImage": "Sem Imagem Disponível",
+    "description": "Descrição do Produto",
+    "noDescription": "Nenhuma descrição disponível para este produto.",
+    "visitStore": "Visite a loja {storeName}",
+    "sizeGuide": "Guia de Tamanhos",
+    "recommendedSize": "Tamanho Recomendado:",
+    "yourMeasurements": "Suas Medidas ›",
+    "measurementNote": "As medidas podem variar um pouco.",
+    "toast": {
+      "itemRemoved": "Item removido da sacola!",
+      "itemAdded": "Produto adicionado à sacola!",
+      "errorAdding": "Erro ao adicionar à sacola",
+      "errorRemoving": "Erro ao remover item da sacola!",
+      "errorLike": "Erro ao processar like",
+      "errorLikeDesc": "Tente novamente mais tarde."
+    }
+  },
+  "Stock": {
+    "title": "Gestão de Estoque",
+    "searchPlaceholder": "Buscar movimentações...",
+    "refresh": "Atualizar",
+    "export": "Exportar",
+    "addMovement": "Nova Movimentação",
+    "refreshed": "Dados atualizados",
+    "exportPending": "Funcionalidade de exportação em desenvolvimento",
+    "success": "Sucesso!",
+    "error": "Erro",
+    "adjustmentSuccess": "Movimentação de estoque registrada com sucesso",
+    "adjustmentError": "Erro ao registrar movimentação de estoque",
+    "noMovements": "Nenhuma movimentação encontrada",
+    "noMovementsDescription": "Ainda não há movimentações de estoque registradas",
+    "table": {
+      "image": "IMAGEM",
+      "product": "PRODUTO",
+      "sku": "SKU",
+      "date": "DATA",
+      "type": "TIPO",
+      "origin": "ORIGEM",
+      "quantity": "QUANTIDADE",
+      "balance": "SALDO"
+    },
+    "types": {
+      "entry": "Entrada",
+      "exit": "Saída"
+    },
+    "origins": {
+      "purchase": "Compra",
+      "sale": "Venda",
+      "adjustment": "Ajuste",
+      "return": "Devolução",
+      "loss": "Perda",
+      "transfer": "Transferência"
+    },
+    "filters": {
+      "type": "Tipo de Movimentação",
+      "origin": "Origem",
+      "all": "Todos",
+      "clear": "Limpar Filtros"
+    },
+    "adjustmentModal": {
+      "title": "Ajustar Estoque",
+      "description": "Registre uma nova movimentação de entrada ou saída de estoque",
+      "product": "Produto",
+      "selectProduct": "Selecione um produto",
+      "currentStock": "Estoque Atual",
+      "type": "Tipo de Movimentação",
+      "selectType": "Selecione o tipo",
+      "entry": "Entrada",
+      "exit": "Saída",
+      "origin": "Origem",
+      "selectOrigin": "Selecione a origem",
+      "purchase": "Compra",
+      "sale": "Venda",
+      "adjustment": "Ajuste",
+      "return": "Devolução",
+      "loss": "Perda",
+      "transfer": "Transferência",
+      "quantity": "Quantidade",
+      "notes": "Observações",
+      "optional": "opcional",
+      "notesPlaceholder": "Ex: Ajuste de inventário",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar"
+    },
+    "errors": {
+      "loadFailed": "Erro ao carregar dados",
+      "loadFailedDesc": "Não foi possível carregar as movimentações de estoque"
+    }
+  },
+  "Financial": {
+    "title": "Gestão Financeira",
+    "description": "Veja suas movimentações financeiras",
+    "transactionsTitle": "Histórico de Transações",
+    "addTransaction": "Novo Lançamento",
+    "loading": "Carregando...",
+    "noMovements": "Nenhuma movimentação encontrada",
+    "metrics": {
+      "totalRevenue": "Receita Total",
+      "pendingReceive": "A Receber",
+      "pendingPayments": "A Pagar",
+      "netProfit": "Lucro Líquido",
+      "availableBalance": "Saldo Disponível",
+      "vsLastPeriod": "vs período anterior"
+    },
+    "filters": {
+      "button": "Filtros",
+      "dialog": {
+        "title": "Filtros financeiros"
+      },
+      "period": "Período",
+      "selectPeriod": "Selecionar período",
+      "last7Days": "Últimos 7 dias",
+      "last30Days": "Últimos 30 dias",
+      "last3Months": "Últimos 3 meses",
+      "last6Months": "Últimos 6 meses",
+      "lastYear": "Último ano",
+      "allTypes": "Todos os tipos",
+      "allStatus": "Todos os status",
+      "type": "Tipo",
+      "status": "Status",
+      "orderId": "ID do Pedido",
+      "orderIdPlaceholder": "Digite o ID do pedido",
+      "apply": "Aplicar",
+      "clear": "Limpar",
+      "searchPlaceholder": "Buscar por descrição, referência ou cliente...",
+      "start": "Dia inicial",
+      "end": "Dia final"
+    },
+    "transactionTypes": {
+      "sale": "Venda",
+      "refund": "Reembolso",
+      "withdrawal": "Saque",
+      "fee": "Taxa",
+      "commission": "Comissão",
+      "payment": "Pagamento"
+    },
+    "transactionStatus": {
+      "pending": "Pendente",
+      "completed": "Concluído",
+      "cancelled": "Cancelado",
+      "failed": "Falhou"
+    },
+    "table": {
+      "type": "Tipo",
+      "description": "Descrição",
+      "reference": "Referência",
+      "amount": "Valor",
+      "status": "Status",
+      "date": "Data",
+      "order": "Pedido",
+      "expiration": "Vencimento",
+      "method": "Método",
+      "updateAt": "Atualização"
+    },
+    "form": {
+      "createTitle": "Novo Lançamento",
+      "editTitle": "Editar Lançamento",
+      "createDescription": "Preencha as informações do lançamento",
+      "editDescription": "Edite as informações do lançamento",
+      "type": "Tipo de Transação",
+      "selectType": "Selecione o tipo",
+      "status": "Status",
+      "selectStatus": "Selecione o status",
+      "amount": "Valor",
+      "date": "Data",
+      "selectDate": "Selecione a data",
+      "description": "Descrição",
+      "descriptionPlaceholder": "Descreva o lançamento...",
+      "reference": "Referência",
+      "referencePlaceholder": "Ex: REF-001",
+      "customerName": "Nome do Cliente",
+      "customerNamePlaceholder": "Nome do cliente",
+      "orderId": "ID do Pedido",
+      "orderIdPlaceholder": "Ex: #12345",
+      "cancel": "Cancelar",
+      "create": "Criar",
+      "update": "Atualizar",
+      "saving": "Salvando...",
+      "successCreate": "Lançamento criado com sucesso",
+      "successUpdate": "Lançamento atualizado com sucesso",
+      "errorCreate": "Erro ao criar lançamento",
+      "errorUpdate": "Erro ao atualizar lançamento",
+      "types": {
+        "sale": "Venda",
+        "refund": "Reembolso",
+        "withdrawal": "Saque",
+        "fee": "Taxa",
+        "commission": "Comissão",
+        "payment": "Pagamento",
+        "receive": "Receber",
+        "pay": "Pagar"
+      },
+      "statuses": {
+        "open": "Aberto",
+        "paymentRequest": "Agendado",
+        "inTransit": "Em Trânsito",
+        "released": "Liberado",
+        "paid": "Quitado",
+        "pending": "Pendente",
+        "completed": "Concluído",
+        "cancelled": "Cancelado",
+        "failed": "Falhou"
+      }
+    }
+  },
+  "Settings": {
+    "title": "Configurações",
+    "back": "Voltar",
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "cancel": "Cancelar",
+    "loading": "Carregando...",
+    "profile": {
+      "title": "Perfil",
+      "description": "Gerencie suas informações pessoais",
+      "name": "Nome",
+      "username": "Nome de usuário",
+      "email": "Email",
+      "phone": "Telefone",
+      "pixKey": "Chave PIX",
+      "success": "Perfil atualizado com sucesso!",
+      "storeName": "Nome da loja",
+      "proprietor": "Nome do proprietário"
+    },
+    "addresses": {
+      "title": "Endereços",
+      "description": "Gerencie seus endereços salvos",
+      "add": "Adicionar endereço",
+      "edit": "Editar endereço",
+      "empty": "Nenhum endereço cadastrado",
+      "fields": {
+        "name": "Nome do endereço"
+      }
+    },
+    "language": {
+      "title": "Idioma",
+      "description": "Altere o idioma da plataforma"
+    },
+    "globalVariables": {
+      "title": "Variáveis Globais",
+      "description": "Configure parâmetros gerais da conta",
+      "supplierResponseTimeLabel": "Tempo para resposta do fornecedor (Em dias)",
+      "success": "Variáveis globais salvas com sucesso"
+    },
+    "terms": {
+      "title": "Termos e Políticas",
+      "description": "Leia nossos termos e políticas",
+      "descriptionStore": "Veja termos e configure suas políticas",
+      "platformTerms": "Termos da Plataforma",
+      "termsOfService": "Termos de Serviço",
+      "termsDescription": "Por favor, leia nossos termos de serviço com atenção",
+      "privacyPolicy": "Política de Privacidade",
+      "privacyDescription": "Por favor, leia nossa política de privacidade com atenção",
+      "returnPolicy": "Política de Devolução",
+      "returnDescription": "Por favor, leia nossa política de devolução com atenção",
+      "shippingPolicy": "Política de Remessa/Devolução",
+      "shippingPolicyDescription": "Configure a política de remessa e devolução da sua loja",
+      "noContent": "Conteúdo não disponível",
+      "noPolicySet": "Nenhuma política configurada",
+      "editPolicy": "Editar Política",
+      "addPolicy": "Adicionar Política",
+      "policyText": "Política de Remessa/Devolução",
+      "policyPlaceholder": "Descreva a política de remessa e devolução da sua loja...",
+      "policyUpdated": "Política atualizada com sucesso",
+      "policyTooLong": "A política não pode ultrapassar 2000 caracteres",
+      "emptyPolicy": "A política não pode estar vazia",
+      "characters": "caracteres",
+      "charactersRemaining": "caracteres restantes",
+      "saving": "Salvando...",
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "loadError": "Erro ao carregar termos",
+      "saveError": "Erro ao salvar política",
+      "backButton": "Voltar",
+      "loading": "Carregando...",
+      "reload": "Recarregar"
+    }
+  },
+  "SuperFilters": {
+    "title": "Super Filtros",
+    "noFilters": "Nenhum super filtro cadastrado",
+    "newSuperFilter": "Novo Super Filtro",
+    "searchPlaceholder": "Procurar super filtro...",
+    "loading": "Carregando super filtros...",
+    "applyDialog": {
+      "title": "Aplicar Super Filtro",
+      "description": "Selecione um super filtro para aplicar aos produtos.",
+      "searchPlaceholder": "Buscar super filtro...",
+      "empty": "Nenhum super filtro encontrado",
+      "selectOne": "Selecione um super filtro antes de aplicar.",
+      "apply": "Aplicar",
+      "cancel": "Cancelar",
+      "trigger": "Abrir super filtros",
+      "applied": "Super filtro aplicado: {name}",
+      "clear": "Limpar",
+      "loadError": "Erro ao carregar super filtros"
+    },
+    "creating": "Criando super filtro...",
+    "editing": "Editando super filtro...",
+    "modal": {
+      "createTitle": "Novo Super Filtro",
+      "editTitle": "Editar Super Filtro",
+      "nameLabel": "Nome do Super Filtro *",
+      "namePlaceholder": "Ex: Produtos Premium",
+      "configureFilters": "Configurar Filtros",
+      "buttons": {
+        "create": "Criar Filtro",
+        "save": "Salvar Alterações",
+        "cancel": "Cancelar"
+      }
+    },
+    "table": {
+      "name": "Nome",
+      "activeFilters": "Filtros Ativos",
+      "createdAt": "Criado em",
+      "updatedAt": "Atualizado em",
+      "actions": "Ações",
+      "edit": "Editar",
+      "delete": "Deletar",
+      "filter": "filtro",
+      "filters": "filtros"
+    },
+    "card": {
+      "createdOn": "Criado em",
+      "active": "ativo",
+      "activeFilters": "filtros ativos",
+      "filtersRegistered": "Filtros cadastrados:",
+      "more": "mais"
+    },
+    "filterFields": {
+      "productName": "Nome do Produto",
+      "productNamePlaceholder": "Procurar por nome",
+      "sku": "SKU",
+      "skuPlaceholder": "Ex: PDTO-000001-AZUL",
+      "quality": "Qualidade igual ou superior",
+      "qualityPlaceholder": "Selecione a qualidade",
+      "priceMin": "Preço Mínimo",
+      "priceMinPlaceholder": "0.00",
+      "priceMax": "Preço Máximo",
+      "priceMaxPlaceholder": "0.00",
+      "status": "Status",
+      "statusPlaceholder": "Selecione o status",
+      "classification": "Classificação",
+      "classificationPlaceholder": "Selecione a classificação",
+      "style": "Estilo",
+      "stylePlaceholder": "Selecione o estilo",
+      "size": "Tamanho",
+      "sizePlaceholder": "Selecione o tamanho",
+      "color": "Cor",
+      "colorPlaceholder": "Selecione a cor",
+      "department": "Departamento",
+      "departmentPlaceholder": "Selecione o departamento",
+      "category": "Categoria",
+      "categoryPlaceholder": "Selecione a categoria",
+      "selectFirstDepartment": "Selecione um departamento primeiro"
+    },
+    "filterValues": {
+      "quality": {
+        "all": "Todas",
+        "0": "Não avaliado",
+        "1": "Baixa",
+        "2": "Boa",
+        "3": "Média",
+        "4": "Excelente",
+        "5": "Novo"
+      },
+      "status": {
+        "all": "Todos",
+        "active": "Ativo",
+        "inactive": "Inativo"
+      }
+    },
+    "accordion": {
+      "lastUpdate": "Última atualização:",
+      "at": "às"
+    },
+    "messages": {
+      "filterCreatedSuccess": "Super filtro criado com sucesso",
+      "filterUpdatedSuccess": "Super filtro atualizado com sucesso",
+      "filterDeletedSuccess": "Super filtro deletado com sucesso",
+      "filterDeleteTitle": "Deletar Super Filtro",
+      "filterDeleteConfirm": "Tem certeza que deseja deletar este super filtro? Esta ação não pode ser desfeita.",
+      "filterDeleteError": "Erro ao deletar super filtro",
+      "filterLoadError": "Erro ao carregar super filtros",
+      "nameRequired": "Nome do super filtro é obrigatório",
+      "minOneFilter": "Selecione pelo menos um filtro",
+      "noFiltersAvailable": "Nenhum filtro disponível",
+      "filterNotFound": "Super filtro não encontrado"
+    }
+  },
+  "Plans": {
+    "selection": {
+      "brand": "EuKero",
+      "heading": "Escolha o plano certo para você",
+      "subheading": "Tudo o que você precisa para vender mais — sem mensalidade obrigatória.",
+      "footer": "Sem fidelidade. Migre entre os planos quando quiser.",
+      "free": {
+        "name": "EuKero FREE",
+        "badge": "A melhor escolha custo-benefício",
+        "description": "Apenas 3% por transação. Você só paga quando vende.",
+        "highlight": "🏆 A versão SEM MENSALIDADE mais COMPLETA do mercado. \nNão perca tempo. Venda seus produtos por aqui!",
+        "cta": "Começar grátis",
+        "features": [
+          "Produtos, fornecedores e usuários ilimitados",
+          "Vendas com PIX, crédito e débito",
+          "E-commerce próprio + integração Instagram",
+          "Consignados com repasse automático",
+          "Gestão financeira, estoque e comissionamento",
+          "App Android/iOS + WebApp Desktop",
+          "Etiquetas QRCode, cupons, chat e análise de vendas"
+        ]
+      },
+      "premium": {
+        "topBadge": "Inteligência Artificial",
+        "name": "EuKero PREMIUM",
+        "badge": "Funcionários virtuais 24h",
+        "price": "299,90",
+        "description": "Apenas 1% por transação.",
+        "highlight": "🤖 Funcionários virtuais 24h trabalhando por você.",
+        "cta": "Ativar agentes de IA",
+        "comingSoon": "Em breve",
+        "checkFeatures": ["Tudo do EuKero FREE", "Emissão de NFe / CFe", "Contabilidade integrada", "Parcerias (logística/curadoria) e suporte personalizado"],
+        "aiFeatures": ["Agente de IA para cadastro automático de produtos", "Agente de IA para precificação inteligente", "Agente de IA para encontrar seus produtos"]
+      }
+    },
+    "title": "Meus Planos",
+    "subtitle": "Gerencie seus planos de assinatura e histórico de pagamentos",
+    "tabs": {
+      "choosePlan": "Escolher Plano",
+      "payments": "Gerenciamento de Pagamentos"
+    },
+    "creditCards": {
+      "title": "Meus Cartões",
+      "add": "Adicionar Cartão",
+      "default": "Principal",
+      "secondary": "Secundário",
+      "cardNumber": "Número do Cartão",
+      "cardName": "Nome",
+      "expiryDate": "Válido até",
+      "setDefault": "Definir Principal",
+      "deleteDisabled": "Você precisa ter pelo menos 1 cartão",
+      "dialog": {
+        "title": "Adicionar Cartão",
+        "description": "Preencha os dados do cartão para referência de pagamento.",
+        "fields": {
+          "name": "Nome do cartão",
+          "printedCardname": "Nome impresso",
+          "cardNumber": "Número do cartão",
+          "expirationDate": "Validade",
+          "cardVerificationValue": "CVV",
+          "cpfCnpj": "CPF/CNPJ",
+          "setPrimary": "Definir como principal"
+        },
+        "errors": {
+          "required": "Campo obrigatório",
+          "cvv": "CVV deve conter apenas números"
+        },
+        "buttons": {
+          "cancel": "Cancelar",
+          "save": "Salvar cartão",
+          "confirm": "Confirmar"
+        }
+      }
+    },
+    "table": {
+      "accountNumber": "Número da Conta",
+      "status": "Status",
+      "amount": "Valor",
+      "reference": "Referência",
+      "actions": "Ações"
+    },
+    "label": {
+      "account": "Conta"
+    },
+    "status": {
+      "ready": "Pronta para pagar",
+      "paid": "Paga",
+      "pending": "Pendente",
+      "expired": "Em atraso"
+    },
+    "actions": {
+      "pay": "Pagar Fatura",
+      "download": "Baixar Fatura"
+    },
+    "noInvoices": "Nenhuma fatura encontrada"
+  },
+  "Suport": {
+    "title": "Suporte",
+    "alertTitle": "Suporte via E-mail",
+    "alertDescription": "A comunicação será realizada atravéz do e-mail informado abaixo.",
+    "iframeTitle": "Formulário"
+  },
+  "SuportError": {
+    "title": "Que triste!",
+    "description": "Por gentileza, tente essa ação mais tarde!",
+    "supportQuestion": "Deseja abrir um chamado para o suporte?",
+    "buttons": {
+      "continue": "Continuar",
+      "support": "Abrir Suporte"
+    }
+  },
+  "AlertFinancialPending": {
+    "title": "Pendência Financeira",
+    "description": "Não foi identificado pagamento referente ao seu plano. Por favor, verifique seus métodos de pagamento para evitar interrupções no serviço.",
+    "button": {
+      "dismiss": "Continuar",
+      "updatePayment": "Atualizar Pagamento"
+    }
+  },
+  "Shipping": {
+    "dialog": {
+      "title": "Informações de Envio",
+      "description": "Registre os detalhes de envio deste pedido"
+    },
+    "fields": {
+      "transporterType": "Tipo de Transportadora",
+      "companyName": "Nome da Empresa",
+      "cnpj": "CNPJ",
+      "contactPerson": "Pessoa de Contato",
+      "phone": "Número de Telefone",
+      "email": "Email",
+      "vehiclePlate": "Placa do Veículo",
+      "vehicleModel": "Modelo do Veículo",
+      "driverName": "Nome do Motorista",
+      "driverDocument": "CPF/RG",
+      "insuranceNumber": "Número da Apólice",
+      "shippingDate": "Data de Envio",
+      "estimatedDeliveryDate": "Data Estimada de Entrega",
+      "trackingCode": "Código de Rastreamento",
+      "notes": "Notas Adicionais"
+    },
+    "placeholders": {
+      "companyName": "Digite o nome da empresa",
+      "contactPerson": "Digite o nome da pessoa de contato",
+      "email": "Digite o endereço de email",
+      "driverName": "Digite o nome do motorista",
+      "insuranceNumber": "Digite o número da apólice de seguro",
+      "selectType": "Selecione um tipo de transportadora",
+      "notes": "Adicione qualquer informação de envio ou instruções especiais adicionais..."
+    },
+    "options": {
+      "carrier": "Transportadora",
+      "motoboy": "Motoboy"
+    },
+    "sections": {
+      "vehicleInfo": "Informações do Veículo",
+      "driverInfo": "Informações do Motorista",
+      "shippingInfo": "Detalhes de Envio"
+    },
+    "buttons": {
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "saving": "Salvando..."
+    },
+    "errors": {
+      "required": "Este campo é obrigatório",
+      "minLength": "Mínimo 10 caracteres obrigatório",
+      "maxLength": "Máximo 250 caracteres permitido",
+      "invalidEmail": "Endereço de email inválido"
+    }
+  },
+  "CancelOrder": {
+    "dialog": {
+      "title": "Cancelar Pedido",
+      "description": "Informe o motivo para cancelamento deste pedido."
+    },
+    "fields": {
+      "reason": "Motivo do Cancelamento",
+      "additionalDetails": "Detalhes Adicionais"
+    },
+    "placeholders": {
+      "selectReason": "Selecione um motivo para cancelamento...",
+      "additionalDetails": "Nos conte mais sobre seu motivo de cancelamento...",
+      "notes": "Adicione as informações de cancelamento..."
+    },
+    "reasons": {
+      "foundBetterPrice": "Encontrei um preço melhor em outro lugar",
+      "changedMind": "Mudei de ideia",
+      "incorrectProduct": "Recebi produto incorreto",
+      "duplicateOrder": "Pedido duplicado",
+      "noLongerNeeded": "Não preciso mais",
+      "other": "Outro motivo"
+    },
+    "hints": {
+      "additionalDetails": "Máximo 500 caracteres"
+    },
+    "warning": {
+      "title": "⚠️ Importante",
+      "description": "Uma vez cancelado, este pedido não pode ser recuperado. Esta ação é permanente."
+    },
+    "buttons": {
+      "goBack": "Voltar",
+      "confirmCancel": "Confirmar Cancelamento",
+      "cancelling": "Cancelando..."
+    },
+    "errors": {
+      "reasonRequired": "Por favor selecione um motivo de cancelamento"
+    },
+    "optional": "Opcional"
+  },
+  "ConfirmDelivery": {
+    "dialog": {
+      "title": "Confirmar Entrega",
+      "description": "Digite o código de validação de entrega enviado para o e-mail do comprador."
+    },
+    "fields": {
+      "token": "Código de validação de entrega"
+    },
+    "info": {
+      "title": "Confirmação de Entrega",
+      "description": "Para concluir a confirmação de entrega, digite o código de 6 dígitos que foi enviado para seu número de telefone.",
+      "orderId": "ID do Pedido"
+    },
+    "hints": {
+      "token": "Digite o código de 6 dígitos",
+      "timeLimit": "O código expira em 10 minutos"
+    },
+    "buttons": {
+      "cancel": "Cancelar",
+      "confirm": "Confirmar Entrega",
+      "confirming": "Confirmando..."
+    },
+    "errors": {
+      "invalidToken": "Digite um token válido de 6 dígitos",
+      "submissionFailed": "Falha ao confirmar a entrega. Por favor tente novamente."
+    }
+  },
+  "ReturnPolicy": {
+    "title": "Política de Devolução",
+    "description": "Confira a política de devolução desta loja",
+    "noPolicy": "Política não configurada",
+    "close": "Fechar",
+    "platformPolicyTitle": "Política de devolução da plataforma",
+    "viewMore": "Ver mais",
+    "viewLess": "Ver menos",
+    "notConfigured": "Política não configurada",
+    "loading": "Carregando..."
+  },
+  "Dialog": {
+    "WithdrawalConfirmation": {
+      "title": "Confirme a solicitação de saque",
+      "description": "Deseja confirmar esta solicitação de transferência?",
+      "subdescription": "Após confirmar, o saque será programado para o próximo dia útil. Após 21h - Fuso Horário de Brasília - considere dois dias úteis.",
+      "buttons": {
+        "cancel": "Cancelar",
+        "confirm": "Confirmar Saque",
+        "confirming": "Processando saque..."
+      }
+    },
+    "CancelPlan": {
+      "title": "Cancelar plano",
+      "description": "Tem certeza que deseja cancelar o plano atual? Seu usuário ficará suspenso e você poderá retornar a qualquer momento.",
+      "buttons": {
+        "cancel": "Cancelar",
+        "confirm": "Confirmar",
+        "confirming": "Processando..."
+      }
+    }
+  },
+  "ExpirationAlerts": {
+    "TrialExpired": {
+      "title": "Período de testes",
+      "messages": {
+        "expired": "Seu período de testes expirou.",
+        "expiresToday": "Seu período de testes expira hoje.",
+        "daysRemaining": "Faltam {days} {dayLabel} para expirar seu período de testes.",
+        "dayLabel": {
+          "singular": "dia",
+          "plural": "dias"
+        }
+      },
+      "buttons": {
+        "continue": "Continue",
+        "choosePlan": "Escolher plano"
+      }
+    },
+    "PlanExpiration": {
+      "messages": {
+        "expired": "Seu plano expirou. Escolha um novo plano para continuar.",
+        "expiresToday": "Seu plano expira hoje. Escolha um novo plano.",
+        "daysRemaining": "Faltam {days} {dayLabel} para seu plano expirar.",
+        "dayLabel": {
+          "singular": "dia",
+          "plural": "dias"
+        },
+        "actionText": "Clique",
+        "linkText": "AQUI",
+        "completeText": "para escolher seu plano"
+      },
+      "buttons": {
+        "close": "Fechar alerta"
+      }
+    }
+  },
+  "MigrateToStore": {
+    "pageTitle": "Migrar para conta Loja",
+    "alreadyStore": {
+      "title": "Conta Loja já ativada",
+      "description": "Sua conta já é do tipo Loja. Nenhuma migração é necessária.",
+      "button": "Voltar"
+    },
+    "banner": {
+      "title": "Torne-se um vendedor EuKero",
+      "description": "Ao migrar sua conta para Loja, você poderá cadastrar produtos, gerenciar pedidos e vender para toda a plataforma."
+    },
+    "sections": {
+      "storeData": "Dados da Loja",
+      "address": "Endereço da Loja",
+      "pix": "Dados de Recebimento (Pix)"
+    },
+    "fields": {
+      "storeName": "Nome da loja",
+      "storeNamePlaceholder": "Ex: Minha Loja Incrível",
+      "cep": "CEP",
+      "cepPlaceholder": "00000-000",
+      "cepLoading": "Buscando endereço...",
+      "address": "Endereço",
+      "addressPlaceholder": "Rua, Avenida, etc.",
+      "number": "Número",
+      "numberPlaceholder": "123",
+      "complement": "Complemento",
+      "complementPlaceholder": "Apto, Bloco",
+      "neighborhood": "Bairro",
+      "neighborhoodPlaceholder": "Centro",
+      "city": "Cidade",
+      "cityPlaceholder": "São Paulo",
+      "state": "Estado",
+      "statePlaceholder": "SP",
+      "ownerName": "Nome do titular",
+      "ownerNamePlaceholder": "Nome completo ou razão social",
+      "ownerNameHint": "Deve ser o mesmo nome cadastrado no banco para o Pix.",
+      "pixKey": "Chave Pix",
+      "pixKeyPlaceholder": "CPF, CNPJ, e-mail, telefone ou chave aleatória",
+      "pixKeyHint": "Usada para receber os pagamentos das suas vendas.",
+      "document": "CPF / CNPJ",
+      "documentPlaceholder": "000.000.000-00 ou 00.000.000/0001-00",
+      "documentHint": "CPF ou CNPJ do proprietário da conta bancária."
+    },
+    "buttons": {
+      "cancel": "Cancelar",
+      "submit": "Salvar",
+      "submitting": "Salvando..."
+    },
+    "success": {
+      "title": "Parabéns, {storeName}!",
+      "description": "Sua conta foi migrada para Loja com sucesso. Agora você pode cadastrar produtos e realizar vendas.",
+      "button": "Ir para o início"
+    },
+    "errors": {
+      "migrate": "Erro ao migrar conta. Tente novamente.",
+      "cepNotFound": "CEP não encontrado",
+      "cepError": "Erro ao buscar CEP"
+    },
+    "validation": {
+      "storeName": "Nome da loja deve ter pelo menos 3 caracteres",
+      "cep": "CEP é obrigatório",
+      "address": "Endereço é obrigatório",
+      "number": "Número é obrigatório",
+      "city": "Cidade é obrigatória",
+      "state": "Estado é obrigatório",
+      "ownerName": "Nome do titular é obrigatório",
+      "pixKey": "Chave Pix é obrigatória",
+      "document": "CPF ou CNPJ é obrigatório"
+    }
+  }
+}

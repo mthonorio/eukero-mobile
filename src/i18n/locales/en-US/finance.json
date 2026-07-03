@@ -1,0 +1,156 @@
+{
+  "Financial": {
+    "heroEyebrow": "Financial Management",
+    "title": "Track your receivables.",
+    "metrics": {
+      "open": "Open",
+      "inTransit": "In Transit",
+      "paymentRequested": "Payment Req.",
+      "paid": "Paid"
+    },
+    "typeFilters": {
+      "all": "All",
+      "receivable": "Receivable",
+      "payable": "Payable"
+    },
+    "statusLabels": {
+      "A": "Open",
+      "T": "In Transit",
+      "L": "Released",
+      "S": "Payment Requested",
+      "Q": "Paid"
+    },
+    "movementDate": "{{date}} · Order #{{orderId}}",
+    "emptyError": "Could not load the movements.",
+    "emptyTitle": "No movements found."
+  },
+  "FinancialForm": {
+    "titleEdit": "Edit Transaction",
+    "titleCreate": "New Transaction",
+    "description": "Register a manual financial transaction.",
+    "typeLabel": "Type",
+    "statusLabel": "Status",
+    "amountLabel": "Amount",
+    "amountPlaceholder": "0.00",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Describe the transaction",
+    "referenceLabel": "Reference (optional)",
+    "referencePlaceholder": "Reference number",
+    "typeOptions": {
+      "receivable": "Receivable",
+      "payable": "Payable"
+    },
+    "statusOptions": {
+      "A": "Open",
+      "T": "In Transit",
+      "L": "Released",
+      "S": "Requested",
+      "Q": "Paid"
+    },
+    "submitEdit": "Save changes",
+    "submitCreate": "Create transaction",
+    "alerts": {
+      "attentionTitle": "Attention",
+      "invalidAmount": "Enter a valid amount.",
+      "missingDescription": "Enter a description.",
+      "successTitle": "Success",
+      "successEdit": "Transaction updated.",
+      "successCreate": "Transaction created."
+    }
+  },
+  "Stock": {
+    "heroEyebrow": "Stock",
+    "title": "Product movements.",
+    "tabs": {
+      "all": "All",
+      "entries": "Entries",
+      "exits": "Exits"
+    },
+    "emptyTitle": "No movements found.",
+    "movementMeta": "{{origin}} · {{date}}",
+    "balance": "Balance: {{balance}}",
+    "modal": {
+      "title": "New Movement",
+      "productLabel": "Product",
+      "typeLabel": "Type",
+      "typeOptions": {
+        "entry": "Entry",
+        "exit": "Exit"
+      },
+      "originLabel": "Origin",
+      "quantityLabel": "Quantity",
+      "notesLabel": "Notes (optional)",
+      "submit": "Register movement"
+    }
+  },
+  "Dashboard": {
+    "heroEyebrow": "Dashboard",
+    "title": "Overview of your store.",
+    "timeFilters": {
+      "Week": "Week",
+      "Month": "Month",
+      "Quarter": "Quarter",
+      "Year": "Year"
+    },
+    "metrics": {
+      "totalRevenue": "Total Revenue",
+      "newOrders": "New Orders",
+      "toPay": "To Pay",
+      "toReceive": "To Receive"
+    },
+    "sections": {
+      "revenueOverTime": "Revenue Over Time",
+      "salesByCategory": "Sales by Category",
+      "topProducts": "Top Selling Products",
+      "recentActivities": "Recent Activities"
+    },
+    "revenueOverview": {
+      "labels": {
+        "week1": "Week 1",
+        "week2": "Week 2",
+        "week3": "Week 3",
+        "week4": "Week 4"
+      },
+      "datasets": {
+        "revenue": "Revenue",
+        "profit": "Profit"
+      }
+    },
+    "salesByCategory": {
+      "categories": {
+        "male": "Men",
+        "female": "Women",
+        "unisex": "Unisex",
+        "kids": "Kids",
+        "other": "Other"
+      }
+    },
+    "topProducts": {
+      "items": {
+        "floralDress": "Floral Dress",
+        "denimJacket": "Denim Jacket",
+        "retroSneakers": "Retro Sneakers",
+        "crossbodyBag": "Crossbody Bag"
+      },
+      "salesCount": "{{price}} · {{sales}} sales"
+    },
+    "recentActivities": {
+      "order": {
+        "description": "New order received"
+      },
+      "payment": {
+        "description": "Payment released"
+      },
+      "customer": {
+        "description": "New follower"
+      },
+      "review": {
+        "description": "New review received"
+      },
+      "time": {
+        "minutesAgo": "{{count}} min ago",
+        "hoursAgo": "{{count}} h ago"
+      }
+    }
+  }
+}

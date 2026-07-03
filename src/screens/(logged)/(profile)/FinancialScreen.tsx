@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import {
   ArrowDownCircle,
   ArrowUpCircle,
@@ -40,22 +41,23 @@ const colors = {
   accent: '#F97316',
 };
 
-const STATUS_LABELS: Record<string, string> = {
-  A: 'Aberto',
-  T: 'Em trânsito',
-  L: 'Liberado',
-  S: 'Pagamento solicitado',
-  Q: 'Quitado',
-};
-
-const TYPE_FILTERS: { key: MovementType | 'all'; label: string }[] = [
-  { key: 'all', label: 'Todos' },
-  { key: 'CR', label: 'A receber' },
-  { key: 'CP', label: 'A pagar' },
-];
-
 export function FinancialScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [typeFilter, setTypeFilter] = useState<MovementType | 'all'>('all');
+
+  const STATUS_LABELS: Record<string, string> = {
+    A: t('Financial.statusLabels.A'),
+    T: t('Financial.statusLabels.T'),
+    L: t('Financial.statusLabels.L'),
+    S: t('Financial.statusLabels.S'),
+    Q: t('Financial.statusLabels.Q'),
+  };
+
+  const TYPE_FILTERS: { key: MovementType | 'all'; label: string }[] = [
+    { key: 'all', label: t('Financial.typeFilters.all') },
+    { key: 'CR', label: t('Financial.typeFilters.receivable') },
+    { key: 'CP', label: t('Financial.typeFilters.payable') },
+  ];
 
   const { data: headers } = useQuery({
     queryKey: ['financial-headers', typeFilter],
@@ -120,8 +122,8 @@ export function FinancialScreen({ navigation }: Props) {
         </Pressable>
 
         <View style={styles.headerTitleBlock}>
-          <Text style={styles.heroEyebrow}>Gestão financeira</Text>
-          <Text style={styles.title}>Acompanhe seus recebimentos.</Text>
+          <Text style={styles.heroEyebrow}>{t('Financial.heroEyebrow')}</Text>
+          <Text style={styles.title}>{t('Financial.title')}</Text>
         </View>
 
         <Pressable
@@ -134,25 +136,25 @@ export function FinancialScreen({ navigation }: Props) {
 
       <View style={styles.metricsGrid}>
         <View style={styles.metricCard}>
-          <Text style={styles.metricLabel}>Aberto</Text>
+          <Text style={styles.metricLabel}>{t('Financial.metrics.open')}</Text>
           <Text style={styles.metricValue}>
             {formatPrice(headers?.aberto ?? 0)}
           </Text>
         </View>
         <View style={styles.metricCard}>
-          <Text style={styles.metricLabel}>Em trânsito</Text>
+          <Text style={styles.metricLabel}>{t('Financial.metrics.inTransit')}</Text>
           <Text style={styles.metricValue}>
             {formatPrice(headers?.transito ?? 0)}
           </Text>
         </View>
         <View style={styles.metricCard}>
-          <Text style={styles.metricLabel}>Pag. solicitado</Text>
+          <Text style={styles.metricLabel}>{t('Financial.metrics.paymentRequested')}</Text>
           <Text style={styles.metricValue}>
             {formatPrice(headers?.agendado ?? 0)}
           </Text>
         </View>
         <View style={styles.metricCard}>
-          <Text style={styles.metricLabel}>Quitado</Text>
+          <Text style={styles.metricLabel}>{t('Financial.metrics.paid')}</Text>
           <Text style={styles.metricValue}>
             {formatPrice(headers?.quitado ?? 0)}
           </Text>
@@ -226,8 +228,10 @@ export function FinancialScreen({ navigation }: Props) {
               {item.type === 'CR' ? item.payerName : item.recipientName}
             </Text>
             <Text style={styles.movementDate}>
-              {new Date(item.emissionDate).toLocaleDateString('pt-BR')} · Pedido #
-              {item.orderId.slice(0, 8)}
+              {t('Financial.movementDate', {
+                date: new Date(item.emissionDate).toLocaleDateString('pt-BR'),
+                orderId: item.orderId.slice(0, 8),
+              })}
             </Text>
           </View>
 
@@ -257,8 +261,8 @@ export function FinancialScreen({ navigation }: Props) {
             <Wallet color={colors.muted} size={32} />
             <Text style={styles.emptyTitle}>
               {error
-                ? 'Não foi possível carregar as movimentações.'
-                : 'Nenhuma movimentação encontrada.'}
+                ? t('Financial.emptyError')
+                : t('Financial.emptyTitle')}
             </Text>
           </View>
         )

@@ -1,4 +1,5 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { Avatar } from '../atoms/Avatar';
 import { formatPrice } from '../../utils/formatter.utils';
@@ -24,6 +25,7 @@ const colors = {
 };
 
 export function OrderDetailsContent({ order, mode }: Props) {
+  const { t } = useTranslation();
   const counterpart = mode === 'orders' ? order.store : order.buyer;
   const statusColor = getOrderStatusColor(order.status);
 
@@ -39,11 +41,13 @@ export function OrderDetailsContent({ order, mode }: Props) {
           style={[styles.statusBadge, { backgroundColor: statusColor.background }]}
         >
           <Text style={[styles.statusText, { color: statusColor.text }]}>
-            {getOrderStatusLabel(order.status)}
+            {getOrderStatusLabel(t, order.status)}
           </Text>
         </View>
 
-        <Text style={styles.orderId}>Pedido #{order.orderId}</Text>
+        <Text style={styles.orderId}>
+          {t('OrderDetailsContent.orderIdLabel', { id: order.orderId })}
+        </Text>
         <Text style={styles.date}>
           {new Date(order.createdAt).toLocaleString('pt-BR')}
         </Text>
@@ -51,7 +55,9 @@ export function OrderDetailsContent({ order, mode }: Props) {
 
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>
-          {mode === 'orders' ? 'Loja' : 'Comprador'}
+          {mode === 'orders'
+            ? t('OrderDetailsContent.storeSectionTitle')
+            : t('OrderDetailsContent.buyerSectionTitle')}
         </Text>
         <View style={styles.counterpartRow}>
           <Avatar uri={counterpart?.photo} size={44} />
@@ -65,8 +71,8 @@ export function OrderDetailsContent({ order, mode }: Props) {
 
         <Text style={styles.fulfillmentLabel}>
           {order.fulfillment === 'PICKUP'
-            ? 'Retirada no local'
-            : 'Entrega'}
+            ? t('OrderDetailsContent.fulfillmentPickup')
+            : t('OrderDetailsContent.fulfillmentDelivery')}
         </Text>
 
         {order.deliveryAddress ? (
@@ -78,7 +84,9 @@ export function OrderDetailsContent({ order, mode }: Props) {
 
         {order.deliveryValidationCode ? (
           <View style={styles.codeBox}>
-            <Text style={styles.codeLabel}>Código de validação</Text>
+            <Text style={styles.codeLabel}>
+              {t('OrderDetailsContent.validationCodeLabel')}
+            </Text>
             <Text style={styles.codeValue}>
               {order.deliveryValidationCode}
             </Text>
@@ -87,7 +95,9 @@ export function OrderDetailsContent({ order, mode }: Props) {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Produtos</Text>
+        <Text style={styles.sectionTitle}>
+          {t('OrderDetailsContent.productsSectionTitle')}
+        </Text>
 
         {order.items.map(item => (
           <View key={item.id} style={styles.productRow}>
@@ -105,7 +115,7 @@ export function OrderDetailsContent({ order, mode }: Props) {
                 {item.product.name}
               </Text>
               <Text style={styles.productQuantity}>
-                Qtd: {item.quantity}
+                {t('OrderDetailsContent.quantityLabel', { quantity: item.quantity })}
               </Text>
             </View>
 
@@ -118,17 +128,23 @@ export function OrderDetailsContent({ order, mode }: Props) {
 
       <View style={styles.card}>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Subtotal</Text>
+          <Text style={styles.summaryLabel}>
+            {t('OrderDetailsContent.subtotalLabel')}
+          </Text>
           <Text style={styles.summaryValue}>{formatPrice(subtotal)}</Text>
         </View>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Frete</Text>
+          <Text style={styles.summaryLabel}>
+            {t('OrderDetailsContent.shippingLabel')}
+          </Text>
           <Text style={styles.summaryValue}>
             {formatPrice(Number(order.shippingValue))}
           </Text>
         </View>
         <View style={[styles.summaryRow, styles.summaryTotalRow]}>
-          <Text style={styles.summaryTotalLabel}>Total</Text>
+          <Text style={styles.summaryTotalLabel}>
+            {t('OrderDetailsContent.totalLabel')}
+          </Text>
           <Text style={styles.summaryTotalValue}>
             {formatPrice(Number(order.totalValue))}
           </Text>

@@ -1,0 +1,59 @@
+{
+  "Orders": {
+    "heroEyebrow": "Mis compras",
+    "title": "Sigue tus pedidos.",
+    "searchPlaceholder": "Buscar por tienda",
+    "loadError": "No se pudieron cargar sus pedidos.",
+    "empty": "Aún no has realizado ninguna compra."
+  },
+  "OrderDetails": {
+    "loadError": "No se pudo cargar este pedido."
+  },
+  "Sales": {
+    "heroEyebrow": "Mis ventas",
+    "title": "Sigue tus ventas.",
+    "searchPlaceholder": "Buscar por comprador",
+    "loadError": "No se pudieron cargar sus ventas.",
+    "empty": "Aún no has realizado ninguna venta."
+  },
+  "SaleDetails": {
+    "loadError": "No se pudo cargar esta venta."
+  },
+  "OrderCard": {
+    "defaultUserName": "Usuario",
+    "orderIdLabel": "Pedido #{{id}}"
+  },
+  "OrderDetailsContent": {
+    "orderIdLabel": "Pedido #{{id}}",
+    "storeSectionTitle": "Tienda",
+    "buyerSectionTitle": "Comprador",
+    "fulfillmentPickup": "Recogida en tienda",
+    "fulfillmentDelivery": "Entrega",
+    "validationCodeLabel": "Código de validación",
+    "productsSectionTitle": "Productos",
+    "quantityLabel": "Cant: {{quantity}}",
+    "subtotalLabel": "Subtotal",
+    "shippingLabel": "Envío",
+    "totalLabel": "Total"
+  },
+  "OrderStatus": {
+    "tabs": {
+      "all": "Todo",
+      "AP": "A pagar",
+      "PC": "Preparando",
+      "EN": "En camino",
+      "EC": "Finalizado",
+      "SD": "Devolución",
+      "CA": "Cancelado"
+    },
+    "labels": {
+      "AP": "Pendiente de pago",
+      "PC": "Preparando",
+      "EN": "A camino",
+      "EC": "Finalizado",
+      "SD": "Solicitado devolución",
+      "CA": "Cancelado",
+      "DE": "Devuelto"
+    }
+  }
+}

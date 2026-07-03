@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   Alert,
@@ -30,9 +31,13 @@ const colors = {
   primarySoft: 'rgba(15, 122, 79, 0.10)',
 };
 
-const STEPS = ['Identificação', 'Comissão', 'Confirmação'];
-
 export function SupplierConsignedScreen({ navigation }: Props) {
+  const { t } = useTranslation();
+  const STEPS = [
+    t('SupplierConsigned.steps.identification'),
+    t('SupplierConsigned.steps.commission'),
+    t('SupplierConsigned.steps.confirmation'),
+  ];
   const [step, setStep] = useState(0);
   const [search, setSearch] = useState('');
   const [results, setResults] = useState<SupplierMeResponse[]>([]);
@@ -81,10 +86,16 @@ export function SupplierConsignedScreen({ navigation }: Props) {
         percentageValue: commission,
       });
 
-      Alert.alert('Sucesso', 'Consignação registrada com sucesso.');
+      Alert.alert(
+        t('SupplierConsigned.alerts.successTitle'),
+        t('SupplierConsigned.alerts.successMessage'),
+      );
       navigation.goBack();
     } catch {
-      Alert.alert('Erro', 'Não foi possível registrar a consignação.');
+      Alert.alert(
+        t('SupplierConsigned.alerts.errorTitle'),
+        t('SupplierConsigned.alerts.errorMessage'),
+      );
     } finally {
       setIsSaving(false);
     }
@@ -102,9 +113,11 @@ export function SupplierConsignedScreen({ navigation }: Props) {
 
         <View>
           <View style={styles.badge}>
-            <Text style={styles.badgeText}>Em andamento</Text>
+            <Text style={styles.badgeText}>
+              {t('SupplierConsigned.badgeInProgress')}
+            </Text>
           </View>
-          <Text style={styles.title}>Consignação de fornecedor</Text>
+          <Text style={styles.title}>{t('SupplierConsigned.title')}</Text>
         </View>
       </View>
 
@@ -138,7 +151,7 @@ export function SupplierConsignedScreen({ navigation }: Props) {
             <TextInput
               value={search}
               onChangeText={setSearch}
-              placeholder='Buscar por nome ou username'
+              placeholder={t('SupplierConsigned.searchPlaceholder')}
               placeholderTextColor={colors.muted}
               style={styles.searchInput}
               autoCapitalize='none'
@@ -181,7 +194,7 @@ export function SupplierConsignedScreen({ navigation }: Props) {
           </View>
 
           <Text style={[styles.label, styles.spacedLabel]}>
-            Percentual repassado ao fornecedor
+            {t('SupplierConsigned.percentageLabel')}
           </Text>
 
           <View style={styles.percentageRow}>
@@ -204,11 +217,15 @@ export function SupplierConsignedScreen({ navigation }: Props) {
 
           <View style={styles.splitGrid}>
             <View style={styles.splitCard}>
-              <Text style={styles.splitLabel}>Fornecedor recebe</Text>
+              <Text style={styles.splitLabel}>
+                {t('SupplierConsigned.splitSupplierReceives')}
+              </Text>
               <Text style={styles.splitValue}>{commission}%</Text>
             </View>
             <View style={styles.splitCard}>
-              <Text style={styles.splitLabel}>Loja retém</Text>
+              <Text style={styles.splitLabel}>
+                {t('SupplierConsigned.splitStoreRetains')}
+              </Text>
               <Text style={styles.splitValue}>{100 - commission}%</Text>
             </View>
           </View>
@@ -217,7 +234,7 @@ export function SupplierConsignedScreen({ navigation }: Props) {
 
       {step === 2 && selected ? (
         <View style={styles.card}>
-          <Text style={styles.label}>Resumo</Text>
+          <Text style={styles.label}>{t('SupplierConsigned.summaryLabel')}</Text>
 
           <View style={styles.selectedUserRow}>
             <Avatar uri={selected.userPhoto} size={36} />
@@ -231,11 +248,15 @@ export function SupplierConsignedScreen({ navigation }: Props) {
 
           <View style={styles.splitGrid}>
             <View style={styles.splitCard}>
-              <Text style={styles.splitLabel}>Fornecedor recebe</Text>
+              <Text style={styles.splitLabel}>
+                {t('SupplierConsigned.splitSupplierReceives')}
+              </Text>
               <Text style={styles.splitValue}>{commission}%</Text>
             </View>
             <View style={styles.splitCard}>
-              <Text style={styles.splitLabel}>Loja retém</Text>
+              <Text style={styles.splitLabel}>
+                {t('SupplierConsigned.splitStoreRetains')}
+              </Text>
               <Text style={styles.splitValue}>{100 - commission}%</Text>
             </View>
           </View>
@@ -260,7 +281,9 @@ export function SupplierConsignedScreen({ navigation }: Props) {
           <ActivityIndicator color='#FFFFFF' />
         ) : (
           <Text style={styles.primaryButtonText}>
-            {step < STEPS.length - 1 ? 'Continuar' : 'Confirmar consignação'}
+            {step < STEPS.length - 1
+              ? t('SupplierConsigned.buttonContinue')
+              : t('SupplierConsigned.buttonConfirm')}
           </Text>
         )}
       </Pressable>

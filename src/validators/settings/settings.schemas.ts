@@ -1,34 +1,38 @@
 import { z } from 'zod';
+import type { TFunction } from 'i18next';
 
-import { registerAddressSchema } from '../register/register.schemas';
+import { createRegisterAddressSchema } from '../register/register.schemas';
 import { isValidCpfOrCnpj } from '../register/register.helpers';
 
-export const addressFormSchema = registerAddressSchema.extend({
-  name: z.string().trim().optional().default(''),
-});
+export const createAddressFormSchema = (t: TFunction) =>
+  createRegisterAddressSchema(t).extend({
+    name: z.string().trim().optional().default(''),
+  });
 
-export type AddressFormValues = z.infer<typeof addressFormSchema>;
+export type AddressFormValues = z.infer<ReturnType<typeof createAddressFormSchema>>;
 
-export const pixDataSchema = z.object({
-  ownerName: z.string().trim().min(2, 'Informe o nome do titular.'),
-  pixKey: z.string().trim().min(1, 'Informe a chave Pix.'),
-  document: z
-    .string()
-    .trim()
-    .refine(isValidCpfOrCnpj, 'Informe um CPF ou CNPJ válido.'),
-});
+export const createPixDataSchema = (t: TFunction) =>
+  z.object({
+    ownerName: z.string().trim().min(2, t('Validation.pix.ownerNameRequired')),
+    pixKey: z.string().trim().min(1, t('Validation.pix.keyRequired')),
+    document: z
+      .string()
+      .trim()
+      .refine(isValidCpfOrCnpj, t('Validation.pix.documentInvalid')),
+  });
 
-export type PixDataFormValues = z.infer<typeof pixDataSchema>;
+export type PixDataFormValues = z.infer<ReturnType<typeof createPixDataSchema>>;
 
-export const migrateToStoreSchema = z.object({
-  storeName: z.string().trim().min(2, 'Informe o nome da loja.'),
-  address: registerAddressSchema,
-  ownerName: z.string().trim().min(2, 'Informe o nome do titular.'),
-  pixKey: z.string().trim().min(1, 'Informe a chave Pix.'),
-  document: z
-    .string()
-    .trim()
-    .refine(isValidCpfOrCnpj, 'Informe um CPF ou CNPJ válido.'),
-});
+export const createMigrateToStoreSchema = (t: TFunction) =>
+  z.object({
+    storeName: z.string().trim().min(2, t('Validation.storeName.required')),
+    address: createRegisterAddressSchema(t),
+    ownerName: z.string().trim().min(2, t('Validation.pix.ownerNameRequired')),
+    pixKey: z.string().trim().min(1, t('Validation.pix.keyRequired')),
+    document: z
+      .string()
+      .trim()
+      .refine(isValidCpfOrCnpj, t('Validation.pix.documentInvalid')),
+  });
 
-export type MigrateToStoreFormValues = z.infer<typeof migrateToStoreSchema>;
+export type MigrateToStoreFormValues = z.infer<ReturnType<typeof createMigrateToStoreSchema>>;

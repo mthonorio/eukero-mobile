@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Image, Pressable, StyleSheet, View, Text } from 'react-native';
 import { Heart, Star } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 import { Product } from '../../types/product.type';
 import { getProductImage } from '../../utils/get.utils';
@@ -35,6 +36,7 @@ function ProductFeedCardBase({
   onPress: () => void;
   onCheckoutPress: () => void;
 }) {
+  const { t } = useTranslation();
   const imageUrl = getProductImage(product);
   const hasDiscount =
     product.promotionalPrice > 0 &&
@@ -90,7 +92,9 @@ function ProductFeedCardBase({
 
         <View style={styles.priceRow}>
           <View>
-            <Text style={styles.priceLabel}>A partir de</Text>
+            <Text style={styles.priceLabel}>
+              {t('ProductFeedCard.priceLabel')}
+            </Text>
             <Text style={styles.priceValue}>{formatPrice(price)}</Text>
           </View>
 
@@ -103,17 +107,23 @@ function ProductFeedCardBase({
 
         <View style={styles.metaRow}>
           <View style={styles.badge}>
-            <Text style={styles.badgeText}>{product.likes} curtidas</Text>
+            <Text style={styles.badgeText}>
+              {t('ProductFeedCard.likes', { count: product.likes })}
+            </Text>
           </View>
           <View style={styles.badgeSoft}>
             <Text style={styles.badgeSoftText}>
-              {product.inStock ? 'Em estoque' : 'Sob consulta'}
+              {product.inStock
+                ? t('ProductFeedCard.inStock')
+                : t('ProductFeedCard.onRequest')}
             </Text>
           </View>
         </View>
 
         <Pressable style={styles.checkoutButton} onPress={onCheckoutPress}>
-          <Text style={styles.checkoutButtonText}>EUKERO</Text>
+          <Text style={styles.checkoutButtonText}>
+            {t('ProductFeedCard.checkoutButton')}
+          </Text>
         </Pressable>
       </View>
     </View>

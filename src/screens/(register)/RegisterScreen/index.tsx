@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Building2, UserRound } from 'lucide-react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 
 import { AuthStackParamList } from '../../../navigation/types';
 import { RegisterChoiceCard } from '../../../components/auth/register/RegisterChoiceCard';
@@ -25,6 +26,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
 export function RegisterScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [selectedType, setSelectedType] = useState<RegisterUserType | null>(
     null,
   );
@@ -53,11 +55,11 @@ export function RegisterScreen({ navigation }: Props) {
     }
 
     Alert.alert(
-      'Cadastro concluído',
-      'Sua conta foi criada com sucesso. Você pode entrar agora.',
+      t('Register.personSuccessTitle'),
+      t('Register.personSuccessMessage'),
       [
         {
-          text: 'Ativar conta',
+          text: t('Register.activateAccount'),
           onPress: () =>
             navigation.navigate('ActivateAccount', {
               email: values.email,
@@ -75,11 +77,11 @@ export function RegisterScreen({ navigation }: Props) {
     }
 
     Alert.alert(
-      'Cadastro da loja concluído',
-      'Agora você pode acessar o login e continuar o fluxo normalmente.',
+      t('Register.storeSuccessTitle'),
+      t('Register.storeSuccessMessage'),
       [
         {
-          text: 'Ativar conta',
+          text: t('Register.activateAccount'),
           onPress: () =>
             navigation.navigate('ActivateAccount', {
               email: values.email,
@@ -99,29 +101,29 @@ export function RegisterScreen({ navigation }: Props) {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.hero}>
-          <Text style={styles.kicker}>Cadastro</Text>
-          <Text style={styles.title}>Crie sua conta</Text>
+          <Text style={styles.kicker}>{t('Register.kicker')}</Text>
+          <Text style={styles.title}>{t('Register.title')}</Text>
           {/* <Text style={styles.subtitle}>Primeiro escolha o tipo de conta.</Text> */}
         </View>
 
         {!selectedType ? (
           <View style={styles.choiceWrap}>
             <RegisterChoiceCard
-              title='Loja'
-              description='Gerencie seus produtos e demais processos de sua loja.'
+              title={t('Register.storeCardTitle')}
+              description={t('Register.storeCardDescription')}
               Icon={Building2}
               onPress={() => handleSelectType('STORE')}
             />
 
             <RegisterChoiceCard
-              title='Pessoa física'
-              description='Encontre e compre seus produtos de forma rápida e segura.'
+              title={t('Register.personCardTitle')}
+              description={t('Register.personCardDescription')}
               Icon={UserRound}
               onPress={() => handleSelectType('USER')}
             />
 
             <Pressable onPress={goToLogin} style={styles.secondaryButton}>
-              <Text style={styles.secondaryButtonText}>Voltar</Text>
+              <Text style={styles.secondaryButtonText}>{t('Register.back')}</Text>
             </Pressable>
           </View>
         ) : selectedType === 'USER' ? (

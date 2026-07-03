@@ -14,6 +14,7 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import {
   ChevronRight,
   Grid2x2,
@@ -101,6 +102,7 @@ const FeedItem = memo(function FeedItem({
 });
 
 export function HomeScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const selectProduct = useCheckoutStore(state => state.selectProduct);
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState<FeedTab>('all');
@@ -146,9 +148,7 @@ export function HomeScreen({ navigation }: Props) {
     [data],
   );
 
-  const errorMessage = error
-    ? 'Não foi possível carregar os produtos agora.'
-    : null;
+  const errorMessage = error ? t('Home.errorLoadingProducts') : null;
 
   const featuredStores = useMemo(() => {
     const storesMap = new Map<string, FeaturedStore>();
@@ -218,13 +218,10 @@ export function HomeScreen({ navigation }: Props) {
     () => (
       <View style={styles.headerContainer}>
         <View style={styles.heroCard}>
-          <Text style={styles.heroEyebrow}>Descubra agora</Text>
-          <Text style={styles.heroTitle}>
-            Feed com itens em destaque para o mobile.
-          </Text>
+          <Text style={styles.heroEyebrow}>{t('Home.heroEyebrow')}</Text>
+          <Text style={styles.heroTitle}>{t('Home.heroTitle')}</Text>
           <Text style={styles.heroDescription}>
-            Explore novidades, acompanhe lojas e encontre produtos com uma
-            navegação pensada para a tela pequena.
+            {t('Home.heroDescription')}
           </Text>
         </View>
 
@@ -234,7 +231,7 @@ export function HomeScreen({ navigation }: Props) {
             <TextInput
               value={query}
               onChangeText={setQuery}
-              placeholder='Pesquisar produtos ou lojas'
+              placeholder={t('Home.searchPlaceholder')}
               placeholderTextColor={colors.muted}
               style={styles.searchInput}
               returnKeyType='search'
@@ -245,9 +242,11 @@ export function HomeScreen({ navigation }: Props) {
         <View style={styles.sectionBlock}>
           <View style={styles.sectionHeadingRow}>
             <View>
-              <Text style={styles.sectionTitle}>Lojas em destaque</Text>
+              <Text style={styles.sectionTitle}>
+                {t('Home.featuredStoresTitle')}
+              </Text>
               <Text style={styles.sectionSubtitle}>
-                Atalhos para os perfis mais recentes do feed.
+                {t('Home.featuredStoresSubtitle')}
               </Text>
             </View>
             <Star color={colors.accent} size={18} fill={colors.accent} />
@@ -304,7 +303,7 @@ export function HomeScreen({ navigation }: Props) {
                 activeTab === 'all' && styles.toggleChipTextActive,
               ]}
             >
-              Explorar
+              {t('Home.tabAll')}
             </Text>
           </Pressable>
 
@@ -321,13 +320,13 @@ export function HomeScreen({ navigation }: Props) {
                 activeTab === 'following' && styles.toggleChipTextActive,
               ]}
             >
-              Seguindo
+              {t('Home.tabFollowing')}
             </Text>
           </Pressable>
         </View>
 
         <View style={styles.sectionHeadingRow}>
-          <Text style={styles.sectionTitle}>Produtos</Text>
+          <Text style={styles.sectionTitle}>{t('Home.productsTitle')}</Text>
           <View style={styles.headerActions}>
             <Pressable
               onPress={() => setColumnCount(count => (count === 2 ? 1 : 2))}
@@ -356,6 +355,7 @@ export function HomeScreen({ navigation }: Props) {
       activeTab,
       columnCount,
       navigation,
+      t,
     ],
   );
 
@@ -387,15 +387,15 @@ export function HomeScreen({ navigation }: Props) {
         isLoading ? (
           <View style={styles.loadingState}>
             <ActivityIndicator color={colors.primary} />
-            <Text style={styles.loadingText}>Carregando produtos...</Text>
+            <Text style={styles.loadingText}>{t('Home.loadingProducts')}</Text>
           </View>
         ) : (
           <View style={styles.emptyState}>
             <Text style={styles.emptyTitle}>
-              {errorMessage || 'Nenhum produto encontrado.'}
+              {errorMessage || t('Home.emptyProducts')}
             </Text>
             <Text style={styles.emptyDescription}>
-              Ajuste a busca ou troque a aba para ver outros itens.
+              {t('Home.emptyProductsDescription')}
             </Text>
           </View>
         )
@@ -406,9 +406,7 @@ export function HomeScreen({ navigation }: Props) {
             {isFetchingNextPage ? (
               <ActivityIndicator color={colors.primary} />
             ) : null}
-            <Text style={styles.footerText}>
-              Puxe para atualizar ou role para mais itens
-            </Text>
+            <Text style={styles.footerText}>{t('Home.footerHint')}</Text>
             <ChevronRight color={colors.muted} size={16} />
           </View>
         ) : null

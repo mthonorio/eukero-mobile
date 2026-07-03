@@ -1,0 +1,154 @@
+{
+  "MyProducts": {
+    "heroEyebrow": "Mis productos",
+    "title": "Gestiona tus productos en el móvil.",
+    "description": "La lista usa carga progresiva con Tanstack Query y muestra cada elemento a través de MyProductCard.",
+    "itemsBadge": "{{count}} artículos",
+    "loading": "Cargando...",
+    "emptyTitleError": "No se pudieron cargar tus productos.",
+    "emptyTitleNoProducts": "Aún no has registrado productos."
+  },
+  "ProductForm": {
+    "kicker": {
+      "edit": "Edición de producto",
+      "create": "Registro de producto"
+    },
+    "title": {
+      "edit": "Actualiza la información del producto",
+      "createStep1": "Crea la base del producto",
+      "createStep2": "Agrega imágenes"
+    },
+    "subtitle": {
+      "edit": "Los campos a continuación ya están completados con los datos actuales.",
+      "create": "El flujo tiene dos etapas: primero se guarda el producto y luego se envían las imágenes."
+    },
+    "steps": {
+      "data": "1. Datos",
+      "images": "2. Imágenes"
+    },
+    "loadingState": {
+      "product": "Cargando producto...",
+      "dependencies": "Cargando dependencias..."
+    },
+    "errorState": {
+      "title": "No se pudo abrir el formulario.",
+      "edit": "Error al cargar los datos del producto para edición.",
+      "create": "Error al cargar los datos necesarios para los selectores."
+    },
+    "basicInfo": {
+      "sectionTitle": "Información general",
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Ej: Camiseta Rosa Prime"
+      },
+      "description": {
+        "label": "Descripción",
+        "placeholder": "Describe el producto en detalle"
+      },
+      "sku": {
+        "label": "SKU",
+        "placeholder": "Código interno"
+      },
+      "salePrice": {
+        "label": "Precio",
+        "placeholder": "0,00"
+      },
+      "promotionalPrice": {
+        "label": "Promoción",
+        "placeholder": "0,00"
+      },
+      "quantity": {
+        "label": "Cantidad",
+        "placeholder": "1"
+      }
+    },
+    "shippingInfo": {
+      "weight": {
+        "label": "Peso",
+        "placeholder": "0,0"
+      },
+      "height": {
+        "label": "Altura",
+        "placeholder": "0,0"
+      },
+      "width": {
+        "label": "Ancho",
+        "placeholder": "0,0"
+      },
+      "length": {
+        "label": "Largo",
+        "placeholder": "0,0"
+      }
+    },
+    "selects": {
+      "department": {
+        "label": "Departamento",
+        "placeholder": "Seleccionar departamento"
+      },
+      "classification": {
+        "label": "Clasificación",
+        "placeholder": "Seleccionar clasificación"
+      },
+      "category": {
+        "label": "Categoría",
+        "placeholder": "Seleccionar categoría"
+      },
+      "style": {
+        "label": "Estilo",
+        "placeholder": "Seleccionar estilo"
+      },
+      "size": {
+        "label": "Tamaño",
+        "placeholder": "Seleccionar tamaño"
+      },
+      "color": {
+        "label": "Color",
+        "placeholder": "Seleccionar color"
+      }
+    },
+    "buttons": {
+      "saveChanges": "Guardar cambios",
+      "saveAndContinue": "Guardar y continuar",
+      "back": "Volver",
+      "finishRegistration": "Finalizar registro",
+      "goToMyProducts": "Ir a mis productos"
+    },
+    "media": {
+      "sectionTitle": "Imagen del producto",
+      "summaryLabel": "Producto creado",
+      "defaultProductName": "Producto sin nombre",
+      "picker": {
+        "title": "Agregar imágenes",
+        "text": "Selecciona una o más imágenes de la galería."
+      }
+    },
+    "modal": {
+      "title": "Seleccionar opción",
+      "emptyText": "Ninguna opción disponible en este momento."
+    },
+    "validation": {
+      "nameRequired": "Indica el nombre del producto.",
+      "salePriceRequired": "Indica el precio de venta.",
+      "quantityRequired": "Indica la cantidad."
+    },
+    "alerts": {
+      "attentionTitle": "Atención",
+      "invalidSalePrice": "Indica un precio de venta válido.",
+      "updateSuccessTitle": "Éxito",
+      "updateSuccessMessage": "Producto actualizado con éxito.",
+      "viewMyProducts": "Ver mis productos",
+      "createErrorTitle": "Error al crear producto",
+      "updateErrorTitle": "Error al actualizar producto",
+      "saveErrorMessage": "No fue posible guardar los datos del producto en este momento.",
+      "genericErrorTitle": "Error",
+      "createProductBeforeImages": "Crea el producto antes de enviar imágenes.",
+      "productSavedTitle": "Producto guardado",
+      "productSavedMessage": "Tu producto fue creado. Puedes agregar imágenes más tarde.",
+      "stayHere": "Quedarme aquí",
+      "uploadSuccessTitle": "Éxito",
+      "uploadSuccessMessage": "Producto creado e imágenes enviadas con éxito.",
+      "uploadErrorTitle": "Error al enviar imágenes",
+      "uploadErrorMessage": "El producto fue creado, pero ocurrió un error al subir las imágenes."
+    }
+  }
+}

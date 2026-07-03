@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -11,6 +11,7 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type Resolver } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft, Info, Store } from 'lucide-react-native';
 
 import { RootStackParamList } from '../../../navigation/types';
@@ -25,7 +26,7 @@ import {
   normalizeState,
 } from '../../../validators/register/register.helpers';
 import {
-  migrateToStoreSchema,
+  createMigrateToStoreSchema,
   type MigrateToStoreFormValues,
 } from '../../../validators/settings/settings.schemas';
 
@@ -51,6 +52,8 @@ export function MigrateToStoreScreen({ navigation }: Props) {
   const [isDone, setIsDone] = useState(false);
 
   const { loading: isLoadingCep, lookup } = useCepLookup();
+  const { t } = useTranslation();
+  const migrateToStoreSchema = useMemo(() => createMigrateToStoreSchema(t), [t]);
 
   const {
     control,
@@ -114,8 +117,8 @@ export function MigrateToStoreScreen({ navigation }: Props) {
       setIsDone(true);
     } catch {
       Alert.alert(
-        'Erro',
-        'Não foi possível migrar sua conta para loja agora.',
+        t('MigrateToStore.errors.migrate.title'),
+        t('MigrateToStore.errors.migrate.message'),
       );
     } finally {
       setIsSubmitting(false);
@@ -134,15 +137,15 @@ export function MigrateToStoreScreen({ navigation }: Props) {
           </Pressable>
 
           <View>
-            <Text style={styles.heroEyebrow}>Configurações</Text>
-            <Text style={styles.title}>Migrar para loja</Text>
+            <Text style={styles.heroEyebrow}>{t('MigrateToStore.heroEyebrow')}</Text>
+            <Text style={styles.title}>{t('MigrateToStore.title')}</Text>
           </View>
         </View>
 
         <View style={styles.card}>
           <Store color={colors.primary} size={32} />
           <Text style={styles.description}>
-            Sua conta já é uma loja. Não é necessário migrar novamente.
+            {t('MigrateToStore.alreadyStore.description')}
           </Text>
         </View>
       </ScrollView>
@@ -154,17 +157,16 @@ export function MigrateToStoreScreen({ navigation }: Props) {
       <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
         <View style={styles.card}>
           <Store color={colors.primary} size={32} />
-          <Text style={styles.title}>Loja criada com sucesso!</Text>
+          <Text style={styles.title}>{t('MigrateToStore.success.title')}</Text>
           <Text style={styles.description}>
-            Sua conta agora é uma loja. Você já pode gerenciar produtos,
-            vendas e muito mais.
+            {t('MigrateToStore.success.description')}
           </Text>
 
           <Pressable
             style={styles.primaryButton}
             onPress={() => navigation.navigate('MainTabs', { screen: 'Home' })}
           >
-            <Text style={styles.primaryButtonText}>Ir para o início</Text>
+            <Text style={styles.primaryButtonText}>{t('MigrateToStore.success.button')}</Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -182,25 +184,25 @@ export function MigrateToStoreScreen({ navigation }: Props) {
         </Pressable>
 
         <View>
-          <Text style={styles.heroEyebrow}>Configurações</Text>
-          <Text style={styles.title}>Migrar para loja</Text>
+          <Text style={styles.heroEyebrow}>{t('MigrateToStore.heroEyebrow')}</Text>
+          <Text style={styles.title}>{t('MigrateToStore.title')}</Text>
         </View>
       </View>
 
       <View style={styles.infoBanner}>
         <Info color={colors.orange} size={18} />
         <Text style={styles.infoText}>
-          Preencha os dados abaixo para transformar sua conta em uma loja.
+          {t('MigrateToStore.infoBanner')}
         </Text>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>1. Dados da loja</Text>
+        <Text style={styles.sectionTitle}>{t('MigrateToStore.sections.storeData')}</Text>
 
         <RegisterField
           control={control}
           name='storeName'
-          label='Nome da loja'
+          label={t('MigrateToStore.fields.storeName')}
           autoCapitalize='words'
           returnKeyType='next'
           error={errors.storeName?.message}
@@ -208,12 +210,12 @@ export function MigrateToStoreScreen({ navigation }: Props) {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>2. Endereço</Text>
+        <Text style={styles.sectionTitle}>{t('MigrateToStore.sections.address')}</Text>
 
         <RegisterField
           control={control}
           name='address.cep'
-          label='CEP'
+          label={t('MigrateToStore.fields.cep')}
           keyboardType='number-pad'
           inputMode='numeric'
           maxLength={9}
@@ -224,13 +226,13 @@ export function MigrateToStoreScreen({ navigation }: Props) {
         />
 
         {isLoadingCep ? (
-          <Text style={styles.helperText}>Buscando endereço pelo CEP...</Text>
+          <Text style={styles.helperText}>{t('MigrateToStore.fields.cepLoading')}</Text>
         ) : null}
 
         <RegisterField
           control={control}
           name='address.address'
-          label='Endereço'
+          label={t('MigrateToStore.fields.address')}
           returnKeyType='next'
           error={errors.address?.address?.message}
         />
@@ -239,7 +241,7 @@ export function MigrateToStoreScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='address.number'
-            label='Número'
+            label={t('MigrateToStore.fields.number')}
             keyboardType='number-pad'
             inputMode='numeric'
             returnKeyType='next'
@@ -250,7 +252,7 @@ export function MigrateToStoreScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='address.complement'
-            label='Complemento'
+            label={t('MigrateToStore.fields.complement')}
             returnKeyType='next'
             containerStyle={styles.column}
             error={errors.address?.complement?.message}
@@ -260,7 +262,7 @@ export function MigrateToStoreScreen({ navigation }: Props) {
         <RegisterField
           control={control}
           name='address.neighborhood'
-          label='Bairro'
+          label={t('MigrateToStore.fields.neighborhood')}
           returnKeyType='next'
           error={errors.address?.neighborhood?.message}
         />
@@ -269,7 +271,7 @@ export function MigrateToStoreScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='address.city'
-            label='Cidade'
+            label={t('MigrateToStore.fields.city')}
             returnKeyType='next'
             containerStyle={styles.column}
             error={errors.address?.city?.message}
@@ -278,7 +280,7 @@ export function MigrateToStoreScreen({ navigation }: Props) {
           <RegisterField
             control={control}
             name='address.state'
-            label='UF'
+            label={t('MigrateToStore.fields.state')}
             autoCapitalize='characters'
             maxLength={2}
             returnKeyType='done'
@@ -290,37 +292,37 @@ export function MigrateToStoreScreen({ navigation }: Props) {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>3. Dados de recebimento (Pix)</Text>
+        <Text style={styles.sectionTitle}>{t('MigrateToStore.sections.pix')}</Text>
 
         <RegisterField
           control={control}
           name='ownerName'
-          label='Nome do titular'
+          label={t('MigrateToStore.fields.ownerName')}
           autoCapitalize='words'
           returnKeyType='next'
-          helperText='Nome do titular da chave Pix.'
+          helperText={t('MigrateToStore.fields.ownerNameHint')}
           error={errors.ownerName?.message}
         />
 
         <RegisterField
           control={control}
           name='pixKey'
-          label='Chave Pix'
+          label={t('MigrateToStore.fields.pixKey')}
           autoCapitalize='none'
           returnKeyType='next'
-          helperText='CPF, CNPJ, e-mail, telefone ou chave aleatória.'
+          helperText={t('MigrateToStore.fields.pixKeyHint')}
           error={errors.pixKey?.message}
         />
 
         <RegisterField
           control={control}
           name='document'
-          label='CPF ou CNPJ'
+          label={t('MigrateToStore.fields.document')}
           keyboardType='number-pad'
           inputMode='numeric'
           returnKeyType='done'
           transform={maskCpfCnpj}
-          helperText='Documento do titular do recebimento.'
+          helperText={t('MigrateToStore.fields.documentHint')}
           error={errors.document?.message}
         />
       </View>
@@ -330,7 +332,7 @@ export function MigrateToStoreScreen({ navigation }: Props) {
           style={styles.secondaryButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.secondaryButtonText}>Cancelar</Text>
+          <Text style={styles.secondaryButtonText}>{t('MigrateToStore.buttons.cancel')}</Text>
         </Pressable>
 
         <Pressable
@@ -341,7 +343,7 @@ export function MigrateToStoreScreen({ navigation }: Props) {
           {isSubmitting ? (
             <ActivityIndicator color='#FFFFFF' />
           ) : (
-            <Text style={styles.primaryButtonText}>Migrar para loja</Text>
+            <Text style={styles.primaryButtonText}>{t('MigrateToStore.buttons.submit')}</Text>
           )}
         </Pressable>
       </View>

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft } from 'lucide-react-native';
 
 import { UserService } from '../../services/user.service';
@@ -28,15 +29,18 @@ const colors = {
 
 const DOCUMENT_META: Record<
   Props['route']['params']['type'],
-  { title: string; fetcher: () => Promise<any> }
+  { titleKey: string; fetcher: () => Promise<any> }
 > = {
-  terms: { title: 'Termos de uso', fetcher: () => UserService.getPlatformTerms() },
+  terms: {
+    titleKey: 'LegalDocument.terms',
+    fetcher: () => UserService.getPlatformTerms(),
+  },
   policy: {
-    title: 'Política de privacidade',
+    titleKey: 'LegalDocument.policy',
     fetcher: () => UserService.getPlatformPrivacy(),
   },
   return: {
-    title: 'Política de devolução',
+    titleKey: 'LegalDocument.return',
     fetcher: () => UserService.getPlatformReturnPolicy(),
   },
 };
@@ -48,6 +52,7 @@ function extractContent(payload: any): string {
 }
 
 export function LegalDocumentScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const { type } = route.params;
   const meta = DOCUMENT_META[type];
 
@@ -68,7 +73,7 @@ export function LegalDocumentScreen({ navigation, route }: Props) {
           <ChevronLeft color={colors.text} size={22} />
         </Pressable>
 
-        <Text style={styles.title}>{meta.title}</Text>
+        <Text style={styles.title}>{t(meta.titleKey)}</Text>
       </View>
 
       <View style={styles.card}>
@@ -78,7 +83,7 @@ export function LegalDocumentScreen({ navigation, route }: Props) {
           </View>
         ) : error || !content ? (
           <Text style={styles.description}>
-            Não foi possível carregar este documento no momento.
+            {t('LegalDocument.loadError')}
           </Text>
         ) : (
           <Text style={styles.description}>{content}</Text>

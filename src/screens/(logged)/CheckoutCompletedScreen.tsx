@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { CheckCircle2, X } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ProductFeedCard } from '../../components/ProductFeedCard';
 import { useCheckoutStore } from '../../stores/checkout.store';
@@ -30,6 +31,7 @@ const colors = {
 };
 
 export function CheckoutCompletedScreen({ navigation, route }: Props) {
+  const { t } = useTranslation();
   const { orderId } = route.params ?? {};
   const selectProduct = useCheckoutStore(state => state.selectProduct);
   const [recommended, setRecommended] = useState<Product[]>([]);
@@ -51,11 +53,13 @@ export function CheckoutCompletedScreen({ navigation, route }: Props) {
 
       <View style={styles.successCard}>
         <CheckCircle2 color={colors.primary} size={48} />
-        <Text style={styles.title}>Agradecemos a sua compra!</Text>
+        <Text style={styles.title}>{t('CheckoutCompleted.title')}</Text>
         <Text style={styles.description}>
           {orderId
-            ? `Seu pedido #${orderId.slice(0, 8)} foi registrado com sucesso.`
-            : 'Seu pedido foi registrado com sucesso.'}
+            ? t('CheckoutCompleted.descriptionWithOrder', {
+                orderId: orderId.slice(0, 8),
+              })
+            : t('CheckoutCompleted.descriptionWithoutOrder')}
         </Text>
 
         {orderId ? (
@@ -65,33 +69,37 @@ export function CheckoutCompletedScreen({ navigation, route }: Props) {
               navigation.navigate('OrderDetails', { orderId })
             }
           >
-            <Text style={styles.primaryButtonText}>Ver pedido</Text>
+            <Text style={styles.primaryButtonText}>
+              {t('CheckoutCompleted.viewOrderButton')}
+            </Text>
           </Pressable>
         ) : null}
       </View>
 
       <View style={styles.infoCard}>
-        <Text style={styles.infoTitle}>Onde encontrar seu pedido</Text>
+        <Text style={styles.infoTitle}>{t('CheckoutCompleted.infoTitle')}</Text>
         <Text style={styles.infoDescription}>
-          Você pode acompanhar o status da sua compra a qualquer momento.
+          {t('CheckoutCompleted.infoDescription')}
         </Text>
-        <Text style={styles.infoStep}>1. Acesse o Menu do aplicativo.</Text>
-        <Text style={styles.infoStep}>2. Toque em "Minhas compras".</Text>
-        <Text style={styles.infoStep}>
-          3. Encontre seu pedido na lista de status.
-        </Text>
+        <Text style={styles.infoStep}>{t('CheckoutCompleted.infoStep1')}</Text>
+        <Text style={styles.infoStep}>{t('CheckoutCompleted.infoStep2')}</Text>
+        <Text style={styles.infoStep}>{t('CheckoutCompleted.infoStep3')}</Text>
       </View>
 
       <Pressable
         style={styles.secondaryButton}
         onPress={() => navigation.navigate('MainTabs', { screen: 'Home' })}
       >
-        <Text style={styles.secondaryButtonText}>Continuar comprando</Text>
+        <Text style={styles.secondaryButtonText}>
+          {t('CheckoutCompleted.continueShoppingButton')}
+        </Text>
       </Pressable>
 
       {recommended.length > 0 ? (
         <View style={styles.recommendedSection}>
-          <Text style={styles.recommendedTitle}>Você também pode gostar</Text>
+          <Text style={styles.recommendedTitle}>
+            {t('CheckoutCompleted.recommendedTitle')}
+          </Text>
           <FlatList
             data={recommended}
             horizontal

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   Pressable,
@@ -29,6 +30,7 @@ const colors = {
 };
 
 export function PiecesScreen({ navigation }: Props) {
+  const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const { data, isLoading, error } = useQuery({
@@ -54,8 +56,8 @@ export function PiecesScreen({ navigation }: Props) {
         </Pressable>
 
         <View>
-          <Text style={styles.heroEyebrow}>Peças</Text>
-          <Text style={styles.title}>Produtos por fornecedor.</Text>
+          <Text style={styles.heroEyebrow}>{t('Pieces.eyebrow')}</Text>
+          <Text style={styles.title}>{t('Pieces.title')}</Text>
         </View>
       </View>
 
@@ -68,8 +70,8 @@ export function PiecesScreen({ navigation }: Props) {
           <Layers color={colors.muted} size={32} />
           <Text style={styles.emptyTitle}>
             {error
-              ? 'Não foi possível carregar seus fornecedores.'
-              : 'Nenhum fornecedor associado.'}
+              ? t('Pieces.emptyError')
+              : t('Pieces.emptyTitle')}
           </Text>
         </View>
       ) : (
@@ -102,7 +104,9 @@ export function PiecesScreen({ navigation }: Props) {
                 {selectedSupplier.storeName}
               </Text>
               <View style={styles.detailRow}>
-                <Text style={styles.detailLabel}>Produtos disponíveis</Text>
+                <Text style={styles.detailLabel}>
+                  {t('Pieces.detail.productsAvailable')}
+                </Text>
                 <Text style={styles.detailValue}>
                   {selectedSupplier.overview?.productsCount ??
                     selectedSupplier.products ??
@@ -110,13 +114,17 @@ export function PiecesScreen({ navigation }: Props) {
                 </Text>
               </View>
               <View style={styles.detailRow}>
-                <Text style={styles.detailLabel}>Repasse ao fornecedor</Text>
+                <Text style={styles.detailLabel}>
+                  {t('Pieces.detail.supplierTransfer')}
+                </Text>
                 <Text style={styles.detailValue}>
                   {selectedSupplier.percentageValue ?? 0}%
                 </Text>
               </View>
               <View style={styles.detailRow}>
-                <Text style={styles.detailLabel}>Status</Text>
+                <Text style={styles.detailLabel}>
+                  {t('Pieces.detail.status')}
+                </Text>
                 <Text style={styles.detailValue}>
                   {selectedSupplier.status}
                 </Text>
